@@ -1,0 +1,36 @@
+﻿@model IEnumerable<TICRM.DTOs.WorkOrderDto>
+
+@foreach (var item in Model)
+{
+    <div class="m-widget3__item">
+        <div class="m-widget3__header">
+
+            <div class="m-widget3__info" style="padding-left:unset !important;">
+                <span class="m-widget3__username">
+                    <a href="#">@item.Title</a> | @item.NTE
+                </span><br>
+                <span class="m-widget3__time">
+
+                </span>
+            </div>
+            <span class="m-widget3__status m--font-info" style="padding-right:20px;">
+                @if (item.Status != null)
+                {
+                    if (item.Status.Name == "Active")
+                    {
+                        <span class="m-badge m-badge--success m-badge--wide" style="margin-bottom:5px;">@item.Status.Name</span>
+                    }
+                    else
+                    {
+                        <span class="m-badge m-badge--danger m-badge--wide" style="margin-bottom:5px;">@item.Status.Name</span>
+                    }
+                }
+            </span>
+        </div>
+        <div class="m-widget3__body">
+            <p class="m-widget3__text">
+                @item.Description
+            </p>
+        </div>
+    </div>
+}

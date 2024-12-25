@@ -1,0 +1,192 @@
+﻿@model TICRM.DTOs.CaseDto
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <h4 class="page-title">Create Case</h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        @using (Html.BeginForm("Create", "Cases", FormMethod.Post, new { id = "CaseCreateForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="row">
+
+                                <div class="col-lg-6">
+                                    <div class="mb-3 row">
+                                        <label for="example-text-input" class="col-sm-2 col-form-label text-end">Case Title<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.EditorFor(model => model.CaseTitle, new { htmlAttributes = new { @class = "form-control m-input", maxlength = "50" } })
+                                            @Html.ValidationMessageFor(model => model.CaseTitle, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-email-input" class="col-sm-2 col-form-label text-end">Contact<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(model => model.ContactId, Model.ContactsDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input SearchableDropDown" })
+                                            @Html.ValidationMessageFor(model => model.ContactId, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-tel-input" class="col-sm-2 col-form-label text-end">Description<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control m-input", maxlength = "50" } })
+                                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-password-input" class="col-sm-2 col-form-label text-end">Related To<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(model => model.RelatedTo, Model.RelatedToDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input SearchableDropDown" })
+                                            @Html.ValidationMessageFor(model => model.RelatedTo, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-number-input" class="col-sm-2 col-form-label text-end">Assigned User<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(model => model.AssignedUser, Model.AssignedUserDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input SearchableDropDown" })
+                                            @Html.ValidationMessageFor(model => model.AssignedUser, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="mb-3 row">
+                                        <label for="example-url-input" class="col-sm-2 col-form-label text-end">Case Type<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(model => model.CaseTypeId, Model.CaseTypeDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input SearchableDropDown" })
+                                            @Html.ValidationMessageFor(model => model.CaseTypeId, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row">
+                                        <label for="example-month-input" class="col-sm-2 col-form-label text-end">Case Status<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(model => model.CaseStatusId, Model.CaseStatusDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input SearchableDropDown" })
+                                            @Html.ValidationMessageFor(model => model.CaseStatusId, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row">
+                                        <label for="example-time-input" class="col-sm-2 col-form-label text-end">Assigned Team<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(model => model.AssignedTeam, Model.AssignedTeamDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input SearchableDropDown" })
+                                            @Html.ValidationMessageFor(model => model.AssignedTeam, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-week-input" class="col-sm-2 col-form-label text-end">Related To Id<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(model => model.RelatedToId, Model.RelatedToIdDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input SearchableDropDown" })
+                                            @Html.ValidationMessageFor(model => model.RelatedToId, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <a href="/Cases/Index" class="btn btn-primary ">
+                                        <i class="la la-arrow-left"></i>
+                                        <span>Back to List</span>
+                                    </a>
+                                    <button type="submit" id="savebtn" class="btn btn-primary float-end"><i class="la la-save"></i> Submit</button>
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+            <!--end card-body-->
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        var Warning = '@TempData["Warning"]';
+        if (Warning.length != 0)
+        {
+            toastr.warning(Warning);
+        }
+
+
+        $("#RelatedTo").change(function () {
+            var obj = { value: $('#RelatedTo').val() }
+
+            $.ajax({
+                type: "GET",
+                url: "/cases/GetRelatedToValues",
+                data: obj,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    $('#RelatedToId').html('');
+                    var options = '';
+                    console.log("Ajax");
+                    console.log(response);
+                    options += '<option value="Select">--Select--</option>';
+                    for (var i = 0; i < response.length; i++) {
+                        options += '<option value="' + response[i].ID + '">' + response[i].Name + '</option>';
+                    }
+                    console.log(options);
+                    $('#RelatedToId').append(options).trigger("chosen:updated");
+                },
+                failure: function () {
+                    alert("Failed!");
+                }
+            });
+        });
+
+        var obj = { value: $('#RelatedTo').val() }
+  
+        
+            $.ajax({
+            type: "GET",
+            url: "/cases/GetRelatedToValues",
+            data: obj,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+
+                $('#RelatedToId').html('');
+                var options = '';
+                for (var i = 0; i < response.length; i++) {
+                    if ('@ViewBag.Dropdown'== response[i].ID) {
+                        options += '<option value="' + response[i].ID + '">' + response[i].Name + '</option>';
+                        break;
+                    }
+                }
+                for (var i = 0; i < response.length; i++) {
+                    options += '<option value="' + response[i].ID + '">' + response[i].Name + '</option>';
+                }
+                $('#RelatedToId').append(options).trigger("chosen:updated");
+            },
+            failure: function () {
+                alert("Failed!");
+            }
+        });
+  
+
+    })
+</script>

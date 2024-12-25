@@ -1,0 +1,111 @@
+﻿@model TICRM.DTOs.CaseDto
+
+<div class="modal-header modal-header-rightside">
+    <h5 class="modal-header-title" id="exampleModalLabel">@Html.DisplayFor(model => model.CaseTitle)</h5>
+    <button type="button" class="close modalrightsideClose" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">X</span>
+    </button>
+</div>
+<h3 id="caseId" style="display:none">@Model.CaseId </h3>
+
+<div class="modal-body">
+    <div class="details">
+        <table class="tb-horizontal">
+            <tr>
+                <th class="blockquote">@Html.DisplayNameFor(model => model.CaseTitle)</th>
+                <td class="blockquote">@Html.DisplayFor(model => model.CaseTitle)</td>
+            </tr>
+            <tr>
+                <th class="blockquote">@Html.DisplayNameFor(model => model.CaseTypeDto.Name)</th>
+                <td class="blockquote">@Html.DisplayFor(model => model.CaseTypeDto.Name)</td>
+            </tr>
+            <tr>
+                <th class="blockquote">Contact</th>
+                <td class="blockquote">@Html.DisplayFor(model => model.ContactDto.Name)</td>
+            </tr>
+            <tr>
+                <th class="blockquote">Team Name</th>
+                <td class="blockquote">@Html.DisplayFor(model => model.Team.Name)</td>
+            </tr>
+            <tr>
+                <th class="blockquote">User Name</th>
+                <td class="blockquote">@Html.DisplayFor(model => model.User.Name)</td>
+            </tr>
+            <tr>
+                <th class="blockquote">Status</th>
+                <td class="blockquote">@Html.DisplayFor(model => model.CaseStatusDto.Name)</td>
+            </tr>
+            <tr>
+                <th class="blockquote">  @Html.DisplayNameFor(model => model.Description)</th>
+                <td class="blockquote">@Html.DisplayFor(model => model.Description)</td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="ResolveCase" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed " style="display:none;">
+        <h2>Resolve Case</h2>
+
+        <div class="form-group m-form__group row">
+            <div class="col-lg-6">
+                <label class="control-label">Resolution Type</label><br />
+                <div class="input-group">
+                    @Html.DropDownList("ResulutionTypeDropdown", Model.CaseResolutionDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input", @id = "ResolutionType" })
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label class="control-label">Resolution</label><br />
+                <input class="form-control m-input" id="CaseResolution" name="CaseResolution" value="" required>
+            </div>
+
+        </div>
+
+        <div class="form-group m-form__group row">
+            <div class="col-lg-6">
+                <label class="control-label">Total Time</label><br />
+                <input class="form-control m-input" id="CaseTotalTime" name="CaseTotalTime" value="" required>
+            </div>
+            <div class="col-lg-6">
+                <label class="control-label">Billable Time</label><br />
+                <input class="form-control m-input" id="CaseBillableTime" name="CaseBillableTime" value="" required>
+            </div>
+        </div>
+
+        <div class="form-group m-form__group row">
+            <div class="col-lg-6">
+                <label class="control-label">Remarks</label><br />
+                <input class="form-control m-input" id="CaseRemarks" name="CaseRemarks" value="" required>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+@if (Model.User.StatusId.ToString() == "fb6bab54-3e26-4270-a875-34bc7f72afd8")
+{
+    <div class="modal-footer modal-rightside-footer" style="display: block !important" id="caseButtons">
+        <div class="form-actions no-color">
+            <button type="button" onclick="ResolveCaseUser()" class="btn btn-secondary"><i class="la la-refresh"></i> resolve</button>
+            <button type="button" onclick="$('#m_modal_Details').modal('hide');" class="btn btn-secondary"><i class="la la-refresh"></i> Cancel</button>
+        </div>
+    </div>
+}
+else
+{
+    <div class="modal-footer modal-rightside-footer" style="display: block !important" id="caseResolveButtons">
+        <div class="form-actions no-color">
+            <button type="button" onclick="AcceptCase('@Model.AssignedUser', '@Model.CaseId')" class="btn btn-secondary"><i class="la la-refresh"></i> Accept</button>
+            <button type="button" onclick="RejectCase('@Model.AssignedUser', '@Model.CaseId')" class="btn btn-secondary"><i class="la la-refresh"></i> Reject</button>
+            <button type="button" onclick="$('#m_modal_Details').modal('hide');" class="btn btn-secondary"><i class="la la-refresh"></i> Cancel</button>
+        </div>
+    </div>
+}
+
+<div class="modal-footer modal-rightside-footer" style="display: none !important" id="ResolveButtons">
+    <div class="form-actions no-color">
+        <button type="button" onclick="ResolveCaseFromUser('@Model.AssignedUser', '@Model.CaseId')" class="btn btn-secondary"><i class="la la-refresh"></i> Mark As Resolved</button>
+        <button type="button" onclick="$('#m_modal_Details').modal('hide');" class="btn btn-secondary"><i class="la la-refresh"></i> Cancel</button>
+    </div>
+</div>

@@ -1,0 +1,152 @@
+﻿@model TICRM.DTOs.UserRegistrationVM
+@{ Layout = null; }
+
+<head>
+
+    <meta charset="utf-8" />
+    <title>Metrica - Admin & Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App favicon -->
+    <!--<link rel="shortcut icon" href="assets/images/favicon.ico">-->
+    <!-- App css -->
+    <link href="~/Content/Assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Assets/css/icons.min.css" rel="stylesheet" />
+    <link href="~/Content/Assets/css/app.min.css" rel="stylesheet" />
+    <<!--Chosen CSS -->>
+    <link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
+
+</head>
+
+<body id="body" class="auth-page" style="background-image: url('/Content/Assets/images/p-1.png'); background-size: cover; background-position: center center;">
+    <!-- Log In page -->
+    <div class="container-md">
+        <div class="row vh-100 d-flex justify-content-center">
+            <div class="col-12 align-self-center">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-4 mx-auto">
+                            <div class="card">
+                                <div class="card-body p-0 auth-header-box">
+                                    <div class="text-center p-3">
+                                        <a href="index.html" class="logo logo-admin">
+                                            <img src="~/Content/Assets/images/logo-sm.png" height="50" alt="logo" class="auth-logo">
+                                        </a>
+                                        <h4 class="mt-3 mb-1 fw-semibold text-white font-18">Sign up</h4>
+                                        <p class="text-muted  mb-0">Swuich - Internet of Things</p>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-0">
+                                    <!--Start form-->
+
+                                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = " m-form", role = "form" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        <div class="form-group mb-2 mt-2">
+                                            <span class="mt-2 mb-2 text-danger">@ViewBag.Exist</span>
+                                        </div>
+                                        <div class="form-group mb-2 mt-2">
+                                            <label class="form-label" for="username">First Name<span class="text-danger">  *</span></label>
+                                            @Html.TextBoxFor(m => m.UserRegister.FirstName, new { @class = "form-control m-input", placeholder = "Enter first name", autocomplete = "off" })
+                                            @Html.ValidationMessageFor(m => m.UserRegister.FirstName, "", new { @class = "text-danger" })
+                                        </div><!--end form-group-->
+                                        <div class="form-group mb-2">
+                                            <label class="form-label" for="username">Last Name<span class="text-danger">  *</span></label>
+                                            @Html.TextBoxFor(m => m.UserRegister.LastName, new { @class = "form-control m-input", placeholder = "Enter last name", autocomplete = "off" })
+                                            @Html.ValidationMessageFor(m => m.UserRegister.LastName, "", new { @class = "text-danger" })
+                                        </div><!--end form-group-->
+                                        <div class="form-group mb-2">
+                                            <label class="form-label" for="username">Phone Number<span class="text-danger">  *</span></label>
+                                            @Html.TextBoxFor(m => m.UserRegister.PhoneNumber, new { @class = "form-control m-input", placeholder = "Enter phone number", autocomplete = "off" })
+                                            @Html.ValidationMessageFor(m => m.UserRegister.PhoneNumber, "", new { @class = "text-danger" })
+                                        </div><!--end form-group-->
+
+                                        <div class="form-group mb-2">
+                                            <label class="form-label" for="username">Email<span class="text-danger">  *</span></label>
+                                            @Html.TextBoxFor(m => m.UserRegister.Email, new { @class = "form-control m-input", placeholder = "example@gmail.com", autocomplete = "off" })
+                                            @Html.ValidationMessageFor(m => m.UserRegister.Email, "", new { @class = "text-danger" })
+                                        </div><!--end form-group-->
+
+                                        <div class="form-group mb-2">
+                                            <label class="form-label" for="username">Company<span class="text-danger">  *</span></label>
+                                            @Html.TextBoxFor(m => m.Company.Name, new { @class = "form-control m-input", placeholder = "Enter compnay name", autocomplete = "off" })
+                                            @Html.ValidationMessageFor(m => m.Company.Name, "", new { @class = "text-danger" })
+                                        </div><!--end form-group-->
+
+                                        <div class="form-group mb-2">
+                                            <label class="form-label" for="username">Country<span class="text-danger">  *</span></label>
+                                            @Html.DropDownListFor(m => m.UserRegister.Countryid, Model.UserRegister.CountryDropdown, "Select location", htmlAttributes: new { @class = "form-control SearchableDropDown" })
+                                            @Html.ValidationMessageFor(m => m.UserRegister.Countryid, "", new { @class = "text-danger" })
+                                        </div><!--end form-group-->
+                                        
+                                        <div class="form-group mb-2">
+                                            <label class="form-label" for="username">Industry<span class="text-danger">  *</span></label>
+                                            @Html.DropDownListFor(m => m.UserRegister.Industryid, Model.UserRegister.IndustryDropdown, "Select industry", htmlAttributes: new { @class = "form-control SearchableDropDown" })
+                                            @Html.ValidationMessageFor(m => m.UserRegister.Industryid, "", new { @class = "text-danger" })
+                                        </div><!--end form-group-->
+
+                                        <div class="form-group mb-2">
+                                            <label class="form-label" for="userpassword">Password<span class="text-danger">  *</span></label>
+                                            @Html.PasswordFor(m => m.UserRegister.Password, new { @class = "form-control m-input m-login__form-input--last", placeholder = "Password" })
+                                            @Html.ValidationMessageFor(m => m.UserRegister.Password, "", new { @class = "text-danger" })
+                                        </div><!--end form-group-->
+                                        <div class="form-group mb-2">
+                                            <label class="form-label" for="userpassword">Confirm Password<span class="text-danger">  *</span></label>
+                                            @Html.PasswordFor(m => m.UserRegister.ConfirmPassword, new { @class = "form-control m-input m-login__form-input--last", placeholder = "Confirm password" })
+                                            @Html.ValidationMessageFor(m => m.UserRegister.ConfirmPassword, "", new { @class = "text-danger" })
+                                        </div><!--end form-group-->
+
+                                        <div class="form-group mb-0 row">
+                                            <div class="col-12">
+                                                <div class="d-grid mt-3">
+                                                    <button class="btn btn-primary" type="submit">Sign up <i class="fas fa-sign-in-alt ms-1"></i></button>
+                                                </div>
+                                            </div><!--end col-->
+                                        </div> <!--end form-group-->}
+                                    <!--end form-->
+                                    <div class="m-3 text-center text-muted">
+                                        <p class="mb-0">Do you have an account ?  <a href="~/Account/Login" class="text-primary ms-2">Click here</a></p>
+                                    </div>
+                                    <hr class="hr-dashed mt-4">
+                                    <div class="text-center mt-n5">
+                                        <h6 class="card-bg px-3 my-4 d-inline-block">Or Login With</h6>
+                                    </div>
+                                    <div class="d-flex justify-content-center mb-1">
+                                        <a href="" class="d-flex justify-content-center align-items-center thumb-sm bg-soft-primary rounded-circle me-2">
+                                            <i class="fab fa-facebook align-self-center"></i>
+                                        </a>
+                                        <a href="" class="d-flex justify-content-center align-items-center thumb-sm bg-soft-info rounded-circle me-2">
+                                            <i class="fab fa-twitter align-self-center"></i>
+                                        </a>
+                                        <a href="" class="d-flex justify-content-center align-items-center thumb-sm bg-soft-danger rounded-circle">
+                                            <i class="fab fa-google align-self-center"></i>
+                                        </a>
+                                    </div>
+                                </div><!--end card-body-->
+                            </div><!--end card-->
+                        </div><!--end col-->
+                    </div><!--end row-->
+                </div><!--end card-body-->
+            </div><!--end col-->
+        </div><!--end row-->
+    </div><!--end container-->
+
+</body>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/chosen.jquery.min.js"></script>
+<!-- App js -->
+<script src="~/Content/Assets/js/app.js"></script>
+
+<!-- Chosen jQuery-->
+<script src="~/Scripts/chosen.jquery.js"></script>
+
+<script>
+    $(function () {
+        $(".SearchableDropDown").chosen({ width: "100%" });
+    });
+
+</script>

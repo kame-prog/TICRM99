@@ -1,0 +1,196 @@
+﻿@model TICRM.DTOs.FirmwareDto
+
+@{
+    ViewBag.Title = "Update Firmware";
+}
+
+<!-- BEGIN: Subheader -->
+<div class="m-subheader ">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <h3 class="m-subheader__title m-subheader__title--separator">Update Firmware</h3>
+        </div>
+
+    </div>
+</div>
+
+<!-- END: Subheader -->
+<div class="m-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <!--begin::Portlet-->
+            <div class="m-portlet">
+
+                <!--begin::Form-->
+
+
+                @using (Html.BeginForm("Create",
+                "Firmwares",
+                FormMethod.Post,
+                new { enctype = "multipart/form-data", @class = "m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" }))
+                {
+                    @Html.AntiForgeryToken()
+
+
+                    <div class="m-portlet__body">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group m-form__group row">
+                            <div class="col-lg-6">
+                                @*@Html.LabelFor(model => model.version)*@
+                                <label>Firmware Version</label>
+
+                                @Html.EditorFor(model => model.version, new { htmlAttributes = new { @class = "form-control", @placeholder = "TIFW001" } })
+                                @Html.ValidationMessageFor(model => model.version, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>Description</label>
+
+                                @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <div class="col-lg-6">
+                                <label>Server Address</label>
+
+                                @Html.EditorFor(model => model.server, new { htmlAttributes = new { @class = "form-control", @placeholder = "http://192.168.0.14" } })
+                                @Html.ValidationMessageFor(model => model.server, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.Device)
+
+                                @Html.EditorFor(model => model.Device, new { htmlAttributes = new { @class = "form-control", @id = "dname" } })
+                                @Html.ValidationMessageFor(model => model.Device, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group m-form__group row">
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.Location)
+
+                                @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control", @id = "location" } })
+                                @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="col-lg-6">
+                                <label>Firmware File</label><br />
+                                <div class="input-group">
+
+                                    <div class="custom-file">
+
+                                        <input type="file" class="custom-file-input" id="file" name="file"
+                                               aria-describedby="inputGroupFileAddon01">
+                                        <label class="custom-file-label" for="file">Choose firmware</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" id="mac" name="Mac">
+
+                    </div>
+
+                    @*<div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                <div class="m-form__actions m-form__actions--solid">
+                    <div class="d-flex justify-content-end">
+
+                        <input type="submit" value="Submit" class="btn btn-success" />
+
+
+                    </div>
+
+                </div>
+            </div>*@
+                    <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                        <div class="m-form__actions m-form__actions--solid">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <input type="submit" id="savebtn" value="Submit" class="btn btn-success" />
+                                    <button type="reset" class="btn btn-secondary"><i class="la la-refresh"></i> Cancel</button>
+                                </div>
+                                <div class="col-lg-6 m--align-right">
+                                    <a href="/Accounts/Index" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
+                                        <span>
+                                            <i class="la la-arrow-left"></i>
+                                            <span>Back to List</span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+
+            </div>
+
+            <!--end::Form-->
+            <!--end::Portlet-->
+        </div>
+    </div>
+</div>
+
+
+
+
+@section scripts{
+
+    <script>
+
+        $('#savebtn').on('click', function () {
+            mApp.blockPage({
+                overlayColor: "#000000",
+                type: "loader",
+                state: "primary",
+                message: "Processing..."
+            })
+            $('#AddressesCreateForm').submit();
+        });
+
+        $(document).ready(function () {
+
+            getURLMacAddress();
+
+        });
+
+        var getURLMacAddress = function () {
+
+            var url = new URL(window.location.href);
+            var macaddress = url.searchParams.get("MacAddress");
+            var devicename = url.searchParams.get("devicename");
+            var loc = url.searchParams.get("location");
+            var locfield = document.getElementById('location');
+
+            var device = document.getElementById("dname");
+            if (devicename == null) {
+                device.value = "All Devices";
+                locfield.value = "All Locations";
+            }
+            else {
+                device.value = devicename;
+                locfield.value = loc;
+            }
+            var maca = document.getElementById("mac");   //id for the text field
+            if (macaddress == null) {   //if there is no mac set the value to all
+                maca.value = "all";
+            }
+            else if (macaddress != null) {      //if Mac is there set the value to the mac
+                maca.value = macaddress;
+                var f = {};
+                f.url = '@Url.Action("macAdd", "Firmwares")';
+                f.type = "POST";
+                f.dataType = "json";
+                f.data = JSON.stringify({ mac: macaddress });
+                f.contentType = "application/json";
+                $.ajax(f);
+            }
+
+        }
+
+    </script>
+}
+
+
+

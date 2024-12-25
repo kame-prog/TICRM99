@@ -1,0 +1,214 @@
+﻿@model TICRM.DTOs.AccountDto
+
+@{
+    ViewBag.Title = "Create Account";
+}
+
+
+<!-- END: Subheader -->
+<div class="m-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <!--begin::Portlet-->
+            <div class="m-portlet">
+                <!--begin::Form-->
+
+                @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "AccountsCreateForm", @class = "m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="m-portlet__body">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group m-form__group row">
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.Name, "Name *", htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control m-input", maxlength = "50" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.AccountTypeId, "Account Type *", htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.AccountTypeId, Model.AccountTypeDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input SearchDropDown" })
+                                @Html.ValidationMessageFor(model => model.AccountTypeId, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+
+                        <div class="form-group m-form__group row">
+                            <div class="col-lg-6">
+
+                                @Html.LabelFor(model => model.ShippingAddress, "Shipping Address *", htmlAttributes: new { @class = "control-label" })
+
+                                @Html.DropDownListFor(model => model.ShippingAddress, Model.AddressDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input" })
+                                @Html.ValidationMessageFor(model => model.ShippingAddress, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.BillingAddress, "Billing Address *", htmlAttributes: new { @class = "control-label" })
+
+                                @Html.DropDownListFor(model => model.BillingAddress, Model.AddressDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input" })
+                                @Html.ValidationMessageFor(model => model.BillingAddress, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group m-form__group row">
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.Latitude, "Latitude", htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Latitude, new { htmlAttributes = new { @class = "form-control m-input", maxlength = "50" } })
+
+                                @Html.ValidationMessageFor(model => model.Latitude, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.Longitude, "Longitude", htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Longitude, new { htmlAttributes = new { @class = "form-control m-input", maxlength = "50" } })
+
+                                @Html.ValidationMessageFor(model => model.Longitude, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group m-form__group row">
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.PhoneOffice, "PhoneOffice *", htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.PhoneOffice, new { htmlAttributes = new { @class = "form-control m-input", maxlength = "11" } })
+                                @Html.ValidationMessageFor(model => model.PhoneOffice, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control m-input" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group m-form__group row">
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.Fax, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Fax, new { htmlAttributes = new { @class = "form-control m-input" } })
+                                @Html.ValidationMessageFor(model => model.Fax, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-lg-6">
+
+                                @Html.LabelFor(model => model.WebSite, htmlAttributes: new { @class = "control-label" })
+                                <div class="m-input-icon m-input-icon--right">
+                                    @Html.EditorFor(model => model.WebSite, new { htmlAttributes = new { @class = "form-control m-input" } })
+                                    @Html.ValidationMessageFor(model => model.WebSite, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group m-form__group row">
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.AccountSizeId, "Account Size *", htmlAttributes: new { @class = "control-label" })
+                                <div class="m-input-icon m-input-icon--right">
+                                    @Html.DropDownListFor(model => model.AccountSizeId, Model.AccountSizeDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input" })
+                                    @Html.ValidationMessageFor(model => model.AccountSizeId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.IndustryId, "Industry *", htmlAttributes: new { @class = "control-label" })
+                                <div class="m-input-icon m-input-icon--right">
+                                    @Html.DropDownListFor(model => model.IndustryId, Model.IndustryDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input" })
+                                    @Html.ValidationMessageFor(model => model.IndustryId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group m-form__group row">
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })
+                                <div class="m-input-icon m-input-icon--right">
+                                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control m-input" } })
+                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.StatusId, "Status", htmlAttributes: new { @class = "control-label" })
+                                <div class="m-input-icon m-input-icon--right">
+                                    @Html.DropDownListFor(model => model.StatusId, Model.StatusDropdown, "Active", htmlAttributes: new { @class = "form-control m-input" })
+                                    @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group m-form__group row">
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.AssignedUser, "Assigned User", htmlAttributes: new { @class = "control-label" })
+                                <div class="m-input-icon m-input-icon--right">
+                                    @Html.DropDownListFor(model => model.AssignedUser, Model.AssignedUserDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input" })
+                                    @Html.ValidationMessageFor(model => model.AssignedUser, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.AssignedTeam, "Assigned Team", htmlAttributes: new { @class = "control-label" })
+                                <div class="m-input-icon m-input-icon--right">
+                                    @Html.DropDownListFor(model => model.AssignedTeam, Model.AssignedTeamDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input" })
+                                    @Html.ValidationMessageFor(model => model.AssignedTeam, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                        <div class="m-form__actions m-form__actions--solid">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <button type="button" id="savebtn" class="btn btn-success"><i class="la la-save"></i> Submit</button>
+                                    <button type="reset" class="btn btn-secondary"><i class="la la-refresh"></i> Cancel</button>
+                                </div>
+                                <div class="col-lg-6 m--align-right">
+                                    <a href="/Accounts/Index" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
+                                        <span>
+                                            <i class="la la-arrow-left"></i>
+                                            <span>Back to List</span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+                <!--end::Form-->
+            </div>
+            <!--end::Portlet-->
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+
+    <script>
+
+        $('#savebtn').on('click', function () {
+            mApp.blockPage({
+                overlayColor: "#000000",
+                type: "loader",
+                state: "primary",
+                message: "Processing..."
+            })
+            $('#AccountsCreateForm').submit();
+        });
+
+
+        $('#PhoneOffice').maxlength({
+            warningClass: "m-badge m-badge--warning m-badge--rounded m-badge--wide",
+            limitReachedClass: "m-badge m-badge--success m-badge--rounded m-badge--wide"
+        });
+
+        $('#Name').maxlength({
+            threshold: 10,
+            warningClass: "m-badge m-badge--danger m-badge--rounded m-badge--wide",
+            limitReachedClass: "m-badge m-badge--success m-badge--rounded m-badge--wide",
+            separator: ' of ',
+            preText: 'You have ',
+            postText: ' chars remaining.',
+            validate: true
+        });
+
+    </script>
+}
+
+
+

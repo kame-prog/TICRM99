@@ -1,0 +1,738 @@
+﻿@using Microsoft.AspNet.Identity
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+
+    <meta charset="utf-8" />
+    <title>SWUICH - Internet of Things</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />/
+
+    <!-- jquery -->
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+
+    <!-- Map css -->
+    <link href="~/Content/Assets/plugins/jmap/jsvectormap.css" rel="stylesheet" />
+    <!-- App css -->
+    <link href="~/Content/Assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Assets/css/icons.min.css" rel="stylesheet" />
+    <link href="~/Content/Assets/css/app.min.css" rel="stylesheet" />
+    <!-- Mterial design style sheet -->
+    @*<link href="~/Content/Assets/css/materialdesignicons.min.css" rel="stylesheet" />*@
+
+    <!-- Style Sheet -->
+    <link href="~/Content/Assets/css/DashboardStyleSheet.css" rel="stylesheet" />
+    <link href="~/Content/Assets/DataTables/datatables.min.css" rel="stylesheet" />
+    <link href="~/Content/Assets/NotiToasterJsCss/toastr.css" rel="stylesheet" />
+    <!-- sweet alert -->
+    <link href="~/Content/Assets/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" />
+    <<!--Chosen CSS -->>
+    <link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
+
+    <style>
+        /*@@media screen and (max-width: 320px) {*/
+            /* Set the font size to be 16px for screens up to 500px */
+            /*thead {
+                font-size: 12px;
+            }
+
+            tbody {
+                font-size: 12px;
+            }
+        }
+        @@media screen and (max-width: 568px) {*/
+            /* Set the font size to be 16px for screens up to 500px */
+            /*thead {
+                font-size: 14px;
+            }
+
+            tbody {
+                font-size: 14px;
+            }
+        }*/ 
+       
+    </style>
+</head>
+<!--Start body-->
+<body class="menu-item-active">
+
+    <!--Account Modal Popup Start-->
+    <div class="modal fade bs-example-modal-lg" id="AccountModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title mt-0" id="myLargeModalLabel">Create Account</h6>
+                    <button type="button" onclick=" $('#AccountModal form')[0].reset();" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @Html.Action("AccountModalPopup", "Dashboard")
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- Account Modal END-->
+    <!--Device Modal Popup Start-->
+    <div class="modal fade bs-example-modal-lg" id="DeviceModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title mt-0" id="myLargeModalLabel">Create Device</h6>
+                    <button type="button" onclick=" $('#DeviceModal form')[0].reset();" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @Html.Action("DeviceModalPopup", "Dashboard")
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- Device Modal END-->
+    <!--Opportunity Modal Popup Start-->
+    <div class="modal fade bs-example-modal-lg" id="OpportunityModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title mt-0" id="myLargeModalLabel">Create Opportunity</h6>
+                    <button type="button" onclick=" $('#OpportunityModal form')[0].reset();" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @Html.Action("OppModalPopup", "Dashboard")
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- Opportunity Modal END-->
+    <!--Work Order Modal Popup Start-->
+    <div class="modal fade bs-example-modal-lg" id="WorkOrderModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title mt-0" id="myLargeModalLabel">Create Work Order</h6>
+                    <button type="button" onclick=" $('#WorkOrderModal form')[0].reset();" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @Html.Action("WOModalPopup", "Dashboard")
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- Work Order Modal END-->
+    <!-- leftbar-tab-menu -->
+    <div class="leftbar-tab-menu">
+        <div class="main-icon-menu">
+            <a href="~/Dashboard/Index" class="logo logo-metrica d-block text-center">
+                <span>
+                    <img src="~/Content/Assets/images/SwuichLogo/Logo.png" alt="logo-small" class="logo-sm">
+                </span>
+            </a>
+            <div class="main-icon-menu-body">
+                <div class="position-reletive h-100" data-simplebar style="overflow-x: hidden;">
+                    <ul class="nav nav-tabs" role="tablist" id="tab-menu">
+                        <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Home" data-bs-trigger="hover">
+                            <a href="#Home" id="Home-tab" class="nav-link">
+                                <i class="ti ti-home menu-icon"></i>
+                            </a><!--end nav-link-->
+                        </li><!--end nav-item-->
+
+                        <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Customer" data-bs-trigger="hover">
+                            <a href="#customer" id="customer-tab" class="nav-link">
+                                <i class="ti ti-user menu-icon"></i>
+                            </a><!--end nav-link-->
+                        </li><!--end nav-item-->
+
+                        <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Sales" data-bs-trigger="hover">
+                            <a href="#sales" id="sales-tab" class="nav-link">
+                                <i class="ti ti-chart-arrows-vertical menu-icon"></i>
+                            </a><!--end nav-link-->
+                        </li><!--end nav-item-->
+
+                        <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Services" data-bs-trigger="hover">
+                            <a href="#Services" id="Services-tab" class="nav-link">
+                                <i class="fa fa-american-sign-language-interpreting menu-icon menu-icon"></i>
+                            </a><!--end nav-link-->
+                        </li><!--end nav-item-->
+                    </ul><!--end nav-->
+                </div><!--end /div-->
+            </div><!--end main-icon-menu-body-->
+            <div class="pro-metrica-end">
+                <a href="" class="profile">
+                    <img src="~/Content/Assets/images/users/user-4.jpg" alt="profile-user" class="rounded-circle thumb-sm">
+                </a>
+            </div><!--end pro-metrica-end-->
+        </div>
+        <!--end main-icon-menu-->
+        <!--Child side bar start-->
+        @**@
+        <div class="main-menu-inner">
+            <!-- LOGO -->
+            <div class="topbar-left">
+                <a href="~/Dashboard/Index" class="logo">
+                    <span>
+                        <img src="~/Content/Assets/images/SwuichLogo/SwuichName.png" alt="logo-large" class="logo-lg logo-dark">
+                        <img src="~/Content/Assets/images/logo.png" alt="logo-large" class="logo-lg logo-light">
+                    </span>
+                </a><!--end logo-->
+            </div><!--end topbar-left-->
+            <!--end logo-->
+            <div class="menu-body navbar-vertical tab-content" data-simplebar>
+                <div id="Home" class="main-icon-menu-pane tab-pane" role="tabpanel"
+                     aria-labelledby="Home-tab">
+                    <div class="collapse navbar-collapse" id="sidebarCollapse_2">
+                        <!-- Navigation -->
+                        <ul class="navbar-nav">
+
+                            <!--Home side bar Start-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="#HomeUI" data-bs-toggle="collapse" role="button"
+                                   aria-expanded="false" aria-controls="HomeUI">
+                                    <h6 class="menu-title"><b>HOME</b></h6>
+                                </a>
+                                <div class="collapse " id="HomeUI">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="~/Dashboard/index">Dashboard</a>
+                                        </li><!--end nav-item-->
+
+                                    </ul><!--end nav-->
+                                </div>
+                            </li><!--end nav-item-->
+                            <!--Home side bar END-->
+                            <!--Customer side bar Start-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="#customerUI" data-bs-toggle="collapse" role="button"
+                                   aria-expanded="false" aria-controls="customerUI">
+                                    <h6 class="menu-title"><b>CUSTOMERS</b></h6>
+                                </a>
+                                <div class="collapse " id="customerUI">
+                                    <ul class="nav flex-column">
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="~/Addresses/index">Addresses</a>
+                                        </li><!--end nav-item-->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="~/Accounts/index">Company Accounts</a>
+                                        </li><!--end nav-item-->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="~/Contact/index">Persons</a>
+                                        </li><!--end nav-item-->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="~/Locations/index">Locations</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="~/CustomerAssets/index">Assets</a>
+                                        </li><!--end nav-item-->
+
+                                    </ul><!--end nav-->
+                                </div><!--end sidebarForms-->
+                            </li><!--end nav-item-->
+                            <!--Customer side bar END-->
+                            <!--Sales sider bar Start-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="#salesUI" data-bs-toggle="collapse" role="button"
+                                   aria-expanded="false" aria-controls="salesUI">
+                                    <h6 class="menu-title"><b>SALES</b></h6>
+                                </a>
+                                <div class="collapse " id="salesUI">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="~/ServiceCalls/index">Calls</a>
+                                        </li><!--end nav-item-->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="~/Activities/index">Activities</a>
+                                        </li><!--end nav-item-->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="~/Leads/index">Leads</a>
+                                        </li><!--end nav-item-->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="~/Opportunities/index">Opportunities</a>
+                                        </li><!--end nav-item-->
+                                    </ul><!--end nav-->
+                                </div><!--end sidebarCharts-->
+                            </li><!--end nav-item-->
+                            <!--Sales sider bar END-->
+                            <!--Services side bar Start-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="#ServicesUI" data-bs-toggle="collapse" role="button"
+                                   aria-expanded="false" aria-controls="ServicesUI">
+                                    <h6 class="menu-title"><b>SERVICES</b></h6>
+                                </a>
+                                <div class="collapse " id="ServicesUI">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="~/Cases/index">Cases</a>
+                                        </li><!--end nav-item-->
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="~/Workorders/index">Work Orders</a>
+                                        </li><!--end nav-item-->
+                                    </ul><!--end nav-->
+                                </div><!--end sidebarAdvancedUI-->
+                            </li><!--end nav-item-->
+                            <!--Services side bar End-->
+                        </ul><!--end navbar-nav--->
+                    </div><!--end sidebarCollapse_2-->
+                </div><!-- end Dashboards -->
+                <!--Customer side-bar data-->
+                <div id="customer" class="main-icon-menu-pane tab-pane" role="tabpanel" aria-labelledby="customer-tab">
+                    <div class="title-box">
+                        <h6 class="menu-title">CUSTOMER</h6>
+                    </div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/Addresses/Index">Addresses</a>
+                        </li><!--end nav-item-->
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/Accounts/Index">Company Accounts</a>
+                        </li><!--end nav-item-->
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/Contact/Index">Persons</a>
+                        </li><!--end nav-item-->
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/Locations/Index">Locations</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/CustomerAssets/Index">Assets</a>
+                        </li><!--end nav-item-->
+                    </ul><!--end nav-->
+                </div><!-- end Pages -->
+                <!--Sales side-bar data-->
+                <div id="sales" class="main-icon-menu-pane  tab-pane" role="tabpanel"
+                     aria-labelledby="sales-tab">
+                    <div class="title-box">
+                        <h6 class="menu-title">SALES</h6>
+                    </div>
+                    <div class="collapse navbar-collapse" id="sidebarCollapse_2">
+                        <!-- Navigation -->
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="~/ServiceCalls/Index">Calls</a>
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="~/Activities/Index">Activities</a>
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="~/Leads/Index">Leads</a>
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="~/Opportunities/Index">Opportunities</a>
+                            </li><!--end nav-item-->
+                        </ul><!--end navbar-nav--->
+                    </div><!--end sidebarCollapse_2-->
+                </div><!-- end Others -->
+                <!--Services side-bar data-->
+                <div id="Services" class="main-icon-menu-pane  tab-pane" role="tabpanel"
+                     aria-labelledby="Services-tab">
+                    <div class="title-box">
+                        <h6 class="menu-title">SERVICES</h6>
+                    </div>
+                    <div class="collapse navbar-collapse" id="sidebarCollapse_2">
+                        <!-- Navigation -->
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="~/Cases/Index">Cases</a>
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="~/WorkOrders/Index">Work Orders</a>
+                            </li><!--end nav-item-->
+                        </ul><!--end navbar-nav--->
+                    </div><!--end sidebarCollapse_2-->
+                </div><!-- end Others -->
+            </div>
+            <!--end menu-body-->
+        </div><!-- end main-menu-inner-->
+        <!--Child side bar END-->
+    </div>
+    <!-- end leftbar-tab-menu-->
+    <!-- Top Bar Start -->
+    <!-- Top Bar Start -->
+    <div class="topbar">
+        <!-- Navbar -->
+        <nav class="navbar-custom" id="navbar-custom">
+            <ul class="list-unstyled topbar-nav float-end mb-0">
+
+                <li class="dropdown notification-list">
+                    <a class="nav-link dropdown-toggle arrow-none nav-icon" data-bs-toggle="dropdown" href="#" role="button"
+                       aria-haspopup="false" aria-expanded="false">
+                        <i class="ti ti-plus"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end dropdown-lg pt-0">
+
+                        <h6 class="dropdown-item-text font-15 m-0 py-3 border-bottom d-flex justify-content-between align-items-center">
+                            Quick Actions
+                        </h6>
+                        <div class="notification-menu" data-simplebar>
+                            <!-- item-->
+                            <button class="dropdown-item py-3" id="AccountPopupbtn" data-bs-toggle="modal" data-animation="bounce">
+                                <div class="media">
+                                    <div class="avatar-md">
+                                        <i class="ti ti-user-plus "></i>
+                                    </div>
+                                    <div class="media-body align-self-center ms-2 text-truncate">
+                                        <h6 class="my-0 fw-normal text-dark">Create Account</h6>
+                                        <small class="text-muted mb-0">Create new account</small>
+                                    </div><!--end media-body-->
+                                </div><!--end media-->
+                            </button><!--end-item-->
+                            <!-- item-->
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <button class="dropdown-item py-3" id="DevicePopupbtn" data-bs-toggle="modal" data-animation="bounce">
+                                    <div class="media">
+                                        <div class="avatar-md ">
+                                            <i class="ti ti-router"></i>
+                                        </div>
+                                        <div class="media-body align-self-center ms-2 text-truncate">
+                                            <h6 class="my-0 fw-normal text-dark">New Device</h6>
+                                            <small class="text-muted mb-0">Create new device</small>
+                                        </div><!--end media-body-->
+                                    </div><!--end media-->
+                                </button><!--end-item-->
+                            }
+                            <!-- item-->
+                            <button class="dropdown-item py-3" id="OpportunityPopupbtn" data-bs-toggle="modal" data-animation="bounce">
+                                <div class="media">
+                                    <div class="avatar-md ">
+                                        <i class="ti ti-bulb"></i>
+                                    </div>
+                                    <div class="media-body align-self-center ms-2 text-truncate">
+                                        <h6 class="my-0 fw-normal text-dark">New Opportunity</h6>
+                                        <small class="text-muted mb-0">Create new Opportunity</small>
+                                    </div><!--end media-body-->
+                                </div><!--end media-->
+                            </button><!--end-item-->
+                            <!-- item-->
+                            <button class="dropdown-item py-3" id="WorkOrderPopupbtn" data-bs-toggle="modal" data-animation="bounce">
+                                <div class="media">
+                                    <div class="avatar-md ">
+                                        <i class="ti ti-user"></i>
+                                    </div>
+                                    <div class="media-body align-self-center ms-2 text-truncate">
+                                        <h6 class="my-0 fw-normal text-dark">New Workorder</h6>
+                                        <small class="text-muted mb-0">Create new Workorder</small>
+                                    </div><!--end media-body-->
+                                </div><!--end media-->
+                            </button><!--end-item-->
+                            <!-- item-->
+                        </div>
+                    </div>
+                </li>
+
+                <li class="dropdown notification-list">
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a class="nav-link nav-icon" href="@Session["PaymentLink"]" target="_blank">
+                            <i class="ti ti-shopping-cart"></i>
+                            <span class="alert-badge"></span>
+                        </a>
+                    }
+                </li>
+
+                <li class="dropdown">
+                    <a class="nav-link dropdown-toggle nav-user" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                        <div class="d-flex align-items-center">
+                            <img src="~/Content/Assets/images/users/User_Swuich.png" alt="profile-user" class="rounded-circle me-2 thumb-sm">
+                            <div>
+                                <small class="d-none d-md-block font-11">@Session["UserRole"]</small>
+                                <span class="d-none d-md-block fw-semibold font-12"> @Session["UserName"] <i class="fas fa-angle-double-down"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <a class="dropdown-item" href="@Url.Action("UserProfile", "User", new { id = Session["UserID"] })"><i class="ti ti-user font-16 me-1 align-text-bottom"></i>User Profile</a>
+                        <a class="dropdown-item" href="~/Manage/ChangePassword"><i class="ti ti-settings font-16 me-1 align-text-bottom"></i> Change Password</a>
+                        <div class="dropdown-divider mb-0"></div>
+                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()"><i class="ti ti-power font-16 me-1 align-text-bottom"></i>Logout</a>
+                        }
+                    </div>
+                </li><!--end topbar-profile-->
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="notification-list">
+                        <a class="nav-link arrow-none nav-icon offcanvas-btn" href="#" data-bs-toggle="offcanvas" data-bs-target="#Appearance" role="button" aria-controls="Rightbar">
+                            <i class="ti ti-settings ti-spin"></i>
+                        </a>
+                    </li>
+                }
+            </ul><!--end topbar-nav-->
+
+            <ul class="list-unstyled topbar-nav mb-0">
+                <li>
+                    <button class="nav-link button-menu-mobile nav-icon" id="togglemenu">
+                        <i class="ti ti-menu-2"></i>
+                    </button>
+                </li>
+                <li class="hide-phone app-search">
+                    <form role="search" action="#" method="get">
+                        <input type="search" name="search" class="form-control top-search mb-0" placeholder="Type text...">
+                        <button type="submit"><i class="ti ti-search"></i></button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+        <!-- end navbar-->
+    </div>
+    <!-- Top Bar End -->
+    <!-- Top Bar End -->
+    <!--Start Rightbar-->
+    <!--Start Rightbar/offcanvas-->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="Appearance" aria-labelledby="AppearanceLabel">
+        <div class="offcanvas-header border-bottom">
+            <h5 class="m-0 font-14" id="AppearanceLabel">Administration</h5>
+            <button type="button" class="btn-close text-reset p-0 m-0 align-self-center" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            @if (User.IsInRole("Admin"))
+            {
+                <div class="px-3 text-start">
+                    <ul class="navbar-nav ">
+                        <li class="nav-item">
+                            <h6 class="mb-0 font-14">
+                                <a href="#sidebarAccessibility " class="nav-link collapsed text-dark" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAccessibility">
+                                    Accessibility
+                                </a>
+                            </h6>
+                            <div class="collapse" id="sidebarAccessibility">
+                                <ul class="flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" href="~/Account/UserRolelist">Users and Teams</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!--end sidebarAccessibility-->
+                        <li class="nav-item">
+                            <h6 class="mb-0 mt-0 font-14">
+                                <a href="#sidebarWorkFlowEngine" class="nav-link collapsed text-dark" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarWorkFlowEngine">
+                                    WorkFlow Engine
+                                </a>
+                            </h6>
+                            <div class="collapse" id="sidebarWorkFlowEngine">
+                                <ul class="flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" href="~/WorkFlows/index">WorkFlows</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" href="/WorkFlowReports/index">Reports</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" href="/WorkFlows/WorkFlowDesigner">WorkFlow Designer</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!--end sidebarWorkFlowEngine-->
+                        <li class="nav-item">
+                            <h6 class="mb-0 mt-0 font-14">
+                                <a href="#sidebarDevices" class="nav-link collapsed text-dark" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDevices">
+                                    Devices
+                                </a>
+                            </h6>
+                            <div class="collapse" id="sidebarDevices">
+                                <ul class="flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" href="~/Devices/index">Registration</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" href="~/Firmwares/index">Firmware</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" href="~/Devices/DeviceSensorGraphList">Sensor Graph</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!--end sidebarDevices-->
+                        <li class="nav-item">
+                            <h6 class="mb-0 mt-0 font-14">
+                                <a href="#sidebarIntegrations" class="nav-link collapsed text-dark" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarIntegrations">
+                                    Integrations
+                                </a>
+                            </h6>
+                            <div class="collapse" id="sidebarIntegrations">
+                                <ul class="flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" href="~/Emailintegration/index">Email Setting</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <!--end sidebarDevices-->
+                    </ul><!--end nav-->
+                </div>
+
+            }
+
+
+        </div><!--end offcanvas-body-->
+    </div>
+    <!--end Rightbar/offcanvas-->
+    <!--end Rightbar-->
+    <div>
+        @RenderBody()
+    </div>
+
+
+</body>
+<!--end body-->
+
+</html>
+<!--Java-Script Start-->
+<!--Data Table script start-->
+<script src="~/Content/Assets/DataTables/datatables.min.js"></script>
+<!--Index and overall Javascript  -->
+<script src="~/Content/Assets/plugins/apexcharts/apexcharts.min.js"></script>
+@*<script src="~/Content/Assets/pages/analytics-index.init.js"></script>*@
+
+<!-- chartapex javascript-->
+@*<script src="~/Content/Assets/plugins/apexcharts/irregular-data-series.js"></script>*@
+<script src="~/Content/Assets/plugins/apexcharts/ohlc.js"></script>
+@*<script src="~/Content/Assets/pages/apexcharts.init.js"></script>*@
+
+@*Chart.js*@
+<script src="~/Content/Assets/plugins/chartjs/chart.js"></script>
+<script src="~/Content/Assets/pages/chartjs.init.js"></script>
+<!-- App js -->
+<script src="~/Content/Assets/js/app.js"></script>
+<!-- Table download in Excel JS -->
+<script src="~/Content/Assets/DataTables/table2excel/jquery.table2excel.min.js"></script>
+<!-- Map JS -->
+<script src="~/Content/Assets/plugins/jmap/jsvectormap.min.js"></script>
+<script src="~/Content/Assets/plugins/jmap/world.js"></script>
+<script src="~/Content/Assets/pages/vectormap.init.js"></script>
+<script src="~/Content/Assets/NotiToasterJsCss/toastr.js"></script>
+<!-- Sweet Alert -->
+<script src="~/Content/Assets/plugins/sweet-alert2/sweetalert2.min.js"></script>
+<script src="~/Content/Assets/pages/sweet-alert.init.js"></script>
+<!-- Scripts -->
+@*<script src="~/Scripts/jquery-3.4.1.min.js"></script>*@
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+<!-- Chosen jQuery-->
+<script src="~/Scripts/chosen.jquery.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+
+        //Success Toast appear
+        var data = '@TempData["Success"]';
+        if (data.length != 0) {
+            toastr.success(data);
+        }
+        //Warning Toast appear
+        var Warning = '@TempData["Warning"]';
+        if (Warning.length != 0) {
+            toastr.warning(Warning);
+        }
+        //Exist Message popup
+        var Exist = '@ViewBag.exist';
+        if (Exist.length != 0) {
+            swal.fire({
+                title: "Exist",
+                text: Exist,
+                icon: "warning",
+                button: "Ok",
+            });
+        }
+         //Error Message popup
+        var error = '@ViewBag.error';
+        if (error.length != 0) {
+            swal.fire({
+                title: "Warning",
+                text: error,
+                icon: "warning",
+                button: "Ok",
+            });
+        }
+    });
+    //Script for exporting table in .xls(Excel) file
+        $("#btnExport").click(function () {
+            $("#myTable").table2excel({
+                filename: "Table.xls"
+            });
+        });
+    //Script for refreshing the page
+    $('#RefreshPage').click(function () {
+        location.reload();
+    });
+
+    //Create account Modal Popup
+    $("#AccountPopupbtn").on("click", function (e) {
+        e.preventDefault();
+        $('#AccountModal').modal('show');
+    })
+    //Create account Modal Popup
+    $("#DevicePopupbtn").on("click", function (e) {
+        e.preventDefault();
+        $('#DeviceModal').modal('show');
+    })
+    //Create account Modal Popup
+    $("#OpportunityPopupbtn").on("click", function (e) {
+        e.preventDefault();
+        $('#OpportunityModal').modal('show');
+    })
+    //Create account Modal Popup
+    $("#WorkOrderPopupbtn").on("click", function (e) {
+        e.preventDefault();
+        $('#WorkOrderModal').modal('show');
+    })
+
+    $(function () {
+        $(".SearchableDropDown").chosen({ width: "100%" });
+    });
+
+
+    $(document).ready(function () {
+        // Get the current controller name from the URL
+        var currentController = window.location.pathname.split('/')[1];
+
+        // Add "active" class to the corresponding sidebar item based on the current controller
+        if (currentController === "Accounts" || currentController === "Contact" || currentController === "CustomerAssets" || currentController === "Locations" || currentController === "Addresses") {
+            $("#customer-tab").addClass("active");
+            $("#customer").addClass("active");
+            //Here we check side bar is show or not
+            var HomeSideBarShow = $("#customerUI").hasClass("show");
+            //If side bar show then we deactive the "customer" and "customer-tab"
+            if (HomeSideBarShow) {
+                $("#customer-tab").removeClass("active");
+                $("#customer").removeClass("active");
+            }
+            
+        } else if (currentController === "ServiceCalls" || currentController === "Activities" || currentController === "Leads" || currentController === "Opportunities") {
+            $("#sales-tab").addClass("active");
+            $("#sales").addClass("active");
+            //Here we check side bar is show or not
+            var HomeSideBarShow = $("#salesUI").hasClass("show");
+            //If side bar show then we deactive the "sales" and "sales-tab"
+            if (HomeSideBarShow) {
+                $("#sales-tab").removeClass("active");
+                $("#sales").removeClass("active");
+            }
+        } else if (currentController === "Cases" || currentController === "WorkOrders") {
+            $("#Services-tab").addClass("active");
+            $("#Services").addClass("active");
+            //Here we check side bar is show or not
+            var HomeSideBarShow = $("#ServicesUI").hasClass("show");
+            //If side bar show then we deactive the "Services" and "Services-tab"
+            if (HomeSideBarShow) {
+                $("#Services-tab").removeClass("active");
+                $("#Services").removeClass("active");
+            }
+        } else {
+            //If these id no any side bar component is active then we active the "Home" side bar components.
+            $("#Home").addClass("active")
+
+        }
+      
+    });
+
+
+
+</script>
+
+<!--Java-Script End-->

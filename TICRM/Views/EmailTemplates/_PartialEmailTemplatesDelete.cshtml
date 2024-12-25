@@ -1,0 +1,55 @@
+﻿@model TICRM.DTOs.EmailTemplateDTO
+
+
+<div class="modal-header modal-header-rightside">
+    <h5 class="modal-header-title" id="exampleModalLabel">EMAIL TEMPLATE DELETE</h5>
+    <button type="button" class="close modalrightsideClose" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">X</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="tab-content">
+        <div class="tab-pane active show" id="m_portlet_tab_Devices" role="tabpanel">
+
+            <div class="row container">
+                <table class="tb-horizontal">
+                    <tr>
+                        <th class="blockquote">@Html.DisplayNameFor(model => model.Subject)</th>
+                        <td class="blockquote">@Html.DisplayFor(model => model.Subject)</td>
+                    </tr>
+                    <tr>
+                        <th class="blockquote">@Html.DisplayNameFor(model => model.Body)</th>
+                        <td class="blockquote">@Html.DisplayFor(model => model.Body)</td>
+                    </tr>
+                    <tr>
+                        <th class="blockquote">@Html.DisplayNameFor(model => model.EmailConfiguration.Email)</th>
+                        <td class="blockquote">@Html.DisplayFor(model => model.EmailConfiguration.Email)</td>
+                    </tr>
+
+                    <tr>
+                        <th class="blockquote">@Html.DisplayNameFor(model => model.WorkFlow.Name)</th>
+                        <td class="blockquote">@Html.DisplayFor(model => model.WorkFlow.Name)</td>
+                    </tr>
+                    <tr>
+                        <th class="blockquote">Created Date</th>
+                        <td class="blockquote">@Html.DisplayFor(model => model.CreatedDate)</td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer modal-rightside-footer">
+
+    @using (Html.BeginForm("Delete/" + Model.EmailTemplateId, "EmailTemplates", FormMethod.Post, new { id = "DeleteForm" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <button type="button" id="deletebtn" onclick="Delete_Record()" class="btn btn-success"> Confirm</button>
+            <button type="button" onclick="$('#m_modal_Delete').modal('hide');" class="btn btn-secondary"><i class="la la-refresh"></i> Cancel</button>
+        </div>
+    }
+
+</div>

@@ -1,0 +1,677 @@
+﻿@using Microsoft.AspNet.Identity
+
+<style>
+    .search-container {
+        display: block;
+        float: right;
+    }
+
+    .search-form {
+        height: 110px;
+        width: 100%;
+    }
+
+    .searchbox {
+        width: 25px;
+        height: 25px;
+        font-size: 20px;
+        float: right;
+        border: 3px #ccc solid;
+        border-radius: 50%;
+        background: #fff;
+        /* LINK FOR SEARCH ICON
+   https://www.pinclipart.com/picdir/big/485-4851736_free-png-search-icon-search-icon-free-download.png */
+        background-image: url("https://www.pinclipart.com/picdir/big/485-4851736_free-png-search-icon-search-icon-free-download.png");
+        background-size: 15px;
+        background-repeat: no-repeat;
+        background-position: center center;
+        transition: all 0.5s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+
+    .searchbox:hover {
+            cursor: pointer;
+            box-shadow: 0 0 10px 0 #7f7f7f;
+        }
+
+    .searchbox:focus {
+            cursor: text;
+            width: 100%;
+            border-radius: 25px 25px 25px 25px;
+            outline: none;
+            text-indent: 15px;
+            background-position-x: 97%;
+            box-shadow: 0 0 10px 0 #800080;
+        }
+
+</style>
+<header id="m_header" class="m-grid__item m-header " m-minimize="minimize" m-minimize-mobile="minimize" m-minimize-offset="10" m-minimize-mobile-offset="10">
+    <div class="m-header__top">
+        <div class="m-container m-container--fluid m-container--full-height m-page__container">
+            <div class="m-stack m-stack--ver m-stack--desktop">
+                <!-- begin::Brand -->
+                <div class="m-stack__item m-brand m-stack__item--left m--padding-right-2">
+                    <div class="m-stack m-stack--ver m-stack--general m-stack--inline">
+                        <div class="m-stack__item m-stack__item--middle m-brand__logo">
+                            <a href="/Dashboard/Index" class="m-brand__logo-wrapper">
+                                <img alt="" src="~/Content/Images/swuich_209x65.png" style="height:40px;" class="m-brand__logo-desktop m--padding-left-25" />
+                                <img src="~/Content/Images/swuich_93x29.png" class="m-brand__logo-mobile" alt="" />
+                            </a>
+                        </div>
+                        <div class="m-stack__item m-stack__item--middle m-brand__tools">
+
+
+                            <div class="m-stack__item m-topbar__nav-wrapper m--visible-tablet-and-mobile-inline-block">
+                                <ul class="m-topbar__nav m-nav m-nav--inline">
+
+
+                                    <li class="mobile-icon m-nav__item m-nav__item--primary m-dropdown m-dropdown--skin-light m-dropdown--large m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push m-dropdown--mobile-full-width" m-dropdown-toggle="click" aria-expanded="true">
+                                        <a href="javascript:LoadDropdowns();" id="addGeneral" class="m-nav__link m-dropdown__toggle">
+                                            <span class="m-nav__link-badge m-badge m-badge--dot m-badge--info m--hide"></span>
+                                            <span class="m-nav__link-icon mobile-icon-center"><span class="m-nav__link-icon-wrapper"><i class="flaticon-add-circular-button " style="color: #7fceff;"></i></span></span>
+                                        </a>
+                                        <div class="m-dropdown__wrapper" id="addGeneralPosition" style="z-index: 101;">
+                                            <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust" style="/*left: auto; right: 17.5px;*/"></span>
+                                            <div class="m-dropdown__inner">
+                                                <div class="m-dropdown__header m--align-center" style="background-color:#7fceff; color:#525151; background-size: cover;">
+                                                    <span class="m-dropdown__header-title">Quick Actions</span>
+                                                    <span class="m-dropdown__header-subtitle">Shortcuts</span>
+                                                </div>
+                                                <div class="m-dropdown__body m-dropdown__body--paddingless">
+                                                    <div class="m-dropdown__content">
+                                                        <div class="m-scrollable" data-scrollable="false" data-height="380" data-mobile-height="200">
+                                                            <div class="m-nav-grid m-nav-grid--skin-light">
+                                                                <div class="m-nav-grid__row">
+                                                                    <a id="accountTopMobile" class="m-nav-grid__item">
+                                                                        <i id="accountTopMobile" class="m-nav-grid__icon flaticon-user-add"></i>
+                                                                        <span id="accountTopMobile" class="m-nav-grid__text">New Account</span>
+                                                                    </a>
+                                                                    <a id="deviceTopMobile" class="m-nav-grid__item">
+                                                                        <i id="deviceTopMobile" class="m-nav-grid__icon flaticon-computer"></i>
+                                                                        <span id="deviceTopMobile" class="m-nav-grid__text">New Device</span>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="m-nav-grid__row">
+                                                                    <a id="oppTopMobile" class="m-nav-grid__item">
+                                                                        <i id="oppTopMobile" class="m-nav-grid__icon flaticon-coins"></i>
+                                                                        <span id="oppTopMobile" class="m-nav-grid__text">New Opportunity</span>
+                                                                    </a>
+                                                                    <a id="worderTopMobile" class="m-nav-grid__item">
+                                                                        <i id="worderTopMobile" class="m-nav-grid__icon flaticon-analytics"></i>
+                                                                        <span id="worderTopMobile" class="m-nav-grid__text">New WorkOrder</span>
+                                                                    </a>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+
+
+
+                                    <li class="m-nav__item m-nav__item--primary mobile-icon" style="margin-right: 10px;">
+                                        <a href="/Admin/Index" class="m-nav__link">
+                                            <span class="m-nav__link-badge m-badge m-badge--dot m-badge--info m--hide"></span>
+                                            <span class="m-nav__link-icon mobile-icon-center">
+                                                <span class="m-nav__link-icon-wrapper">
+                                                    <i class="fa fa-user-cog" style="color: #7fceff;"></i>
+                                                </span>
+                                            </span>
+                                        </a>
+
+                                    </li>
+
+                                    <li class="m-nav__item m-nav__item--primary m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light mobile-icon" m-dropdown-toggle="click" aria-expanded="true">
+                                        <a href="#" class="m-nav__link m-dropdown__toggle">
+
+                                            <span class="m-nav__link-icon mobile-icon-center">
+                                                <span class="m-nav__link-icon-wrapper">
+
+                                                    <i class="fa fa-user" style="color: #7fceff;"></i>
+                                                </span>
+                                            </span>
+                                            <span class="m-nav__link-icon m-topbar__usericon  m--hide">
+                                                <span class="m-nav__link-icon-wrapper"><i class="flaticon-user-ok"></i></span>
+                                            </span>
+                                            <span class="m-topbar__username m--hide">Mark</span>
+                                        </a>
+                                        <div class="m-dropdown__wrapper" id="PersonalMenu" style="z-index: 101;">
+                                            <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust" style="left: auto; right: 10px;"></span>
+                                            <div class="m-dropdown__inner">
+                                                <div class="m-dropdown__header m--align-center">
+                                                    <div class="m-card-user m-card-user--skin-light">
+                                                        <div class="m-card-user__pic">
+                                                            @*<img src="/Content/Metronic/assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless" alt="">*@
+                                                            <i class="fa fa-user fa-7x" style="color: #7fceff;"></i>
+                                                        </div>
+                                                        <div class="m-card-user__details">
+                                                            <span class="m-card-user__name m--font-weight-500">Hello !</span>
+                                                            <a href="" class="m-card-user__email m--font-weight-300 m-link">@User.Identity.GetUserName()</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-dropdown__body">
+                                                    <div class="m-dropdown__content">
+                                                        <ul class="m-nav m-nav--skin-light">
+                                                            <li class="m-nav__section m--hide">
+                                                                <span class="m-nav__section-text">Section</span>
+                                                            </li>
+                                                            <li class="m-nav__item">
+                                                                <a href="?page=profile&amp;demo=demo10" class="m-nav__link">
+                                                                    <i class="m-nav__link-icon flaticon-profile-1"></i>
+                                                                    <span class="m-nav__link-title">
+                                                                        <span class="m-nav__link-wrap">
+                                                                            <span class="m-nav__link-text">My Profile</span>
+                                                                            <span class="m-nav__link-badge"><span class="m-badge m-badge--success">2</span></span>
+                                                                        </span>
+                                                                    </span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="m-nav__item">
+                                                                <a href="?page=profile&amp;demo=demo10" class="m-nav__link">
+                                                                    <i class="m-nav__link-icon flaticon-share"></i>
+                                                                    <span class="m-nav__link-text">Activity</span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="m-nav__item">
+                                                                <a href="?page=profile&amp;demo=demo10" class="m-nav__link">
+                                                                    <i class="m-nav__link-icon flaticon-chat-1"></i>
+                                                                    <span class="m-nav__link-text">Messages</span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="m-nav__separator m-nav__separator--fit">
+                                                            </li>
+                                                            <li class="m-nav__item">
+                                                                <a href="?page=profile&amp;demo=demo10" class="m-nav__link">
+                                                                    <i class="m-nav__link-icon flaticon-info"></i>
+                                                                    <span class="m-nav__link-text">FAQ</span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="m-nav__item">
+                                                                <a href="?page=profile&amp;demo=demo10" class="m-nav__link">
+                                                                    <i class="m-nav__link-icon flaticon-lifebuoy"></i>
+                                                                    <span class="m-nav__link-text">Support</span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="m-nav__separator m-nav__separator--fit">
+                                                            </li>
+
+
+
+                                                            <a href="javascript:document.getElementById('logoutForm').submit()" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">Logout</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*</li>
+
+                    </ul>*@
+            </div>
+
+
+            <!--end::Topbar Toggler-->
+        </div>
+    </div>
+    </div>
+    <!-- end::Brand -->
+    <!-- begin::Topbar -->
+    <div class="m-stack__item m-stack__item--left m-header-head m_header_EasyAutoComplete" id="m_header_nav">
+        
+        <div class="m-stack__item m-topbar__nav-wrapper m--padding-top-20-desktop">
+            <div class="form-group m-form__group">
+                <div class="input-group">
+                    <div class="input-group-prepend" style="width:70%">
+                        <span class="input-group-text" style="cursor:pointer; border-radius: 4px; height: 31px; margin-top:2px" 
+                              onclick="ClearSearchSession()" id="ClearSearchId"><i class="fa fa-home"></i></span>
+                        <div class="inner-addon left-addon m--padding-top-2" style="width:100%">
+                           
+                            <input type="text" id="SearchFieldId" data-role="taginput" class="form-control" onclick="ClearSearchSession1()" placeholder="Navigate here">
+                        </div>
+                    </div>
+
+                    <div class="input-group-prepend" style="margin-left:0px;">
+                        <ul class="m-topbar__nav m-nav m-nav--inline">
+
+                            <li class="m-nav__item m-nav__item--accent m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-right m-dropdown--mobile-full-width" m-dropdown-toggle="click" m-dropdown-persistent="1">
+                                <a href="#" class="m-nav__link m-dropdown__toggle" id="m_topbar_notification_icon">
+                                    <span class="m-nav__link-icon m--pull-right m--margin-top-5" style="margin-left: -35px; z-index: 2;"><span class="m-nav__link-icon-wrapper"><i class="flaticon-grid-menu"></i></span></span>
+                                </a>
+                                <div class="m-dropdown__wrapper">
+
+                                    <span class="m-dropdown__arrow m-dropdown__arrow--right" style="margin-right:-10px !important;"></span>
+                                    <div class="m-dropdown__inner" style="box-shadow: 0px 0px 15px 1px rgb(170, 174, 253) !important;">
+
+                                        <div class="m-dropdown__body">
+                                            <div class="m-dropdown__content">
+
+                                                <ul id="m_quick_sidebar_tabs" class="nav nav-tabs m-tabs m-tabs-line m-tabs-line--brand" role="tablist">
+                                                    <li class="nav-item m-tabs__item">
+                                                        <a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_quick_sidebar_tabs_Navigation" role="tab">Navigations</a>
+                                                    </li>
+                                                    <li class="nav-item m-tabs__item">
+                                                        <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_quick_sidebar_tabs_RecentVisits" role="tab">Recent Navigated</a>
+                                                    </li>
+
+                                                </ul>
+                                                <div class="tab-content">
+
+                                                    <div class="tab-pane active" id="m_quick_sidebar_tabs_Navigation" role="tabpanel">
+
+                                                        <div class="m-scrollable m-scroller ps" data-scrollable="true" data-height="250" data-mobile-height="200" style="height: 250px; overflow: hidden;">
+                                                            <div class="m-list-timeline m-list-timeline--skin-light">
+                                                                <div class="m-list-timeline__items">
+
+                                                                    <div class="m-list-timeline__item">
+                                                                        <span class="m-list-timeline__badge"></span>
+                                                                        <span class="m-list-timeline__text m--padding-left-20" onclick="nvaigateRecentsearch('/','Dashboard')">Dashboard</span>
+                                                                        <span class="m-list-timeline__time"></span>
+                                                                    </div>
+
+                                                                    <div class="m-list-timeline__item">
+                                                                        <span class="m-list-timeline__badge"></span>
+                                                                        <span class="m-list-timeline__text m--padding-left-20" onclick="nvaigateRecentsearch('/Accounts/Index','Accounts')">Accounts</span>
+                                                                        <span class="m-list-timeline__time"></span>
+                                                                    </div>
+
+                                                                    <div class="m-list-timeline__item">
+                                                                        <span class="m-list-timeline__badge"></span>
+                                                                        <span class="m-list-timeline__text m--padding-left-20" onclick="nvaigateRecentsearch('/Devices','Devices')">Devices</span>
+                                                                        <span class="m-list-timeline__time"></span>
+                                                                    </div>
+
+                                                                    <div class="m-list-timeline__item">
+                                                                        <span class="m-list-timeline__badge"></span>
+                                                                        <span class="m-list-timeline__text m--padding-left-20" onclick="nvaigateRecentsearch('/devices/DeviceSensorGraph','DeviceSensorGraph')">DeviceSensorGraph</span>
+                                                                        <span class="m-list-timeline__time"></span>
+                                                                    </div>
+
+                                                                    <div class="m-list-timeline__item">
+                                                                        <span class="m-list-timeline__badge"></span>
+                                                                        <span class="m-list-timeline__text m--padding-left-20" onclick="nvaigateRecentsearch('/CustomerAssets','CustomerAssets')">CustomerAssets</span>
+                                                                        <span class="m-list-timeline__time"></span>
+                                                                    </div>
+
+                                                                    <div class="m-list-timeline__item">
+                                                                        <span class="m-list-timeline__badge"></span>
+                                                                        <span class="m-list-timeline__text m--padding-left-20" onclick="nvaigateRecentsearch('/Firmwares','Firmwares')">Firmwares</span>
+                                                                        <span class="m-list-timeline__time"></span>
+                                                                    </div>
+
+                                                                    <div class="m-list-timeline__item">
+                                                                        <span class="m-list-timeline__badge"></span>
+                                                                        <span class="m-list-timeline__text m--padding-left-20" onclick="nvaigateRecentsearch('/Opportunities','Opportunities')">Opportunities</span>
+                                                                        <span class="m-list-timeline__time"></span>
+                                                                    </div>
+
+                                                                    <div class="m-list-timeline__item">
+                                                                        <span class="m-list-timeline__badge"></span>
+                                                                        <span class="m-list-timeline__text m--padding-left-20" onclick="nvaigateRecentsearch('/Leads','Leads')">Leads</span>
+                                                                        <span class="m-list-timeline__time"></span>
+                                                                    </div>
+
+                                                                    <div class="m-list-timeline__item">
+                                                                        <span class="m-list-timeline__badge"></span>
+                                                                        <span class="m-list-timeline__text m--padding-left-20" onclick="nvaigateRecentsearch('/Contact','Contact')">Contact</span>
+                                                                        <span class="m-list-timeline__time"></span>
+                                                                    </div>
+
+
+                                                                    <div class="m-list-timeline__item">
+                                                                        <span class="m-list-timeline__badge"></span>
+                                                                        <span class="m-list-timeline__text m--padding-left-20" onclick="nvaigateRecentsearch('/Locations','Locations')">Locations</span>
+                                                                        <span class="m-list-timeline__time"></span>
+                                                                    </div>
+
+                                                                    <div class="m-list-timeline__item">
+                                                                        <span class="m-list-timeline__badge"></span>
+                                                                        <span class="m-list-timeline__text m--padding-left-20" onclick="nvaigateRecentsearch('/Addresses','Addresses')">Addresses</span>
+                                                                        <span class="m-list-timeline__time"></span>
+                                                                    </div>
+
+
+
+                                                                    <div class="m-list-timeline__item">
+                                                                        <span class="m-list-timeline__badge"></span>
+                                                                        <span class="m-list-timeline__text m--padding-left-20" onclick="nvaigateRecentsearch('/Resources','Resources')">Resources</span>
+                                                                        <span class="m-list-timeline__time"></span>
+                                                                    </div>
+
+                                                                    <div class="m-list-timeline__item">
+                                                                        <span class="m-list-timeline__badge"></span>
+                                                                        <span class="m-list-timeline__text m--padding-left-20" onclick="nvaigateRecentsearch('/ReadingUnits','ReadingUnits')">ReadingUnits</span>
+                                                                        <span class="m-list-timeline__time"></span>
+                                                                    </div>
+
+
+                                                                    <div class="m-list-timeline__item">
+                                                                        <span class="m-list-timeline__badge"></span>
+                                                                        <span class="m-list-timeline__text m--padding-left-20" onclick="nvaigateRecentsearch('/ServiceCalls','ServiceCalls')">ServiceCalls</span>
+                                                                        <span class="m-list-timeline__time"></span>
+                                                                    </div>
+
+                                                                    <div class="m-list-timeline__item">
+                                                                        <span class="m-list-timeline__badge"></span>
+                                                                        <span class="m-list-timeline__text m--padding-left-20" onclick="nvaigateRecentsearch('/GlobalSearch/Index','GlobalSearch')">GlobalSearch</span>
+                                                                        <span class="m-list-timeline__time"></span>
+                                                                    </div>
+
+                                                                    <div class="m-list-timeline__item">
+                                                                        <span class="m-list-timeline__badge"></span>
+                                                                        <span class="m-list-timeline__text m--padding-left-20" onclick="nvaigateRecentsearch('/WorkOrders','WorkOrders')">WorkOrders</span>
+                                                                        <span class="m-list-timeline__time"></span>
+                                                                    </div>
+
+                                                                    <div class="m-list-timeline__item">
+                                                                        <span class="m-list-timeline__badge"></span>
+                                                                        <span class="m-list-timeline__text m--padding-left-20" onclick="nvaigateRecentsearch('/WorkFlowMappings/Index','WorkFlowMappings')">WorkFlowMappings</span>
+                                                                        <span class="m-list-timeline__time"></span>
+                                                                    </div>
+
+                                                                    <div class="m-list-timeline__item">
+                                                                        <span class="m-list-timeline__badge"></span>
+                                                                        <span class="m-list-timeline__text m--padding-left-20" onclick="nvaigateRecentsearch('/WorkFlows/WorkFlowDesigner','WorkFlowDesigner')">WorkFlowDesigner</span>
+                                                                        <span class="m-list-timeline__time"></span>
+                                                                    </div>
+
+
+                                                                    <div class="m-list-timeline__item">
+                                                                        <span class="m-list-timeline__badge"></span>
+                                                                        <span class="m-list-timeline__text m--padding-left-20" onclick="nvaigateRecentsearch('/WorkFlowReports/Index','WorkFlowReports')">WorkFlowReports</span>
+                                                                        <span class="m-list-timeline__time"></span>
+                                                                    </div>
+
+
+                                                                    <div class="m-list-timeline__item">
+                                                                        <span class="m-list-timeline__badge"></span>
+                                                                        <span class="m-list-timeline__text m--padding-left-20" onclick="nvaigateRecentsearch('/WorkFlows/Index','WorkFlows')">WorkFlows</span>
+                                                                        <span class="m-list-timeline__time"></span>
+                                                                    </div>
+
+
+                                                                    <div class="m-list-timeline__item">
+                                                                        <span class="m-list-timeline__badge"></span>
+                                                                        <span class="m-list-timeline__text m--padding-left-20" onclick="nvaigateRecentsearch('/Readings','Readings')">Readings</span>
+                                                                        <span class="m-list-timeline__time"></span>
+                                                                    </div>
+
+                                                                    <div class="m-list-timeline__item">
+                                                                        <span class="m-list-timeline__badge"></span>
+                                                                        <span class="m-list-timeline__text m--padding-left-20" onclick="nvaigateRecentsearch('/ReadingTypes','ReadingTypes')">ReadingTypes</span>
+                                                                        <span class="m-list-timeline__time"></span>
+                                                                    </div>
+
+                                                                    <div class="m-list-timeline__item">
+                                                                        <span class="m-list-timeline__badge"></span>
+                                                                        <span class="m-list-timeline__text m--padding-left-20" onclick="nvaigateRecentsearch('/Alerts','Alerts')">Alerts</span>
+                                                                        <span class="m-list-timeline__time"></span>
+                                                                    </div>
+
+
+                                                                    <div class="m-list-timeline__item">
+                                                                        <span class="m-list-timeline__badge"></span>
+                                                                        <span class="m-list-timeline__text m--padding-left-20" onclick="nvaigateRecentsearch('/ControlPanel','ControlPanel')">ControlPanel</span>
+                                                                        <span class="m-list-timeline__time"></span>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 4px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div>
+                                                        </div>
+
+
+
+
+
+                                                    </div>
+
+                                                    <div class="tab-pane" id="m_quick_sidebar_tabs_RecentVisits" role="tabpanel">
+
+
+                                                        <div class="m-scrollable m-scroller ps" data-scrollable="true" data-height="250" data-mobile-height="200" style="height: 250px; overflow: hidden;">
+                                                            <div class="m-list-timeline m-list-timeline--skin-light">
+                                                                <div class="m-list-timeline__items" id="RecentSearchItems"></div>
+                                                            </div>
+                                                            <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 4px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div>
+                                                        </div>
+
+
+
+
+                                                    </div>
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="input-group-append" style="width:30%" >
+                        <div class="m-input-icon m-input-icon--right">
+                            <input type="text" class="form-control m-input" placeholder="Search here..." id="LazySearchId" style="margin-top: 2px; margin-left: 6px;">
+                            <span class="m-input-icon__icon m-input-icon__icon--right">
+                                <span>
+                                    <i class="fa fa-search"></i>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- end::Topbar -->
+    <!-- begin::Topbar -->
+    @*<div class="row">*@
+
+    <div class="m-stack__item m-stack__item--right m-header-head" id="m_header_nav">
+        <div id="m_header_topbar" class="m-topbar m-stack m-stack--ver m-stack--general">
+            <div class="m-stack__item m-topbar__nav-wrapper">
+                <ul class="m-topbar__nav m-nav m-nav--inline">
+                    
+
+                    <li class="m-nav__item m-nav__item--primary m-dropdown m-dropdown--skin-light m-dropdown--large m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push m-dropdown--mobile-full-width m-dropdown--skin-light" m-dropdown-toggle="click">
+                        <a href="#" class="m-nav__link m-dropdown__toggle">
+                            <span class="m-nav__link-badge m-badge m-badge--dot m-badge--info m--hide"></span>
+                            <span class="m-nav__link-icon"><span class="m-nav__link-icon-wrapper"><i class="flaticon-add-circular-button"></i></span></span>
+                        </a>
+                        <div class="m-dropdown__wrapper">
+                            <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+                            <div class="m-dropdown__inner">
+                                <div class="m-dropdown__header m--align-center" style="background-color:#7fceff; color:#525151; background-size: cover;">
+                                    <span class="m-dropdown__header-title">Quick Actions</span>
+                                    <span class="m-dropdown__header-subtitle">Shortcuts</span>
+                                </div>
+                                <div class="m-dropdown__body m-dropdown__body--paddingless">
+                                    <div class="m-dropdown__content">
+                                        <div class="m-scrollable" data-scrollable="false" data-height="380" data-mobile-height="200">
+                                            <div class="m-nav-grid m-nav-grid--skin-light">
+                                                <div class="m-nav-grid__row">
+                                                    <a id="accountTop" class="m-nav-grid__item">
+                                                        <i id="accountTop" class="m-nav-grid__icon flaticon-user-add"></i>
+                                                        <span id="accountTop" class="m-nav-grid__text">New Account</span>
+                                                    </a>
+                                                    <a id="deviceTop" class="m-nav-grid__item">
+                                                        <i id="deviceTop" class="m-nav-grid__icon flaticon-computer"></i>
+                                                        <span id="deviceTop" class="m-nav-grid__text">New Device</span>
+                                                    </a>
+                                                </div>
+                                                <div class="m-nav-grid__row">
+                                                    <a id="oppTop" class="m-nav-grid__item">
+                                                        <i id="oppTop" class="m-nav-grid__icon flaticon-coins"></i>
+                                                        <span id="oppTop" class="m-nav-grid__text">New Opportunity</span>
+                                                    </a>
+                                                    <a id="worderTop" class="m-nav-grid__item">
+                                                        <i id="worderTop" class="m-nav-grid__icon flaticon-analytics"></i>
+                                                        <span id="worderTop" class="m-nav-grid__text">New WorkOrder</span>
+                                                    </a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="m-nav__item m-nav__item--primary ">
+                        <a href="/Admin/Index" class="m-nav__link">
+                            <span class="m-nav__link-badge m-badge m-badge--dot m-badge--info m--hide"></span>
+                            <span class="m-nav__link-icon">
+                                <span class="m-nav__link-icon-wrapper">
+                                    @*<i class="flaticon-avatar"></i>*@
+                                    <i class="fa fa-user-cog"></i>
+                                </span>
+                            </span>
+                        </a>
+
+                    </li>
+
+                    <li class="m-nav__item m-nav__item--primary m-dropdown m-dropdown--medium m-dropdown--arrow  m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" m-dropdown-toggle="click">
+                        <a href="#" class="m-nav__link m-dropdown__toggle">
+                            <span class="m-nav__link-icon">
+                                <span class="m-nav__link-icon-wrapper">
+
+                                    <i class="fa fa-user"></i>
+                                </span>
+                            </span>
+                            <span class="m-nav__link-icon m-topbar__usericon  m--hide">
+                                <span class="m-nav__link-icon-wrapper"><i class="flaticon-user-ok"></i></span>
+                            </span>
+                            <span class="m-topbar__username m--hide">Mark</span>
+                        </a>
+                        <div class="m-dropdown__wrapper">
+                            <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+                            <div class="m-dropdown__inner">
+                                <div class="m-dropdown__header m--align-center">
+                                    <div class="m-card-user m-card-user--skin-light">
+                                        <div class="m-card-user__pic">
+                                            @*<img src="~/Content/Metronic/assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless" alt="">*@
+                                            <i class="fa fa-user fa-7x" style="color: #7fceff;"></i>
+                                        </div>
+                                        <div class="m-card-user__details">
+                                            <span class="m-card-user__name m--font-weight-500">Hello !</span>
+                                            <a href="" class="m-card-user__email m--font-weight-300 m-link">@User.Identity.GetUserName()</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-dropdown__body">
+                                    <div class="m-dropdown__content">
+                                        <ul class="m-nav m-nav--skin-light">
+                                            <li class="m-nav__section m--hide">
+                                                <span class="m-nav__section-text">Section</span>
+                                            </li>
+                                            <li class="m-nav__item">
+                                                <a href="?page=profile&amp;demo=demo10" class="m-nav__link">
+                                                    <i class="m-nav__link-icon flaticon-profile-1"></i>
+                                                    <span class="m-nav__link-title">
+                                                        <span class="m-nav__link-wrap">
+                                                            <span class="m-nav__link-text">My Profile</span>
+                                                            <span class="m-nav__link-badge"><span class="m-badge m-badge--success">2</span></span>
+                                                        </span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li class="m-nav__item">
+                                                <a href="?page=profile&amp;demo=demo10" class="m-nav__link">
+                                                    <i class="m-nav__link-icon flaticon-share"></i>
+                                                    <span class="m-nav__link-text">Activity</span>
+                                                </a>
+                                            </li>
+                                            <li class="m-nav__item">
+                                                <a href="?page=profile&amp;demo=demo10" class="m-nav__link">
+                                                    <i class="m-nav__link-icon flaticon-chat-1"></i>
+                                                    <span class="m-nav__link-text">Messages</span>
+                                                </a>
+                                            </li>
+                                            <li class="m-nav__separator m-nav__separator--fit">
+                                            </li>
+                                            <li class="m-nav__item">
+                                                <a href="?page=profile&amp;demo=demo10" class="m-nav__link">
+                                                    <i class="m-nav__link-icon flaticon-info"></i>
+                                                    <span class="m-nav__link-text">FAQ</span>
+                                                </a>
+                                            </li>
+                                            <li class="m-nav__item">
+                                                <a href="?page=profile&amp;demo=demo10" class="m-nav__link">
+                                                    <i class="m-nav__link-icon flaticon-lifebuoy"></i>
+                                                    <span class="m-nav__link-text">Support</span>
+                                                </a>
+                                            </li>
+                                            <li class="m-nav__separator m-nav__separator--fit">
+                                            </li>
+
+
+                                            @if (Request.IsAuthenticated)
+                                            {
+                                                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                                {
+                                                    @Html.AntiForgeryToken()
+
+                                                    <li class="m-nav__item">
+                                                        <a href="javascript:document.getElementById('logoutForm').submit()" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">Logout</a>
+                                                    </li>
+
+                                                }
+                                            }
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- end::Topbar -->
+    <!--</div>-->
+    </div>
+
+    </div>
+    </div>
+
+</header>
+
+
+<div class="m-header__bottom">
+
+</div>
+
+<!--Device Creation in Right Side Panel-->
+
+<script>
+    function clearSearch() {
+        document.getElementById("SearchFieldId").reset();
+
+    }
+
+
+    function device() {
+        $('Createdevice').show();
+        console.log("panel");
+    }
+</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('Createdevice').hide();
+    });
+    $(function () {
+        console.log("ready!");
+    });
+</script>

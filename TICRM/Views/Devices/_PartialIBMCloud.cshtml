@@ -1,0 +1,141 @@
+﻿@model IEnumerable<TICRM.Cloud.Adapter.Adaptee.IBM.IBMDevicesInfo>
+
+    @{
+    int i = 0;
+    }
+
+
+    <div class="m-portlet__body">
+        <table id="m_table_ibm" class="table table-responsive table-striped table-bordered table-hover table-checkable">
+            <thead>
+                <tr>
+                    <th>DeviceId</th>
+                    <th>Account</th>
+                    <th>Customer Asset</th>
+                    <th>Team</th>
+                    <th>User</th>
+                    <th>APIKey</th>
+                    <th>AppId</th>
+                    <th>AuthToken</th>
+                    <th>Model</th>
+                    <th>SerialNumber</th>
+                    <th>DeviceTokken</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>OrganizationId</th>
+                    <th>Registration</th>
+                    <th>TypeId</th>
+                    <th>ClientId</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr id="tr_@i">
+                    <td>@item.deviceId</td>
+                    <td>
+                        @Html.DropDownList("AccountId", null, "-- Select --", htmlAttributes: new { @class = "form-control", style = "min-width:150px;" })
+                    </td>
+                    <td>
+                        @Html.DropDownList("CustomerAssetId", null, "-- Select --", htmlAttributes: new { @class = "form-control", style = "min-width:150px;" })
+                    </td>
+                    <td>
+                        @Html.DropDownList("AssignedTeam", null, "-- Select --", htmlAttributes: new { @class = "form-control", style = "min-width:150px;" })
+                    </td>
+                    <td>
+                        @Html.DropDownList("AssignedUser", null, "-- Select --", htmlAttributes: new { @class = "form-control", style = "min-width:150px;" })
+                    </td>
+                    <td>@item.APIKey</td>
+                    <td>@item.AppId</td>
+                    <td>@item.authToken</td>
+                    <td>@item.deviceInfo.model</td>
+                    <td>@item.deviceInfo.serialNumber</td>
+                    <td>@item.DeviceTokken</td>
+                    <td>@item.location.latitude</td>
+                    <td>@item.location.longitude</td>
+                    <td>@item.OrganizationId</td>
+                    <td>@item.registration.date</td>
+                    <td>@item.typeId</td>
+                    <td>@item.clientId</td>
+                    <th>
+                        <button type="button" class="btn btn-success btn-xs" onclick="submit_IBM_Device('tr_@i')">Submit</button>
+                    </th>
+                </tr>
+                i++;
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+    <script>
+
+        var submit_IBM_Device = function (value) {
+
+            var data = {
+
+                DeviceId: $('#' + value).find("td:nth-child(1)").html(),
+                AccountId: $('#' + value).find("td:nth-child(2)").find("option:selected").val(),
+                CustomerAssetId: $('#' + value).find("td:nth-child(3)").find("option:selected").val(),
+                AssignedTeam: $('#' + value).find("td:nth-child(4)").find("option:selected").val(),
+                AssignedUser: $('#' + value).find("td:nth-child(5)").find("option:selected").val(),
+                APIKey: $('#' + value).find("td:nth-child(6)").html(),
+                AppId: $('#' + value).find("td:nth-child(7)").html(),
+                authToken: $('#' + value).find("td:nth-child(8)").html(),
+                Mac: $('#' + value).find("td:nth-child(9)").html(),
+                EMEINumber: $('#' + value).find("td:nth-child(10)").html(),
+                DeviceTokken: $('#' + value).find("td:nth-child(11)").html(),
+                Latitude: $('#' + value).find("td:nth-child(12)").html(),
+                Longitude: $('#' + value).find("td:nth-child(13)").html(),
+                OrganizationId: $('#' + value).find("td:nth-child(14)").html(),
+                RegistrationDate: $('#' + value).find("td:nth-child(15)").html(),
+                DeviceType: $('#' + value).find("td:nth-child(16)").html(),
+
+                // Name for device Name
+                Name: $('#' + value).find("td:nth-child(1)").html(),
+
+            }
+
+            $.ajax({
+                type: "GET",
+                url: "/Devices/CreateDevice_in_IBM_INCA",
+                data: data,
+                contentType: "application/json; charset=utf-8",
+                dataType: "text",
+                success: function (Data) {
+
+                    var response = JSON.parse(Data);
+
+                    var t = $('#m_table_1').DataTable();
+
+                    t.row.add([
+                        '<a href="/Devices/Edit/' + response.DeviceId + '">' + response.Name + '</a>',
+                        '<button type="button" onclick="MACAddressSelected()" value="' + response.Mac + '" class="btn btn-xs btn-link">' + response.Mac + '</button>',
+                        response.EMEINumber,
+                        response.RegistrationDate,
+                        response.Latitude,
+                        response.Longitude,
+                        response.AccountName,
+                        response.CustomerAsset,
+                        response.Status,
+                        response.assignTeam,
+                        response.assignUser,
+                        '<a href="#" onclick="LoadModalForDetails("' + response.DeviceId + '")" class="arial">Details</a>|<button type="button" onclick="MACAddressSelected()" value="' + response.Mac + '" class="btn btn-link">View</button>|<a href="#" onclick="LoadModalForDelete("' + response.DeviceId + '")" class="arial">Delete</a>'
+                    ]).draw(false);
+
+                    $('#m_table_ibm').find('#' + value).remove();
+
+                    $('body').removeClass('m-page--loading');
+                },
+                failure: function () {
+                    alert("Failed!");
+                    $('body').removeClass('m-page--loading');
+                }
+            });
+
+        }
+
+    </script>
+
+

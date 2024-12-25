@@ -1,0 +1,58 @@
+﻿@model IEnumerable<TICRM.DTOs.WorkFlowNodeDTO>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutDataTable.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.text)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.key)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.figure)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fill)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.loc)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.text)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.key)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.figure)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fill)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.loc)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.NodeDataId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.NodeDataId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.NodeDataId })
+        </td>
+    </tr>
+}
+
+</table>

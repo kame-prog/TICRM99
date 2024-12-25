@@ -1,0 +1,233 @@
+﻿@model IEnumerable<TICRM.DTOs.DeviceDto>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+
+
+<!-- Device Modal Popup Start-->
+<div class="modal fade bs-example-modal-lg" id="DeviceGraphModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title mt-0" id="myLargeModalLabel">Device ON/OFF</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="background-color: #f1ececa8">
+                @Html.Partial("~/Views/Accounts/_DeviceGraphPopupPV.cshtml")
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Device Modal END-->
+<!-- Temperature Graph Modal Popup Start-->
+<div class="modal fade bs-example-modal-lg" id="TempGraphModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title mt-0" id="myLargeModalLabel">Temperature Graph</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="background-color: #f1ececa8">
+                @Html.Partial("~/Views/Accounts/_TempGraphPopupPV.cshtml")
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Tracking Devices Modal Popup Start-->
+<div class="modal fade bs-example-modal-lg" id="TrackingDevicesModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title mt-0" id="myLargeModalLabel">Tracking Devices</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="background-color: #f1ececa8">
+                <div class="card">
+
+                    <div class="" style="width: 100%; height: 400px">
+                        @*<div id="device_maptrack"></div>*@
+
+                        <div id="device_map" style="width: 100%; height: 400px"></div>
+                    </div><!--end card-body-->
+                </div><!--end card-->
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<!-- Temperature Graph Modal END-->
+<!-- Do not have any type of Graph Modal Popup Start-->
+<div class="modal fade bs-example-modal-lg" id="NoGraphModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title mt-0" id="myLargeModalLabel">Do not have any Graph type</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="background-color: #f1ececa8">
+                @Html.Partial("~/Views/Accounts/_NoGraphTypePopupPV.cshtml")
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Do not have any type of Graph Modal END-->
+
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <button type="button" class="btn TopPageButton" onclick="location.href='@Url.Action("Create", "Devices")'"><i class="fa fa-plus-circle text-primary me-2"></i>New<i class="fa fa-angle-down ms-2"></i></button>
+                        <button type="button" class="btn TopPageButton" id="RefreshPage"><i class="fa fa-clock text-primary me-2"></i>Refresh<i class="fa fa-angle-down ms-2"></i></button>
+                        <button type="submit" class="btn TopPageButton" id="btnExport"><i class="fa fa-download text-primary me-2"></i>Export<i class="fa fa-angle-down ms-2"></i></button>
+                    </div>
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="#">SWUICH</a>
+                                </li><!--end nav-item-->
+                                <li class="breadcrumb-item">
+                                    <a href="#">Devices</a>
+                                </li><!--end nav-item-->
+                                <li class="breadcrumb-item active">Devices</li>
+                            </ol>
+                        </div>
+                        <span class="page-title">Devices</span>
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div>
+            <!-- end page title end breadcrumb -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h4 class="card-title">Devices Details</h4>
+                                </div><!--end col-->
+                            </div>  <!--end row-->
+                        </div><!--end card-header-->
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="myTable" class="table font-15 page-content-wrapper">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Mac</th>
+                                            <th>EMEI Number</th>
+                                            <th>Registration Date</th>
+                                            <th>Account</th>
+                                            <th>Assets</th>
+                                            <th>Status</th>
+                                            <th>Assigned Team</th>
+                                            <th>Assigned User</th>
+                                            <th>Actions</th>
+                                        </tr><!--end tr-->
+                                    </thead>
+
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <a href="#" class="DeviceGraphbtn" id="" onclick="GetDeviceType('@item.DeviceId', '@item.Name')" data-bs-toggle="modal" data-animation="bounce">
+                                                        @item.Name
+                                                        <input type="hidden" id="device_id_Graph"><!--This code is a hidden field code ust for storing the Device id for graoh like ON/OFF Graph, temperature graph etc.-->
+                                                    </a>
+                                                </td>
+                                                @*<td>@item.Name</td>*@
+                                                <td>@item.Mac</td>
+                                                <td>@item.EMEINumber</td>
+                                                <td>@item.RegistrationDate</td>
+                                                <td> @Html.DisplayFor(modelItem => item.Account.Name)</td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.CustomerAsset.Title)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Status.Name)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Team.Name)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.User.Name)
+                                                </td>
+                                                <td>
+                                                    <a href="/Devices/Edit/@item.DeviceId.ToString()" title="Edit Device"><i class="las la-pen text-secondary font-19"></i></a>
+                                                    <a href="/Devices/DeviceDetail/@item.DeviceId.ToString()" title="View Device"><i class="las la-eye font-19"></i></a>
+                                                    <a href="#" onclick="execute('@item.DeviceId.ToString()')" title="Delete Device"><i class="las la-trash-alt text-secondary font-19"></i></a>
+                                                </td>
+                                            </tr><!--end tr-->
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </div> <!--end col-->
+            </div><!--end row-->
+
+        </div><!-- container -->
+        <!--Start Footer-->
+        <!-- Footer Start -->
+        <footer class="footer text-center text-sm-start">
+            ©
+            <script>
+                document.write(new Date().getFullYear())
+            </script> Tech Implement
+        </footer>
+        <!-- end Footer -->
+        <!--end footer-->
+    </div>
+    <!-- end page content -->
+</div>
+<!-- end page-wrapper -->
+<script>
+
+    function execute(id) {
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to delete",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!',
+        }).then(function (result) {
+
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '/Devices/Delete/',
+                    type: "delete",
+                    data: { id: id },
+                    success: function () {
+                        location.reload();
+                        Swal.fire(
+                            'Deleted!',
+                            'Your record has been deleted.',
+                            'success'
+                        )
+
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        swal("Error deleting!", "Please try again", "error");
+                    }
+                });
+            }
+        })
+
+    }
+
+</script>
+<script src="~/TIjQuery/AccountDetailjQuery.js"></script>

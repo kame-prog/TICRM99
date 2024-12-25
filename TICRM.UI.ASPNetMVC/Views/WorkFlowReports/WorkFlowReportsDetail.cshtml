@@ -1,0 +1,130 @@
+﻿@model TICRM.DTOs.WorkFlowReportDTO
+
+@{
+    ViewBag.Title = "WorkFlowReportsDetail";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+
+
+<style>
+
+    .inp-bor {
+        border: 1px solid #e8ebf3;
+    }
+</style>
+<div class="page-wrapper">
+    <!-- Page Content-->
+    <div class="page-content-tab">
+        <div class="container-fluid">
+            <div class="form-group">
+                <button type="button" class="btn " onclick="location.href='@Url.Action("Create", "WorkFlowReports")'"><i class="fa fa-plus-circle text-primary me-2"></i>New<i class="fa fa-angle-down ms-2"></i></button>
+                <button type="button" class="btn" id="RefreshPage"><i class="fa fa-clock text-primary me-2"></i>Refresh<i class="fa fa-angle-down ms-2"></i></button>
+            </div>
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <h4 class="page-title"><b>@Html.DisplayFor(model => model.WorkFlow.Name)</b></h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+            <div class="card">
+                <div class="card-body">
+
+                    <div>
+                        <div class="col-sm-12">
+                            <div class="tab-content" id="nav-tabContent">
+                                <div class="tab-pane active">
+
+                                    <div class="row">
+                                        <div>
+                                            <h4 class="card-title mt-3 mb-1"><span class="fa fa-info-circle" style="margin-left:25px">Work Flow Reports Detail</span></h4>
+                                            <br />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3 row">
+                                                <label for="example-text-input" class="col-sm-2 col-form-label text-end">Work FLow<span class="text-danger">  *</span></label>
+                                                <div class="col-10">
+                                                    <div class=" p-2 border bg-light">@Html.DisplayFor(model => model.WorkFlow.Name)</div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="example-text-input" class="col-sm-2 col-form-label text-end">Work FLow Status<span class="text-danger">  *</span></label>
+                                                <div class="col-10">
+                                                    <div class=" p-2 border bg-light">@Html.DisplayFor(model => model.WorkFlowStatus)</div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="example-text-input" class="col-sm-2 col-form-label text-end">Action<span class="text-danger">  *</span></label>
+                                                <div class="col-10">
+                                                    <div class=" p-2 border bg-light">@Html.DisplayFor(model => model.Action)</div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="example-text-input" class="col-sm-2 col-form-label text-end">Work FLow Action<span class="text-danger">  *</span></label>
+                                                <div class="col-10">
+                                                    <div class=" p-2 border bg-light">@Html.DisplayFor(model => model.WorkFlowActionStatus)</div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="example-text-input" class="col-sm-2 col-form-label text-end">Applied To<span class="text-danger">  *</span></label>
+                                                <div class="col-10">
+                                                    <div class=" p-2 border bg-light">@Html.DisplayFor(model => model.AppliedTo)</div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            
+
+                                            <div class="mb-3 row">
+                                                <label for="example-text-input" class="col-sm-2 col-form-label text-end">Frequency<span class="text-danger">  *</span></label>
+                                                <div class="col-10">
+                                                    <div class=" p-2 border bg-light">@Html.DisplayFor(model => model.Frequency)</div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="example-text-input" class="col-sm-2 col-form-label text-end">Priority<span class="text-danger">  *</span></label>
+                                                <div class="col-10">
+                                                    <div class=" p-2 border bg-light">@Html.DisplayFor(model => model.Priority)</div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="example-text-input" class="col-sm-2 col-form-label text-end">Account<span class="text-danger">  *</span></label>
+                                                <div class="col-10">
+                                                    <div class=" p-2 border bg-light">@Html.DisplayFor(model => model.AccountName)</div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="example-text-input" class="col-sm-2 col-form-label text-end">Device<span class="text-danger">  *</span></label>
+                                                <div class="col-10">
+                                                    <div class=" p-2 border bg-light">@Html.DisplayFor(model => model.DeviceName)</div>
+                                                </div>
+                                            </div>
+                                        </div><!--end col-->                
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <a href="/WorkFlowReports/Index" class="btn btn-primary ">
+                                        <i class="la la-arrow-left"></i>
+                                        <span>Back to List</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/TIjQuery/AccountDetailjQuery.js"></script>
+

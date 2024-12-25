@@ -1,0 +1,93 @@
+﻿@model TICRM.DTOs.TreeViewModel
+
+
+    <!-- in this example the tree is populated from inline HTML -->
+    <p id="assetCount" style="display:none"> @Model.CustomerAssets.Count()</p>
+    <p id="devicesCount" style="display:none"> @Model.Devices.Count()</p>
+    <ul>
+        @foreach (var item in Model.Locations)
+        {
+            <li macaddress="" deviceId="" data-jstree="type:file">
+                <span class="fa fa-map-marker swuich-icon"></span>
+                @item.Name
+
+                <ul>
+                    @foreach (var Assetitem in Model.CustomerAssets.Where(x => x.LocationId == item.LocationId))
+                    {
+                        <li macaddress="" assetId="@Assetitem.CustomerAssetId" assetName="@Assetitem.Title" data-jstree='{ "icon" : "fa fa-warning m--font-danger" }'>
+                            <span class="fa fa-users swuich-icon"></span>
+                            <span onclick="assetRightSlider('@Assetitem.Title')">
+                                @Assetitem.Title
+                            </span>
+
+                            <ul>
+                                @foreach (var deviceitem in Model.Devices.Where(x => x.CustomerAssetId == Assetitem.CustomerAssetId))
+                                {
+
+                                    <li macaddress="@deviceitem.Mac" deviceId="@deviceitem.DeviceId" data-jstree="type:file" style="width:100px" onclick="MapRightSlider('@deviceitem.EMEINumber','@deviceitem.Latitude','@deviceitem.Longitude','@deviceitem.Mac','@deviceitem.Name','@deviceitem.CloudServices', '@deviceitem.CloudData', '@deviceitem.DeviceId');">
+                                        <span class="fa fa-microchip swuich-icon"></span>
+
+                                        <img src="~/Content/Images/DeviceError.gif" id="@deviceitem.Mac" name="@deviceitem.Mac" style='margin-right:.50em; width:20px;' />
+                                        <span id="hField" style="display:none"> @Model.Devices.Count</span>
+                                        <span onclick="MapRightSlider('@deviceitem.EMEINumber','@deviceitem.Latitude','@deviceitem.Longitude','@deviceitem.Mac','@deviceitem.Name','@deviceitem.CloudServices', '@deviceitem.CloudData', '@deviceitem.DeviceId');">
+
+                                            @deviceitem.Name
+                                        </span>
+                                        <div class="btn-group" style="float:right;">
+
+                                            <span onclick="MapRightSlider('@deviceitem.EMEINumber','@deviceitem.Latitude','@deviceitem.Longitude','@deviceitem.Mac','@deviceitem.Name', '@deviceitem.CloudServices', '@deviceitem.CloudData', '@deviceitem.DeviceId');">
+                                                <span class="la la-angle-double-right" style='margin-right:.50em; display:inline-block; color:#4a9ed3;'></span>
+                                            </span>
+
+                                        </div>
+
+                                        <ul>
+                                            <li id="macadd" macaddress="@deviceitem.Mac" deviceId="@deviceitem.DeviceId" data-jstree="type:file">
+                                                Mac
+                                                <ul>
+                                                    <li macaddress="@deviceitem.Mac" deviceId="@deviceitem.DeviceId" data-jstree="disabled: true">
+
+                                                        @deviceitem.Mac
+
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li macaddress="@deviceitem.Mac" deviceId="@deviceitem.DeviceId" data-jstree="type:file">
+                                                EMEINumber
+                                                <ul>
+                                                    <li macaddress="@deviceitem.Mac" deviceId="@deviceitem.DeviceId" data-jstree="disabled: true">@deviceitem.EMEINumber</li>
+                                                </ul>
+                                            </li>
+                                            <li macaddress="@deviceitem.Mac" deviceId="@deviceitem.DeviceId" data-jstree="type:file">
+                                                Latitude
+                                                <ul>
+                                                    <li macaddress="@deviceitem.Mac" deviceId="@deviceitem.DeviceId" data-jstree="disabled: true">@deviceitem.Latitude </li>
+                                                </ul>
+                                            </li>
+                                            <li macaddress="@deviceitem.Mac" deviceId="@deviceitem.DeviceId" data-jstree="type:file">
+                                                Longitude
+                                                <ul>
+                                                    <li macaddress="@deviceitem.Mac" deviceId="@deviceitem.DeviceId" data-jstree="disabled: true">@deviceitem.Longitude </li>
+                                                </ul>
+                                            </li>
+
+
+
+                                        </ul>
+
+
+                                    </li>
+
+                                }
+                            </ul>
+
+                        </li>
+                    }
+                </ul>
+            </li>
+
+        }
+
+    </ul>
+
+    

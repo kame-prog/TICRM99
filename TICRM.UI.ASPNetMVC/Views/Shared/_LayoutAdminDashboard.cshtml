@@ -1,0 +1,301 @@
+﻿@using Microsoft.AspNet.Identity
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+
+    <meta charset="utf-8" />
+    <title>SWUICH</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />/
+
+    <!-- jquery -->
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+
+    <!-- Map css -->
+    <link href="~/Content/Assets/plugins/jmap/jsvectormap.css" rel="stylesheet" />
+    <!-- App css -->
+    <link href="~/Content/Assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Assets/css/icons.min.css" rel="stylesheet" />
+    <link href="~/Content/Assets/css/app.min.css" rel="stylesheet" />
+    <!-- Mterial design style sheet -->
+    @*<link href="~/Content/Assets/css/materialdesignicons.min.css" rel="stylesheet" />*@
+
+    <!-- Style Sheet -->
+    <link href="~/Content/Assets/css/DashboardStyleSheet.css" rel="stylesheet" />
+    <link href="~/Content/Assets/DataTables/datatables.min.css" rel="stylesheet" />
+    <link href="~/Content/Assets/NotiToasterJsCss/toastr.css" rel="stylesheet" />
+    <!-- sweet alert -->
+    <link href="~/Content/Assets/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" />
+    <<!--Chosen CSS -->>
+    <link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
+</head>
+
+<!--Start body-->
+<body class="menu-item-active">
+    <!-- leftbar-tab-menu -->
+    <div class="leftbar-tab-menu">
+        <div class="main-icon-menu">
+            <a href="" class="logo logo-metrica d-block text-center">
+                <span>
+                    <img src="~/Content/Assets/images/SwuichLogo/Logo.png" alt="logo-small" class="logo-sm">
+                </span>
+            </a>
+            <div class="main-icon-menu-body">
+                <div class="position-reletive h-100" data-simplebar style="overflow-x: hidden;">
+                    <ul class="nav nav-tabs" role="tablist" id="tab-menu">
+                        <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Dashboard" data-bs-trigger="hover">
+                            <a href="#Dashboard" id="Dashboard-tab" class="nav-link">
+                                <i class="ti ti-smart-home menu-icon"></i>
+                            </a><!--end nav-link-->
+                        </li><!--end nav-item-->
+                        <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Accounts" data-bs-trigger="hover">
+                            <a href="#AllAccounts" id="account-tab" class="nav-link">
+                                <i class="ti ti-user menu-icon"></i>
+                            </a><!--end nav-link-->
+                        </li><!--end nav-item-->
+                        <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="IoT Devices" data-bs-trigger="hover">
+                            <a href="#iotdevices" id="iotdevices-tab" class="nav-link">
+                                <i class="ti ti-router menu-icon"></i>
+                            </a><!--end nav-link-->
+                        </li><!--end nav-item-->
+
+                        <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Order Device" data-bs-trigger="hover">
+                            <a href="#orderdevice" id="orderdevice-tab" class="nav-link">
+                                <i class="fas fa-arrow-up menu-icon"></i>
+                            </a><!--end nav-link-->
+                        </li><!--end nav-item-->
+
+                        <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Payment Link" data-bs-trigger="hover">
+                            <a href="#PaymentLink" id="PaymentLink-tab" class="nav-link">
+                                <i class="fab fa-amazon-pay menu-icon"></i>
+                            </a><!--end nav-link-->
+                        </li><!--end nav-item-->
+                        <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="TwoCheckout" data-bs-trigger="hover">
+                            <a href="#TwoCheckout" id="TwoCheckout-tab" class="nav-link">
+                                <i class="fab fa-audible menu-icon"></i>
+                            </a><!--end nav-link-->
+                        </li><!--end nav-item-->
+                        <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Email Setting" data-bs-trigger="hover">
+                            <a href="#EmailSetting" id="EmailSetting-tab" class="nav-link">
+                                <i class="fa fa-envelope menu-icon"></i>
+                            </a><!--end nav-link-->
+                        </li><!--end nav-item-->
+
+                    </ul><!--end nav-->
+                </div><!--end /div-->
+            </div><!--end main-icon-menu-body-->
+            <div class="pro-metrica-end">
+                <a href="" class="profile">
+                    <img src="~/Content/Assets/images/users/user-4.jpg" alt="profile-user" class="rounded-circle thumb-sm">
+                </a>
+            </div><!--end pro-metrica-end-->
+        </div>
+        <!--end main-icon-menu-->
+
+        <div class="main-menu-inner">
+            <!-- LOGO -->
+            <div class="topbar-left">
+                <a href="#" class="logo">
+                    <span>
+                        <img src="~/Content/Assets/images/SwuichLogo/SwuichName.png" alt="logo-large" class="logo-lg logo-dark">
+                        <img src="~/Content/Assets/images/logo.png" alt="logo-large" class="logo-lg logo-light">
+                    </span>
+                </a><!--end logo-->
+            </div><!--end topbar-left-->
+            <!--end logo-->
+            <div class="menu-body navbar-vertical tab-content" data-simplebar>
+
+                <div id="Dashboard" class="main-icon-menu-pane tab-pane" role="tabpanel"
+                     aria-labelledby="Dashboard-tab">
+                    <div class="collapse navbar-collapse" id="sidebarCollapse_2">
+                        <div class="title-box">
+                            <h6 class="menu-title">Dashboard</h6>
+                        </div>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="~/Admin/Index">Dashboard</a>
+                            </li>
+                            <!--end nav-item-->
+                        </ul><!--end nav-->
+                    </div><!--end sidebarCollapse_2-->
+                </div><!-- end Dashboards -->
+
+                <div id="AllAccounts" class="main-icon-menu-pane tab-pane" role="tabpanel"
+                     aria-labelledby="account-tab">
+                    <div class="collapse navbar-collapse" id="sidebarCollapse_2">
+                        <div class="title-box">
+                            <h6 class="menu-title">Accounts</h6>
+                        </div>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="~/Admin/Allaccounts">All Accounts</a>
+                            </li>
+                            <!--end nav-item-->
+                        </ul><!--end nav-->
+                    </div><!--end sidebarCollapse_2-->
+                </div><!-- end Dashboards -->
+
+                <div id="iotdevices" class="main-icon-menu-pane tab-pane" role="tabpanel"
+                     aria-labelledby="iotdevices-tab">
+                    <div class="title-box">
+                        <h6 class="menu-title">IoT DEVICES</h6>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="sidebarCollapse">
+                        <!-- Navigation -->
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="~/Admin/AllDevices">All Devices</a>
+                            </li><!--end nav-item-->
+                        </ul><!--end navbar-nav--->
+                    </div><!--end sidebarCollapse-->
+                </div><!-- end Crypto -->
+
+                <div id="orderdevice" class="main-icon-menu-pane  tab-pane" role="tabpanel"
+                     aria-labelledby="orderdevice-tab">
+                    <div class="title-box">
+                        <h6 class="menu-title">Order Devices</h6>
+                    </div>
+                    <div class="collapse navbar-collapse" id="sidebarCollapse_2">
+                        <!-- Navigation -->
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://secure.2checkout.com/cpanel/reports.php" target="_blank">Order Device</a>
+                            </li><!--end nav-item-->
+                        </ul><!--end navbar-nav--->
+                    </div><!--end sidebarCollapse_2-->
+                </div><!-- end Others -->
+
+                <div id="PaymentLink" class="main-icon-menu-pane tab-pane" role="tabpanel" aria-labelledby="PaymentLink-tab">
+                    <div class="title-box">
+                        <h6 class="menu-title">Payment Link</h6>
+                    </div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/Admin/PaymentConfig">Payment Link</a>
+                        </li><!--end nav-item-->
+                    </ul><!--end nav-->
+                </div><!-- end Pages -->
+           
+                <div id="TwoCheckout" class="main-icon-menu-pane tab-pane" role="tabpanel" aria-labelledby="TwoCheckout-tab">
+                    <div class="title-box">
+                        <h6 class="menu-title">TwoCheckout</h6>
+                    </div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://secure.2checkout.com/cpanel/accounting_payments_history.php" target="_blank">2Checkout Integration</a>
+                        </li><!--end nav-item-->
+                    </ul><!--end nav-->
+                </div><!-- end Pages -->
+                <div id="EmailSetting" class="main-icon-menu-pane tab-pane" role="tabpanel" aria-labelledby="EmailSetting-tab">
+                    <div class="title-box">
+                        <h6 class="menu-title">Email Setting</h6>
+                    </div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/Admin/EmailsettingList">Email Setting</a>
+                        </li><!--end nav-item-->
+                    </ul><!--end nav-->
+                </div><!-- end Pages -->
+
+            </div>
+            <!--end menu-body-->
+        </div><!-- end main-menu-inner-->
+    </div>
+    <!-- end leftbar-tab-menu-->
+    <!-- Top Bar Start -->
+    <!-- Top Bar Start -->
+    <div class="topbar">
+        <!-- Navbar -->
+        <nav class="navbar-custom" id="navbar-custom">
+            <ul class="list-unstyled topbar-nav float-end mb-0">
+                <li class="dropdown">
+                    <a class="nav-link dropdown-toggle nav-user" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                        <div class="d-flex align-items-center">
+                            <img src="~/Content/Assets/images/users/user-4.jpg" alt="profile-user" class="rounded-circle me-2 thumb-sm">
+                            <div>
+                                <small class="d-none d-md-block font-11">@Session["Role"]</small>
+                                @*<small class="d-none d-md-block font-11">@Session["UserRole"]</small>*@
+                                <span class="d-none d-md-block fw-semibold font-12"> @Session["UserName"]  <i class="fas fa-angle-double-down"></i></span>
+                                @*<span class="d-none d-md-block fw-semibold font-12"> @Session["UserName"] <i class="fas fa-angle-double-down"></i></span>*@
+                            </div>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <a class="dropdown-item" href="#"><i class="ti ti-user font-16 me-1 align-text-bottom"></i> Profile</a>
+                        <a class="dropdown-item" href="#"><i class="ti ti-settings font-16 me-1 align-text-bottom"></i> Settings</a>
+                        <div class="dropdown-divider mb-0"></div>
+                        @using (Html.BeginForm("LogOff", "SuperAdminAuth", FormMethod.Post, new { id = "logoutForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()"><i class="ti ti-power font-16 me-1 align-text-bottom"></i>Logout</a>
+                        }
+                    </div>
+                </li><!--end topbar-profile-->
+                <li class="notification-list">
+                    <a class="nav-link arrow-none nav-icon offcanvas-btn" href="#" data-bs-toggle="offcanvas" data-bs-target="#Appearance" role="button" aria-controls="Rightbar">
+                        <i class="ti ti-settings ti-spin"></i>
+                    </a>
+                </li>
+            </ul><!--end topbar-nav-->
+
+            <ul class="list-unstyled topbar-nav mb-0">
+                <li>
+                    <button class="nav-link button-menu-mobile nav-icon" id="togglemenu">
+                        <i class="ti ti-menu-2"></i>
+                    </button>
+                </li>
+                <li class="hide-phone app-search">
+                    <form role="search" action="#" method="get">
+                        <input type="search" name="search" class="form-control top-search mb-0" placeholder="Type text...">
+                        <button type="submit"><i class="ti ti-search"></i></button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+        <!-- end navbar-->
+    </div>
+    <!-- Top Bar End -->
+    <!-- Top Bar End -->
+    <div>
+        @RenderBody()
+    </div>
+
+</body>
+</html>
+<!--Java-Script Start-->
+<!--Data Table script start-->
+<script src="~/Content/Assets/DataTables/datatables.min.js"></script>
+<!-- Table download in Excel JS -->
+<script src="~/Content/Assets/DataTables/table2excel/jquery.table2excel.min.js"></script>
+<!-- App js -->
+<script src="~/Content/Assets/js/app.js"></script>
+<!-- Toaster JS -->
+<script src="~/Content/Assets/NotiToasterJsCss/toastr.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+
+        //Script for exporting table in .xls(Excel) file
+        $("#btnExport").click(function () {
+            $("#myTable").table2excel({
+                filename: "Table.xls"
+            });
+        });
+        //Script for refreshing the page
+        $('#RefreshPage').click(function () {
+            location.reload();
+        });
+
+              //Success Toast appear
+        var data = '@TempData["Success"]';
+        if (data.length != 0) {
+            toastr.success(data);
+        }
+
+    })
+</script>

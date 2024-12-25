@@ -1,0 +1,535 @@
+﻿@model TICRM.DTOs.AccountViewModel
+<link href="~/Content/bootstrap/bootstrap-switch-button.min.css" rel="stylesheet" />
+<link href="~/Content/Assets/plugins/tree/listree.min.css" rel="stylesheet" />
+<style>
+    @@media screen and (max-width: 1920px) {
+        .img {
+            height: 80%;
+            width: 80%;
+            padding-left: 25%;
+        }
+
+        #Salute {
+            font-family: Roboto,sans-serif;
+            font-size:20px;
+        }
+    }
+    @@media screen and (max-width: 1350px) {
+        .img {
+            height: 84%;
+            width: 95%;
+            padding-left: 9%;
+        }
+    }
+    @@media  screen and (max-width: 1024px) {
+        .img {
+            height: 90%;
+            width: 100%;
+            padding-left: 4%;
+        }
+    }
+    @@media screen and (max-width: 950){
+        .font-14 {
+            font-size: 13px;
+        }
+    }
+    @@media screen and (max-width: 768px) {
+        .btn {
+            padding: 0.3rem 1rem;
+            font-size: .5125rem;
+        }
+     
+        /*.order-md-2 {
+            order: 2;
+        } 
+
+        .order-md-3 {
+            order: 3;
+        }*/
+
+        
+    }
+    @@media  screen and (max-width: 568px) {
+        .btn {
+            padding: 0.3rem 0.7rem;
+            font-size: .7125rem;
+        }
+        .img {
+            height: 50%;
+            width: 75%;
+            padding-left: 24%;
+        }
+    }  
+    @@media  screen and (max-width: 320px) {
+        .img {
+            height: 50%;
+            width: 87%;
+            padding-left: 20%;
+        }
+      /*  .font-18{
+            font-size:14px;
+        }*/
+        #Time {
+            font-size: 10px;
+        }
+    }
+
+
+
+
+    .shadow {
+        box-shadow: -5px 36px 70px -4px rgba(0,0,0,0.74);
+        -webkit-box-shadow: -5px 36px 70px -4px rgba(0,0,0,0.74);
+        -moz-box-shadow: -5px 36px 70px -4px rgba(0,0,0,0.74);
+    }
+
+    .circle {
+        background-image: linear-gradient(yellow,red);
+        padding: 1px;
+        width: 300px;
+        height: 300px;
+        border-style: solid;
+        border-color: transparent;
+        border-radius: 50%;
+        border-width: 3px;
+        animation: rot 1s linear infinite;
+        padding: 1px;
+    }
+
+        .circle > div {
+            background: white;
+        }
+
+    .circleDark {
+        background-image: linear-gradient(grey,black);
+        padding: 1px;
+        width: 300px;
+        height: 300px;
+        border-style: solid;
+        border-color: transparent;
+        border-radius: 50%;
+        border-width: 3px;
+        animation: rot 1s linear infinite;
+        padding: 1px;
+
+        border-radius: 75%;
+        border: 4px;
+        text-align: center;
+        width: 160px;
+        height: 160px;
+    }
+
+        .circleDark > div {
+            background: whitesmoke;
+        }
+
+        /*responsive*/
+
+</style>
+<div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-3">
+        <div class="card">
+            <div class="card-header">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h4 class="card-title">Device List</h4>
+                    </div><!--end col-->
+                </div>  <!--end row-->
+            </div><!--end card-header-->
+            <!--Orignal ha-->
+
+            <div class="card-body" style="height: 345px; ">
+                <ul class="listree" style="height: 100%; overflow: scroll; padding-left: 0.3rem;">
+                    @foreach (var item in Model.accountLocations)
+                    {
+                        <li>
+                            <div class="listree-submenu-heading"><i class="fa fa-map-marker text-primary px-2"></i>@item.Name</div>
+                            <ul class="listree-submenu-items">
+                                @foreach (var Assetitem in Model.accountAssetes.Where(x => x.LocationId == item.LocationId))
+                                {
+                                    <li>
+                                        <div class="listree-submenu-heading"><i class="ti ti-user text-primary px-2"></i>@Assetitem.Title</div>
+                                        <ul class="listree-submenu-items" style="font-size:smaller;">
+                                            @foreach (var deviceitem in Model.accountDevices.Where(x => x.CustomerAssetId == Assetitem.CustomerAssetId))
+                                            {
+                                                <li>
+                                                    <input type="hidden" id="device_id_Graph"><!--This code is a hidden field code ust for storing the Device id for graoh like ON/OFF Graph, temperature graph etc.-->
+                                                    <div class="listree-submenu-heading DeviceGraphbtn" id="" onclick="GetDeviceType('@deviceitem.DeviceId', '@deviceitem.Name')" data-bs-toggle="modal" data-animation="bounce"><i class="ti ti-router text-primary px-2"></i>@deviceitem.Name</div>
+                                                    <ul class="listree-submenu-items">
+                                                        <li>
+                                                            <ul class="listree-submenu-items">
+                                                                <li>
+                                                                    <b>EMEI Number :</b><span class="px-2">@deviceitem.EMEINumber</span>
+                                                                </li>
+                                                                <li>
+                                                                    <b>MAC Address :</b><span class="px-2">@deviceitem.Mac</span>
+                                                                </li>
+                                                                <li>
+                                                                    <b>Latitude :</b><span class="px-2">@deviceitem.Latitude</span>
+                                                                </li>
+                                                                <li>
+                                                                    <b>Longitude :</b><span class="px-2">@deviceitem.Longitude</span>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <!--end card-body-->.3
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 ">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title" id="GraphName">Device information</h4>
+            </div>
+            <div class="card-body" style="height:345px" id="OnOffspinner">
+                <div class="position-absolute w-100 h-100 d-flex flex-column align-items-center  justify-content-center">
+                    <div class="spinner-border thumb-md text-primary " role="status"></div>
+                </div>
+            </div>
+            <!--end card-header-->
+            <!--First Load Div-->
+            <div class="card-body" style="height:345px" id="FirstLoad">
+                <h5 class="fw-normal text-center text-primary"><b>Please select a register device from device list</b></h5>
+                <div class="px-4">
+                    <img src="~/Content/Assets/images/Switch_image.jpg" alt="logo-small" class="logo-sm" style="width: 20%;margin-left: 40%;margin-top: 8%;">
+                </div>
+            </div>
+            <!--Device Tracker Div-->
+            <div class="card-body" style="height:345px" id="LocationMap">
+                <div id="TrackerMap"></div>
+            </div>
+            <!--Device do not have ant type Div-->
+            <div class="card-body" style="height:345px" id="Notype">
+                <h5 class="fw-normal text-center text-primary"><b>Device do not have any type, Please configure the device</b></h5>
+            </div>
+            <!--Temprature Graph Div-->
+            <div class="card-body" style="height:345px" id="TempratureGraph">
+                <canvas id="lineChart" width="300" height="150"></canvas>
+            </div>
+            <!--end card-body-->
+            <div class="card-body" id="OnOffGraph">
+                <div class="row">
+                    <div class="col-sm-5 px-1 mx-auto">
+                        <div class="shadow circle mb-5 mt-4 mx-auto text-center BulbOnImage" id="" style="border-radius:75%;border: 4px;text-align:center; width:180px;height:180px;">
+                            <div style="border-radius:75%;text-align:center;border: 2px dotted grey;width:172px;height:172px;display:inline-grid;align-items: center;margin-top: 3px;">
+                                <div class="shadow" style="border-radius:75%;width:130px;height:130px;text-align:center;margin-left:19px">
+                                    <i class="fas fa-lightbulb fa-4x mt-4 mb-2 text-warning"></i><br />
+                                    <span>Light On</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Bulb off image-->
+                        <div class="shadow circleDark mb-5 mt-4 mx-auto text-center BulbOffImage" id="" style="">
+                            <div style="border-radius:75%;text-align:center;border: 2px dotted grey;width:152px;height:152px;display:inline-grid;align-items: center;margin-top: 3px;">
+                                <div class="shadow" style="border-radius:75%;width:130px;height:130px;text-align:center;margin-left:10px; background: whitesmoke;">
+                                    <i class="fas fa-lightbulb fa-4x mt-4 mb-2 "></i><br />
+                                    <span>Light Off</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 px-4 mx-auto text-center">
+                            <button type="button" class="btn btn-primary mt-4 BulbOnButton" onclick="light(true)" id=""><i class="fa fa-power-off  me-2"></i>ON</button>
+                            <button type="button" class="btn btn-light mt-4 BulbOffButton" onclick="light(false)" id="" style="border-color: rgb(0, 117, 255); color: rgb(0, 117, 255);"><i class="fa fa-power-off   me-2"></i>OFF</button>
+                        </div>
+
+                        @*Hidden field for checking the device is By default is ON or OFF from HIVEMQ server*@
+                        <input type="hidden" id="ONandOFFmessage" value="@ViewBag.LatestMessage" />
+                    </div>
+
+                    <div class="col-sm-7">
+                        <div class="row justify-content-center">
+                            <div class="col-12">
+                                <div class="row mt-4 mb-2">
+                                    <div class="col-6">
+                                        <h2 class="mt-0 font-22 fw-normal"><span id="Salute"></span></h2>
+                                    </div>
+                                    <div class="col-6 px-1">
+                                        <div class="input-group">
+                                            <i class="fas fa-clock font-18 px-2 mt-2 fw-normal"></i>
+                                            <span class="mb-1 mt-2 fw-normal font-14 Time" id="Time"></span>
+                                        </div>
+                                        <div class="input-group">
+                                            <i class="fas fa-calendar-check font-18 px-2 mt-2 fw-normal"></i>
+                                            <span class="mb-0 mt-2 fw-normal font-14" id="Date"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="mt-0 px-2 col-6">
+                                        <h1 class="fw-normal mt-0 mb-0" style="font-size: 1.5rem;">
+                                            <span>29°</span>
+                                        </h1>
+                                        <div class="input-group">
+                                            <h5 class="mb-0 fw-normal font-14">Temperature</h5>
+                                        </div>
+                                    </div>
+                                    <div class="mt-0 px-2 col-6">
+                                        <h1 class="fw-normal mt-0 mb-0 " style="font-size: 1.5rem;">
+                                            <span>60%</span>
+                                        </h1>
+                                        <div class="input-group">
+                                            <h5 class="mb-0 fw-normal font-14">Air humidity</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-0" id="sliderHideShow" style="display: none;">
+                                    <div class="col-12">
+                                        <div class="input-group">
+                                            <h2 class="font-16 mt-2 fw-normal text-muted">Dimmer</h2>
+                                        </div>
+                                        <div class="input-group ">
+                                            <div class="col-2"><i class="fas fa-minus mt-1"></i></div>
+                                            <div class="col-8">
+                                                <input type="range" min="1" max="100" value="100" class="mt-1" style="width: 95%;">
+                                            </div>
+                                            <div class="col-2 px-1"><i class="fas fa-plus mt-1"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--<div class="col-sm-7 px-2">
+        <div class="row mt-4 mb-2">
+            <div class="col-sm-6"><h2 class="mt-3 font-28 fw-normal text-muted"><b id="Salute"></b></h2></div>
+            <div class="col-sm-6 px-3">
+                <div class="input-group">
+                    <i class="fas fa-clock font-18 px-2 mt-2 fw-normal text-primary"></i>
+                    <h5 class="mb-1 fw-normal text-muted" id="Time"></h5>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-calendar-check font-18 px-2 mt-2 fw-normal text-primary"></i>
+                    <h5 class="mb-0 fw-normal text-muted" id="Date"></h5>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="mt-4 px-2 col-sm-6">
+                <h3 class="display-6 fw-normal mt-0 text-danger"><b>29°</b></h3>
+                <div class="input-group">-->
+                    @*<i class="mdi mdi-thermometer font-18 px-2 mt-2 fw-normal text-primary"></i>*@
+                    <!--<h5 class="mb-0 fw-normal text-muted">Temperature</h5>
+        </div>
+    </div>
+    <div class="mt-4 px-4 col-sm-6">
+        <h1 class="display-6  fw-normal mt-0 mb-1 text-primary"><b>60%</b></h1>
+        <div class="input-group">-->
+                    @*<i class="mdi mdi-water font-18 px-2 mt-2 fw-normal text-primary"></i>*@
+                    <!--<h5 class="mb-0 fw-normal text-muted">Air humidity</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4" id="sliderHideShow">
+        <div class="input-group">-->
+                    @*<i class="mdi mdi-tune-vertical font-18 px-2 mt-2 fw-normal text-primary"></i>*@
+                    <!--<h2 class="font-16 mt-2 fw-normal text-muted">Dimmer</h2>
+            </div>
+            <div class="input-group ">
+                <div class="col-sm-1"><i class="fas fa-minus mt-1"></i></div>
+                <div class="col-sm-9">
+                    <input type="range" min="1" max="100" value="100" class="mt-1" style="width: 95%;">
+                </div>
+                <div class="col-sm-1 px-1"><i class="fas fa-plus mt-1"></i></div>
+            </div>
+        </div>
+
+    </div>-->
+
+                </div>
+            </div>
+        </div>
+        <!--end card -->
+    </div> <!-- end col -->
+
+    <div class="col-lg-3 col-md-3 col-sm-3 ">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Configuration</h4>
+            </div><!--end card-header-->
+            <div class="card-body" style="height:345px;">
+                <div class="row  mt-4">
+                    <div class="col col-md-6 d-flex justify-content-around">
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <button type="button" id="Firmwarebtn" class="btn btn-primary" data-bs-toggle="modal" data-animation="bounce" disabled>Firmware</button>
+                        }
+                    </div>
+                    <div class="col col-md-6 d-flex justify-content-around">
+                        <button type="button" id="Workflowbtn" class="btn btn-primary" data-bs-toggle="modal" data-animation="bounce" disabled>WorkFlow</button>
+                    </div>
+                </div>
+                <div class="row mt-4 mb-4">
+                    <img src="~/Content/Assets/images/swuich_nodemcu.jpg" class="img"  style="
+    height: 50%;
+    width: 77%;
+    padding-left: 25%;
+">
+                </div>
+                <div class="row mb-3">
+                    <div class="col d-flex justify-content-around">
+                        <button type="button" id="Configurationbtn" class="btn btn-primary" disabled>Configuration</button>
+                    </div>
+                </div>
+            </div><!--end card-body-->
+        </div><!--end card-->
+    </div> <!-- end col -->
+</div>
+@if (User.IsInRole("Admin"))
+{
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h4 class="card-title">Device Connectivity Network</h4>
+                        </div><!--end col-->
+                    </div>  <!--end row-->
+                </div><!--end card-header-->
+                <div class="card-body" style="height: 335px;">
+                    <div class="media align-items-center mb-4">
+                        <span class="thumb-xs justify-content-center d-flex align-items-center bg-soft-warning rounded-circle fw-semibold">W</span>
+                        <div class="media-body ms-3 align-self-center">
+                            <h6 class="m-0 font-15">WI-FI</h6>
+                            <div class="d-flex justify-content-between">
+                                <span>
+                                    <a class="" href="#">
+                                        <i class="mdi mdi-format-list-bulleted text-success"></i>
+                                        <span class="text-muted" id="WIFI"></span>
+                                    </a>
+                                </span>
+                                @*<span class="text-muted" id="WIFI_Per"></span>*@
+                            </div>
+                            <div class="progress mt-0" style="height:3px;">
+                                <div class="progress-bar bg-warning" role="progressbar" id="WIFI_Per"></div>
+                            </div>
+                        </div><!--end media-body-->
+                    </div><!--end media-->
+                    <div class="media align-items-center mb-4">
+                        <span class="thumb-xs justify-content-center d-flex align-items-center bg-soft-purple rounded-circle fw-semibold">E</span>
+                        <div class="media-body ms-3 align-self-center">
+                            <h6 class="m-0 font-15">Ethernet</h6>
+                            <div class="d-flex justify-content-between">
+                                <span>
+                                    <a class="" href="#">
+                                        <i class="mdi mdi-format-list-bulleted text-success"></i>
+                                        <span class="text-muted" id="Ethernet"></span>
+                                    </a>
+                                </span>
+                                @*<span class="text-muted" id="Ethernet_Per"></span>*@
+                            </div>
+                            <div class="progress mt-0" style="height:3px;">
+                                <div class="progress-bar bg-purple" role="progressbar" id="Ethernet_Per"></div>
+                            </div>
+                        </div><!--end media-body-->
+                    </div><!--end media-->
+                    <div class="media align-items-center mb-4">
+                        <span class="thumb-xs justify-content-center d-flex align-items-center bg-soft-pink rounded-circle fw-semibold">C</span>
+                        <div class="media-body ms-3 align-self-center">
+                            <h6 class="m-0 font-15">Cellular</h6>
+                            <div class="d-flex justify-content-between">
+                                <span>
+                                    <a class="" href="#">
+                                        <i class="mdi mdi-format-list-bulleted text-success"></i>
+                                        <span class="text-muted" id="Cellular"></span>
+                                    </a>
+                                </span>
+                                @*<span class="text-muted" id="Cellular_Per"></span>*@
+                            </div>
+                            <div class="progress mt-0" style="height:3px;">
+                                <div class="progress-bar bg-pink" role="progressbar" id="Cellular_Per"></div>
+                            </div>
+                        </div><!--end media-body-->
+                    </div><!--end media-->
+                    <div class="media align-items-center">
+                        <span class="thumb-xs justify-content-center d-flex align-items-center bg-soft-success rounded-circle fw-semibold">B</span>
+                        <div class="media-body ms-3 align-self-center">
+                            <h6 class="m-0 font-15">Bluetooth</h6>
+                            <div class="d-flex justify-content-between">
+                                <span>
+                                    <a class="" href="#">
+                                        <i class="mdi mdi-format-list-bulleted text-success"></i>
+                                        <span class="text-muted" id="Bluetooth"></span>
+                                    </a>
+                                </span>
+                                @*<span class="text-muted" id="Bluetooth_Per"></span>*@
+                            </div>
+                            <div class="progress mt-0" style="height:3px;">
+                                <div class="progress-bar bg-success" role="progressbar" id="Bluetooth_Per"></div>
+                            </div>
+                        </div><!--end media-body-->
+                    </div><!--end media-->
+                </div><!--end card-body-->
+            </div><!--end card-->
+        </div><!--end col-->
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h4 class="card-title">Device Protocols</h4>
+                        </div><!--end col-->
+                    </div>  <!--end row-->
+                </div><!--end card-header-->
+                <div class="card-body">
+                    <div class="text-center" style="position: relative; height: 280px">
+                        <div id="Protocol_graph" class="apex-charts  mt-4"></div>
+                        <div class="mt-3">
+                            <i class="fas fa-network-wired text-info me-2"></i>MQTT
+                            <i class="fas fa-network-wired text-primary me-2"></i>HTTP
+                            <i class="fas fa-network-wired text-pink me-2"></i>LORAWAN
+                        </div>
+                        @*<div class="resize-triggers">
+                        <div class="expand-trigger">
+                            <div style="width: 358px; height: 282px;"></div>
+                            </div>
+                            <div class="contract-trigger">
+                                </div>
+                        </div>*@
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card-header">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h4 class="card-title">Device Heart Beat Time</h4>
+                    </div><!--end col-->
+                </div>  <!--end row-->
+            </div><!--end card-header-->
+            <div class="card-body p-0">
+                <div class="p-3" data-simplebar style="height: 335px;">
+                    <div class="activity DeviceDisConnctTime">
+
+                    </div><!--end activity-->
+                </div><!--end analytics-dash-activity-->
+            </div>  <!--end card-body-->
+        </div>
+    </div>
+}
+
+
+
+<!--Tree View JS-->
+<script src="~/Content/Assets/plugins/tree/listree.umd.min.js"></script>
+<script src="~/Content/Assets/pages/tree.init.js"></script>
+
+<!--Line Graph JS-->
+<script src="~/Content/Assets/plugins/chartjs/chart.js"></script>
+<script src="~/Content/Assets/pages/chartjs.init.js"></script>
+<script src="~/Content/Assets/js/bootstrap-switch-button.min.js"></script>

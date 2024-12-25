@@ -1,0 +1,154 @@
+﻿@model TICRM.DTOs.DeviceSensorGraphDto
+@{
+    ViewBag.Title = "DeviceSensorGraph";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+<style>
+    .black-placeholder::-webkit-input-placeholder {
+        color: black; /* for WebKit-based browsers like Chrome, Safari */
+    }
+
+    .black-placeholder::-moz-placeholder {
+        color: black; /* for Firefox */
+    }
+
+    .black-placeholder:-ms-input-placeholder {
+        color: black; /* for Internet Explorer */
+    }
+
+    .black-placeholder:-moz-placeholder {
+        color: black; /* for older Firefox versions */
+    }
+</style>
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <h4 class="page-title">Create Device Sensor Graph</h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        @using (Html.BeginForm("CreateDeviceSensorGraph", "Devices", FormMethod.Post, new { id = "CaseCreateForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="row">
+
+                                <div class="col-lg-6">
+                                    <div class="mb-3 row">
+                                        <label for="example-text-input" class="col-sm-2 col-form-label text-end">Device<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(model => model.DeviceId, Model.DevicesDropDown, "-- Select --", htmlAttributes: new { @class = "form-control m-input SearchableDropDown" })
+                                            @Html.ValidationMessageFor(model => model.DeviceId, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-email-input" class="col-sm-2 col-form-label text-end">Sensor<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(model => model.SensorId, Model.SensorsDropDown, "-- Select --", htmlAttributes: new { @class = "form-control m-input SearchableDropDown", id = "sensorDropdown" })
+                                            @Html.ValidationMessageFor(model => model.SensorId, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row" id="mqttTopicField" >
+                                        <!-- Hidden by default -->
+                                        <label for="example-email-input" class="col d-flex form-label text-end">MQTT Topic<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.EditorFor(model => model.MqttPublishtopic, new { htmlAttributes = new { @class = "form-control black-placeholder", @placeholder = "Enter Device MQTT Topic" } })
+                                            @Html.ValidationMessageFor(model => model.MqttPublishtopic, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row">
+                                        <label for="example-tel-input" class="col-sm-2 col-form-label text-end">Channel<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(model => model.Channel, Model.ChannelsDropDown, "-- Select --", htmlAttributes: new { @class = "form-control m-input SearchableDropDown" })
+                                            @Html.ValidationMessageFor(model => model.Channel, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="mb-3 row">
+                                        <label for="example-url-input" class="col-sm-2 col-form-label text-end">Graph<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(model => model.GraphId, Model.GraphsDropDown, "-- Select --", htmlAttributes: new { @class = "form-control m-input SearchDropDown SearchableDropDown" })
+                                            @Html.ValidationMessageFor(model => model.GraphId, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row">
+                                        <label for="example-month-input" class="col-sm-2 col-form-label text-end">Data Duration<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(model => model.Data, Model.DataDropDown, "-- Select --", htmlAttributes: new { @class = "form-control m-input SearchDropDown SearchableDropDown" })
+                                            @Html.ValidationMessageFor(model => model.Data, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row">
+                                        <label for="example-time-input" class="col-sm-2 col-form-label text-end">Network<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(model => model.Network, Model.NetworksDropDown, "-- Select --", htmlAttributes: new { @class = "form-control m-input SearchableDropDown" })
+                                            @Html.ValidationMessageFor(model => model.Network, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <a href="/Devices/DeviceSensorGraphList" class="btn btn-primary ">
+                                        <i class="la la-arrow-left"></i>
+                                        <span>Back to List</span>
+                                    </a>
+                                    <button type="submit" id="savebtn" class="btn btn-primary float-end"><i class="la la-save"></i> Submit</button>
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+            <!--end card-body-->
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Check if the script loads correctly
+        console.log('Script loaded successfully');
+
+        // Add event listener to the sensor dropdown
+        $('#sensorDropdown').change(function () {
+            var selectedOption = $(this).val(); // Get the selected value
+
+            console.log('Selected option:', selectedOption); // Log to inspect the value
+
+            if (selectedOption.trim().toLowerCase() === '5b7d49bb-1e44-4edc-9c03-734b5b0fe47d') { // Ensure it's trimmed and case-insensitive
+                $('#mqttTopicField').show(); // Show the MQTT field
+            } else {
+                $('#mqttTopicField').hide(); // Hide otherwise
+            }
+        });
+
+        // Check initial state
+        var initialOption = $('#sensorDropdown').val(); // Get the current dropdown value
+        console.log('Initial option:', initialOption); // Log the initial state
+
+        if (initialOption.trim().toLowerCase() !== 'tracking') { // Ensure correct initial state
+            $('#mqttTopicField').hide(); // Hide if it's not 'Tracking'
+        }
+    });
+
+</script>

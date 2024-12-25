@@ -1,0 +1,426 @@
+﻿<div class="row">
+    <div class="col-xl-3">
+        <div class="m-portlet m-portlet--mobile  m-portlet--rounded">
+
+
+            <div class="m-portlet__head">
+
+                <div class="m-portlet__head-title">
+                    <h3 class="m-portlet__head-text" style="margin-top:10px !important;">
+                        @Model.account.Name
+                    </h3>
+                </div>
+                <div class="m-portlet__head-title">
+                    <ul class="m-portlet__nav" style="margin-top:10px !important;">
+                        <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
+                            <a href="#" class="m-portlet__nav-link m-dropdown__toggle dropdown-toggle btn btn--sm m-btn--pill btn-secondary m-btn m-btn--label-brand">
+                                Location
+                            </a>
+                            <div class="m-dropdown__wrapper" style="z-index: 101;">
+                                <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust" style="left: auto; right: 51px;"></span>
+                                <div class="m-dropdown__inner">
+                                    <div class="m-dropdown__body">
+                                        <div class="m-dropdown__content">
+                                            <ul class="m-nav">
+
+                                                @foreach (var item in Model.accountLocations)
+                                                {
+
+                                                    <li class="m-nav__item">
+                                                        <a href="#" class="m-nav__link" onclick="loadAssetOnLocationId('@item.LocationId')">
+                                                            <i class="m-nav__link-icon flaticon-pin"></i>
+                                                            <span class="m-nav__link-text">@item.Name</span>
+                                                        </a>
+                                                    </li>
+
+                                                }
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-xl-9" style="margin-top:-25px;">
+        <div class="m-portlet m-portlet--mobile  m-portlet--rounded">
+
+
+            <div class="m-portlet__body" style="margin:20px !important;padding:0;">
+
+
+                <table id="m_table_Account" class="table table-striped table-bordered table-hover table-checkable">
+                    <thead>
+                        <tr>
+                            @if (@Model.account.AccountSize != null)
+                            {
+                                <th>AccountSize</th>
+                            }
+                            @if (@Model.account.AccountType != null)
+                            {
+                                <th>AccountType</th>
+                            }
+                            @if (@Model.account.Address != null)
+                            {
+                                <th>Billing Address</th>
+                            }
+                            @if (@Model.account.Address1 != null)
+                            {
+                                <th>Shipping Address</th>
+                            }
+
+                            <th>Email</th>
+                            <th>Fax</th>
+                            <th>WebSite</th>
+
+                            @if (@Model.account.Industry != null)
+                            {
+                                <th>Industry</th>
+                            }
+                            <th>PhoneOffice</th>
+                            @if (@Model.account.Status != null)
+                            {
+                                <th>Status</th>
+                            }
+                            @if (@Model.account.Team != null)
+                            {
+                                <th>Team</th>
+                            }
+                            @if (@Model.account.User != null)
+                            {
+                                <th>User</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            @if (@Model.account.AccountSize != null)
+                            {
+                                <td>@Model.account.AccountSize.Name</td>
+                            }
+                            @if (@Model.account.AccountType != null)
+                            {
+                                <td>@Model.account.AccountType.Name</td>
+                            }
+                            @if (@Model.account.Address != null)
+                            {
+                                <td>@Model.account.Address.Street1</td>
+                            }
+                            @if (@Model.account.Address1 != null)
+                            {
+                                <td>@Model.account.Address1.Street1</td>
+                            }
+                            <td>@Model.account.Email</td>
+                            <td>@Model.account.Fax</td>
+                            <td>@Model.account.WebSite</td>
+                            @if (@Model.account.Industry != null)
+                            {
+                                <td>@Model.account.Industry.Name</td>
+                            }
+                            <td>@Model.account.PhoneOffice</td>
+                            @if (@Model.account.Status != null)
+                            {
+                                <td>@Model.account.Status.Name</td>
+                            }
+                            @if (@Model.account.Team != null)
+                            {
+                                <td>@Model.account.Team.Name</td>
+                            }
+                            @if (@Model.account.User != null)
+                            {
+                                <td>@Model.account.User.Name</td>
+                            }
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-xl-6">
+        <div class="m-portlet m-portlet--mobile  m-portlet--rounded">
+
+
+
+        </div>
+
+
+
+
+    </div>
+    <div class="col-xl-6">
+        <div class="m-portlet m-portlet--mobile  m-portlet--rounded">
+
+
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-6">
+        <div class="m-portlet m-portlet--mobile  m-portlet--rounded">
+            <div class="m-portlet__body">
+                <div class="m-portlet__head-title" style="height:25px;">
+                    <h5 class="m-portlet__head-text">
+                        <label>Tree View From Location</label>
+                    </h5>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6">
+        <div class="m-portlet m-portlet--mobile  m-portlet--rounded">
+            <div class="m-portlet__body">
+                <div class="m-portlet__head-title" style="height:25px;">
+                    <h5 class="m-portlet__head-text">
+                        <label>Tree View Devices</label>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="TreeView">
+</div>
+
+<div class="m-portlet__body">
+
+    <div class="m-portlet__head-title" style="height:25px;">
+        <h5 class="m-portlet__head-text">
+            <label>Assets</label>
+        </h5>
+    </div>
+
+    <table id="m_table_Assets"></table>
+
+    Section content
+
+</div>
+
+<script>
+
+    var loadAssetOnLocationId = function (locationId) {
+        $('#m_table_Assets').html('');
+        $('#m_table_Assets').mDatatable({
+            data: {
+                type: 'remote',
+                source: {
+                    read: {
+                        url: '/Accounts/GetAssetsOfLocation?locationId=' + locationId
+                    }
+                },
+                pageSize: 2,
+                saveState: {
+                    cookie: false,
+                    webstorage: true
+                },
+                serverPaging: true,
+                serverFiltering: true,
+                serverSorting: true
+            },
+            layout: {
+                theme: 'default',
+                class: '',
+                scroll: true,
+                height: 200,
+                footer: false
+            },
+
+            toolbar: {
+                items: {
+                    // pagination
+                    pagination: {
+                        // page size select
+                        pageSizeSelect: [2, 3, 4, 5]
+                    }
+                }
+            },
+
+            sortable: true,
+
+            filterable: false,
+
+            pagination: true,
+
+            columns: [
+                {
+                    field: "Title",
+                    title: "Title",
+                    sortable: 'asc',
+                    overflow: 'visible',
+                    template: function (row, index, datatable) {
+                        var dropup = (datatable.getPageSize() - index) <= 4 ? 'dropup' : '';
+                        return '\
+                                    <a href="#" class="arial">' + row.Title + '</a>';
+                    }
+                },
+
+
+
+                {
+                    field: "Manufacture",
+                    title: "Manufacture",
+                    responsive: {
+                        visible: 'lg'
+                    }
+                }, {
+                    field: "Model",
+                    title: "Model",
+                    width: 50
+                },
+                {
+                    field: "YearOfManufacture",
+                    title: "Year",
+                    width: 35
+                },
+                {
+                    field: "Value",
+                    title: "Value",
+                    width: 50
+                },
+
+                {
+                    field: "DepriciatedValue",
+                    title: "Dep. Value",
+                    width: 75
+
+                }, {
+                    field: "SKU",
+                    title: "SKU"
+                }, {
+                    field: "Description",
+                    title: "Description"
+                }
+            ]
+        });
+
+    }
+
+    var LoadAssetsDevices = function (value) {
+
+        var obj = { assetId: value };
+
+        $.ajax({
+            type: "GET",
+            url: "/Accounts/GetTreeOfDevices",
+            data: obj,
+            contentType: "application/json; charset=utf-8",
+            dataType: "text",
+            success: function (response) {
+                if (JSON.parse(response) == "NoData") {
+
+                    alert("NoData");
+                }
+                else {
+                    var data = JSON.parse(response);
+
+                    append_treeView_Id++;
+
+
+                    $('#TreeView').html('');
+                    $('#TreeView').html('<div id="TreeView' + append_treeView_Id + '" style="height: 400px; overflow-y: scroll;"></div>');
+
+
+                    var htmlData = '<ul>';
+
+                    for (var i = 0; i < data.length; i++) {
+
+                        htmlData += '<li macaddress="' + data[i].Mac + '" deviceId="' + data[i].DeviceId + '" data-jstree="{ "selected" : true }">' + data[i].Name + '<ul>';
+                        htmlData += '<li macaddress="' + data[i].Mac + '" deviceId="' + data[i].DeviceId + '" data-jstree="{ "type" : "file" }">Mac<ul>';
+                        htmlData += '<li macaddress="' + data[i].Mac + '" deviceId="' + data[i].DeviceId + '" data-jstree="{ "disabled" : true }">' + data[i].Mac + '</li></ul></li>';
+                        htmlData += '<li macaddress="' + data[i].Mac + '" deviceId="' + data[i].DeviceId + '" data-jstree="{ "type" : "file" }">EMEINumber<ul>';
+                        htmlData += '<li macaddress="' + data[i].Mac + '" deviceId="' + data[i].DeviceId + '" data-jstree="{ "disabled" : true }">' + data[i].EMEINumber + '</li></ul></li>';
+                        htmlData += '<li macaddress="' + data[i].Mac + '" deviceId="' + data[i].DeviceId + '" data-jstree="{ "type" : "file" }">Latitude<ul>';
+                        htmlData += '<li macaddress="' + data[i].Mac + '" deviceId="' + data[i].DeviceId + '" data-jstree="{ "disabled" : true }">' + data[i].Latitude + '</li></ul></li>';
+                        htmlData += '<li macaddress="' + data[i].Mac + '" deviceId="' + data[i].DeviceId + '" data-jstree="{ "type" : "file" }">Longitude<ul>';
+                        htmlData += '<li macaddress="' + data[i].Mac + '" deviceId="' + data[i].DeviceId + '" data-jstree="{ "disabled" : true }">' + data[i].Longitude + '</li></ul></li>';
+                        htmlData += '<li macaddress="' + data[i].Mac + '" deviceId="' + data[i].DeviceId + '" data-jstree="{ "type" : "file" }">Custom URL<ul>';
+                        htmlData += '<li macaddress="' + data[i].Mac + '" deviceId="' + data[i].DeviceId + '">Initially selected</li></ul></li>';
+
+                       
+                        htmlData += '</ul></li>';
+                    }
+                    htmlData += '</ul>';
+
+                    $('#TreeView' + append_treeView_Id).html(htmlData);
+
+                    stratDeviceTreeViewGraph();
+
+                }
+
+            },
+            failure: function () {
+                alert("Failed!");
+            }
+        });
+
+    }
+
+
+    var stratDeviceTreeViewGraph = function () {
+
+        $('#TreeView' + append_treeView_Id).on('changed.jstree', function (e, data) {
+            var objNode = data.instance.get_node(data.selected);
+
+            if (objNode.li_attr.deviceid != "undefined" && objNode.li_attr.deviceid != AccountDetialDeviceId) {
+                AccountDetialDeviceId = objNode.li_attr.deviceid;
+                LoadDeviceSensorGraph(objNode.li_attr.deviceid);
+            }
+
+            if (objNode.li_attr.macaddress != "undefined" && objNode.li_attr.macaddress != AccountDetailMacAddress) {
+                AccountDetailMacAddress = objNode.li_attr.macaddress;
+                localStorage.setItem('selectedDevice', objNode.li_attr.macaddress);
+                GetGraphOfMAC();
+            }
+            if (objNode.li_attr.assetid != "undefined" && objNode.li_attr.assetid != "" && objNode.li_attr.assetid != AccountDetialAssetId) {
+                AccountDetialAssetId = objNode.li_attr.assetid;
+                localStorage.setItem('SelectedAsset', objNode.li_attr.assetid);
+                assetRightSlider();
+            }
+            debugger;
+
+        }).jstree({
+            "core": {
+                "multiple": true,
+                "check_callback": true,
+                'themes': {
+                    "responsive": true,
+                    'variant': 'larg',
+                    'stripes': false,
+                    'dots': false,
+                    'icons': false
+                }
+            },
+            "types": {
+                "default": {
+                    "icon": "fa fa-folder icon-state-warning icon-lg m--font-brand"
+                },
+                "file": {
+                    "icon": "fa fa-file icon-state-warning icon-lg"
+                }
+            },
+            "plugins": ["dnd", "state", "types", "sort"]
+        });
+
+    }
+
+</script>

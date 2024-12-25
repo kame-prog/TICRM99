@@ -1,0 +1,178 @@
+﻿
+<style>
+    @@media screen and (max-width:320px) {
+        .btn {
+            padding: 0.3rem 0.8rem;
+        }
+        .activity {
+            font-size: 12px;
+            padding-left: 10px
+        }
+    }
+</style>
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h4 class="card-title">All Opportunities by Owner</h4>
+                    </div><!--end col-->
+                </div>  <!--end row-->
+            </div><!--end card-header-->
+            <div class="card-body" >
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div id="LeadsWonDonut" class="apex-charts"></div>
+                            </div><!--end col-->
+                            <div class="col-md-8 align-self-center">
+                                <h4 class="mt-0 mb-2 font-14">Leads Won by Owner</h4>
+                                <p class="text-muted font-13 mb-md-0">
+                                    There are many variations of passages
+                                    of Lorem Ipsum available, but the majority have suffered
+                                    alteration in some form.
+                                </p>
+                            </div><!--end col-->
+                        </div><!--end row-->
+                    </div><!-- end col-->                 
+                </div><!-- end row -->
+            </div><!--end card-body-->
+        </div><!--end card-->
+    </div><!--end col-->
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-header">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h4 class="card-title">Leads from source</h4>
+                    </div><!--end col-->
+                </div>  <!--end row-->
+            </div>
+       
+            <div class="col-lg-12">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center mb-1">
+                        <div>
+                            <i class="fa fa-circle me-2 text-success"></i>Compaign
+                        </div>
+                        <span class="badge badge-outline-success badge-pill" id="Compaign"></span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center mb-1">
+                        <div>
+                            <i class="fa fa-circle me-2 text-warning"></i>Confrence
+                        </div>
+
+                        <span class="badge badge-outline-warning badge-pill" id="Confrence"></span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center mb-1">
+                        <div>
+                            <i class="fa fa-circle me-2 text-danger"></i>Email
+                        </div>
+                        <span class="badge badge-outline-danger badge-pill" id="Email"></span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="fa fa-circle me-2 text-primary"></i>WebSite
+                        </div>
+                        <span class="badge badge-outline-primary" id="WebSite"></span>
+                    </li>
+                </ul><!--end list-group-->
+            </div>
+
+        </div>
+    </div>
+</div><!--end row-->
+<div class="row">
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-header">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h4 class="card-title">Opportunity Map</h4>
+                    </div><!--end col-->
+                </div>  <!--end row-->
+            </div><!--end card-header-->
+            <div class="card-body" style="width: 100%; height: 370px">
+                <div id="map_11"></div>
+            </div><!--end card-body-->
+        </div><!--end card-->
+    </div>
+    <div class="col-lg-5 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h4 class="card-title">Sales</h4>
+                    </div><!--end col-->
+
+                </div>  <!--end row-->
+            </div><!--end card-header-->
+            <div class="card-body" style="width: 100%; height: 370px">
+                <div class="apexchart-wrapper">
+                    <div id="AccOppStatsGraph" class="chart-gutters mb-n4"></div>
+                </div>
+            </div><!--end card-body-->
+        </div><!--end card-->
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h4 class="card-title">Work Orders</h4>
+                    </div><!--end col-->
+                </div>  <!--end row-->
+            </div><!--end card-header-->
+            <div class="card-bodyp-0">
+                <div class="p-2" data-simplebar style="height: 370px;">
+                    <div class="activity AccWorkorder">
+                        <div style="">
+
+                        </div>
+                    </div><!--end activity-->
+                </div><!--end analytics-dash-activity-->
+            </div>  <!--end card-body-->
+        </div><!--end card-->
+    </div>
+</div>
+<div class="row">
+    <div class="card">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h4 class="card-title">Opportunities details</h4>
+                </div><!--end col-->
+            </div>  <!--end row-->
+        </div><!--end card-header-->
+        <div>
+            <div class="form-group">
+
+                <button type="button" class="btn btn-primary " onclick="location.href='@Url.Action("Create", "Opportunities")'">Create Opportunity</button>
+                <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Index", "Opportunities")'">Opportunities</button>
+            </div><br />
+            <div class="table-responsive">
+                <table id="opportuntiyTable" class="table font-15 page-content-wrapper">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Title</th>
+                            <th>Amount</th>
+                            <th>Description</th>
+                            <th>Currency</th>
+                            <th>User</th>
+                            <th>Team</th>
+                            <th>Opportunity Stage</th>
+                            <th>Probability</th>
+                        </tr><!--end tr-->
+                    </thead>
+
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

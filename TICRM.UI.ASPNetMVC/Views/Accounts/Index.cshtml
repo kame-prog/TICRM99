@@ -1,0 +1,186 @@
+﻿@model IEnumerable<TICRM.DTOs.AccountDto>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="form-group">
+                        <button type="button" class="btn TopPageButton" onclick="location.href='@Url.Action("Create", "Accounts")'"><i class="fa fa-plus-circle text-primary me-2"></i>New<i class="fa fa-angle-down ms-2"></i></button>
+                        <button type="button" class="btn TopPageButton" id="RefreshPage"><i class="fa fa-clock text-primary me-2"></i>Refresh<i class="fa fa-angle-down ms-2"></i></button>
+                        <button type="submit" class="btn TopPageButton" id="btnExport"><i class="fa fa-download text-primary me-2"></i>Export<i class="fa fa-angle-down ms-2"></i></button>
+                    </div>
+
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="#">Swuich</a>
+                                </li><!--end nav-item-->
+                                <li class="breadcrumb-item">
+                                    <a href="#">Customer</a>
+                                </li><!--end nav-item-->
+                                <li class="breadcrumb-item active">Accounts</li>
+                            </ol>
+                        </div>
+                        <span class="page-title">Accounts</span>
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div>
+            <!-- end page title end breadcrumb -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <span class="card-title">Accounts Details</span>
+                                </div><!--end col-->
+                            </div>  <!--end row-->
+                        </div><!--end card-header-->
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="myTable" class="table page-content-wrapper">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Description</th>
+                                            <th>Type</th>
+                                            <th>Status</th>
+                                            <th>Currency</th>
+                                            <th>Opportunities</th>
+                                            <th>Location</th>
+                                            <th>Customer assets</th>
+                                            <th>Devices</th>
+                                            <th>Actions</th>
+                                        </tr><!--end tr-->
+                                    </thead>
+
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <a href="@Url.Action("AccountsDetail", "Accounts", new { id = item.AccountId })">@item.Name</a>
+                                                </td>
+                                                <td>@item.Email.ToString()</td>
+                                                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.AccountType.Name)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.Status.Name)</td>
+                                                <td>@item.currency</td>
+                                                <td><a href="/Opportunities/Index/@item.AccountId.ToString() " title="Opportunity Count" class="link-primary d-flex justify-content-center">@item.OppCount </a></td>
+
+                                                <td>
+                                                    <a href="/Locations/Index/@item.AccountId.ToString() " title="Location Count" class="link-primary d-flex justify-content-center">@item.LocationCount</a>
+                                                </td>
+                                                <td>
+                                                    <a href="/CustomerAssets/Index/@item.AccountId.ToString()" title="Customer Assets Count" class="link-primary d-flex justify-content-center">@item.AssetCount</a>
+                                                </td>
+                                                <td>
+                                                    <a href="/Devices/Index/@item.AccountId.ToString()" title="Device Count" class="link-primary d-flex justify-content-center">@item.DeviceCount</a>
+                                                </td>
+                                                <td>
+                                                    <a href="/Accounts/Edit/@item.AccountId.ToString()" title="Edit Account"><i class="las la-pen text-secondary font-19"></i></a>
+                                                    <a href="/Accounts/AccountsDetail/@item.AccountId.ToString()" title="View Account"><i class="las la-eye font-19"></i></a>
+                                                    <a href="#" onclick="execute('@item.AccountId.ToString()')" title="Delete Account"><i class="las la-trash-alt text-secondary font-19"></i></a>
+                                                </td>
+                                            </tr><!--end tr-->
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div><!--end card-body-->
+
+                    </div><!--end card-->
+                </div> <!--end col-->
+            </div><!--end row-->
+        </div><!-- container -->
+       
+        <!--Start Footer-->
+        <!-- Footer Start -->
+        <footer class="footer text-center text-sm-start">
+            ©
+            <script>
+                document.write(new Date().getFullYear())
+            </script> Tech Implement
+        </footer>
+        <!-- end Footer -->
+        <!--end footer-->
+    </div>
+    <!-- end page content -->
+</div>
+<!-- end page-wrapper -->
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Subscribe our Newsletter</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Subscribe to our mailing list to get the latest updates straight in your inbox.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email Address">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function execute(id) {
+        debugger
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to delete",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!',
+        }).then(function (result) {
+
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '/Accounts/Delete/',
+                    type: "delete",
+                    data: { id: id },
+                    success: function () {
+                        location.reload();
+                        Swal.fire(
+                            'Deleted!',
+                            'Your record has been deleted.',
+                            'success'
+
+                        )
+
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        swal("Error deleting!", "Please try again", "error");
+                    }
+                });
+            }
+        })
+
+    }
+  
+</script>

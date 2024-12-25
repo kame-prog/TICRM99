@@ -1,0 +1,326 @@
+﻿@model TICRM.DTOs.AccountViewModel
+@{
+    ViewBag.Title = "AccountsDetail";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+<style>
+    .bg-body {
+        background-color: #f5eeee !important;
+    }
+
+    .inp-bor {
+        border: 1px solid #e8ebf3;
+    }
+
+
+    .shadow {
+        box-shadow: -5px 36px 70px -4px rgba(0,0,0,0.74);
+        -webkit-box-shadow: -5px 36px 70px -4px rgba(0,0,0,0.74);
+        -moz-box-shadow: -5px 36px 70px -4px rgba(0,0,0,0.74);
+    }
+
+    .circle {
+        background-image: linear-gradient(yellow,red);
+        padding: 1px;
+        width: 300px;
+        height: 300px;
+        border-style: solid;
+        border-color: transparent;
+        border-radius: 50%;
+        border-width: 3px;
+        animation: rot 1s linear infinite;
+        padding: 1px;
+    }
+
+        .circle > div {
+            background: white;
+        }
+
+    .circleDark {
+        background-image: linear-gradient(grey,black);
+        padding: 1px;
+        width: 300px;
+        height: 300px;
+        border-style: solid;
+        border-color: transparent;
+        border-radius: 50%;
+        border-width: 3px;
+        animation: rot 1s linear infinite;
+        padding: 1px;
+        border-radius: 75%;
+        border: 4px;
+        text-align: center;
+        width: 160px;
+        height: 160px;
+    }
+
+        .circleDark > div {
+            background: whitesmoke;
+        }
+
+    .CardsShadow {
+        border-radius: 10px;
+        box-shadow: 2px 2px 4px #9d9090c7;
+        border-top: 3px solid #fff;
+        border-left: 3px solid #fff;
+    }
+    /*responsive*/
+
+
+</style>
+<!-- Firmware Modal Popup Start-->
+<div class="modal fade bs-example-modal-lg" id="FirmWarModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title mt-0" id="myLargeModalLabel">Add Firmware</h6>
+                <button type="button" onclick=" $('#FirmWarModal form')[0].reset();" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("~/Views/Accounts/_FirmwarePopupPV.cshtml")
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Firmware Modal END-->
+<!-- WorkFlow Modal Popup Start-->
+<div class="modal fade bs-example-modal-lg" id="WorkFlowModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title mt-0" id="myLargeModalLabel">Add Workflow</h6>
+                <button type="button" onclick=" $('#WorkFlowModal form')[0].reset();" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("~/Views/Accounts/_WorkFlowPopupPV.cshtml")
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- WorkFlow Modal END-->
+<!-- Configuration Modal Popup Start-->
+<div class="modal fade bs-example-modal-lg" id="ConfigModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title mt-0" id="myLargeModalLabel">Add device sensor</h6>
+                <button type="button" onclick=" $('#ConfigModal form')[0].reset();" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("~/Views/Accounts/_ConfigurePopupPV.cshtml")
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Configuration Modal END-->
+<!-- Device Modal Popup Start-->
+<div class="modal fade bs-example-modal-lg" id="DeviceGraphModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title mt-0" id="myLargeModalLabel">Device ON/OFF</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="background-color: #f1ececa8">
+                @Html.Partial("~/Views/Accounts/_DeviceGraphPopupPV.cshtml")
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Device Modal END-->
+<!-- Temperature Graph Modal Popup Start-->
+<div class="modal fade bs-example-modal-lg" id="TempGraphModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title mt-0" id="myLargeModalLabel">Temperature Graph</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="background-color: #f1ececa8">
+                @Html.Partial("~/Views/Accounts/_TempGraphPopupPV.cshtml")
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Temperature Graph Modal END-->
+<!-- Do not have any type of Graph Modal Popup Start-->
+<div class="modal fade bs-example-modal-lg" id="NoGraphModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title mt-0" id="myLargeModalLabel">Do not have any Graph type</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="background-color: #f1ececa8">
+                @Html.Partial("~/Views/Accounts/_NoGraphTypePopupPV.cshtml")
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Do not have any type of Graph Modal END-->
+
+<div class="page-wrapper">
+    <!-- Page Content-->
+    <div class="page-content-tab">
+        <div class="container-fluid">
+            <div class="form-group">
+                <button type="button" class="btn TopPageButton" onclick="location.href='@Url.Action("Create", "Accounts")'"><i class="fa fa-plus-circle text-primary me-2"></i>New<i class="fa fa-angle-down ms-2"></i></button>
+                <button type="button" class="btn TopPageButton" id="RefreshPage"><i class="fa fa-clock text-primary me-2"></i>Refresh<i class="fa fa-angle-down ms-2"></i></button>
+            </div>
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <span class="page-title">
+                            @Html.DisplayFor(model => model.account.Name)
+                        </span>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+            <!-- end page title end breadcrumb -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="" method="post" id="custom-step">
+                                <nav>
+                                    <div class="nav nav-tabs" id="nav-tab">
+                                        <a class="nav-link active" id="step1-tab" data-bs-toggle="tab" href="#step1">Account Detail</a>
+                                        <a class="nav-link" id="step2-tab" data-bs-toggle="tab" href="#step2">Sales</a>
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            <a class="nav-link" id="step3-tab" data-bs-toggle="tab" href="#step3">Service</a>
+                                        }
+                                        <a class="nav-link" id="step4-tab" data-bs-toggle="tab" href="#step4">Devices</a>
+                                        <a class="nav-link" id="step5-tab" data-bs-toggle="tab" href="#step5">Work Flows</a>
+                                    </div>
+                                </nav>
+                                <div class="tab-content" id="nav-tabContent">
+                                    <div class="tab-pane active" id="step1">
+                                        <div class="row">
+                                            <h4 class="card-title mt-3 mb-1"><span class="fa fa-info-circle px-2"></span>Account Details</h4>
+                                            <br />
+                                            <div class="col-md-6">
+                                                <div class="mb-3 row">
+                                                    <label for="example-text-input" class="col-lg-2 col-md-3 col-sm-3 col-form-label text-end">Account Name<span class="text-danger">  *</span></label>
+                                                    <div class="col-lg-10 col-md-9 col-sm-9">
+                                                        <div class=" p-2 border bg-light">@Html.DisplayFor(model => model.account.Name)</div>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 row">
+                                                    <label for="example-text-input" class="col-lg-2 col-md-3 col-sm-3 col-form-label text-end">Total Employees<span class="text-danger">  *</span></label>
+                                                    <div class="col-lg-10 col-md-9 col-sm-9">
+                                                        <div class=" p-2 border bg-light">
+                                                            @Html.DisplayFor(model => model.account.AccountSize.Name)
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 row">
+                                                    <label for="example-text-input" class="col-lg-2 col-md-3 col-sm-3 col-form-label text-end">Email Address<span class="text-danger">  *</span></label>
+                                                    <div class="col-lg-10 col-md-9 col-sm-9">
+                                                        <div class=" p-2 border bg-light">
+                                                            @Html.DisplayFor(model => model.account.Email)
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 row">
+                                                    <label for="example-text-input" class="col-lg-2 col-md-3 col-sm-3 col-form-label text-end">Contact Number<span class="text-danger">  *</span></label>
+                                                    <div class="col-lg-10 col-md-9 col-sm-9">
+                                                        <div class=" p-2 border bg-light">
+                                                            @Html.DisplayFor(model => model.account.PhoneOffice)
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 row">
+                                                    <label for="example-text-input" class="col-lg-2 col-md-3 col-sm-3 col-form-label text-end">Team<span class="text-danger">  *</span></label>
+                                                    <div class="col-lg-10 col-md-9 col-sm-9">
+                                                        <div class=" p-2 border bg-light">
+                                                            @Html.DisplayFor(model => model.account.Team.Name)
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div><!--end col-->
+                                            <div class="col-md-6">
+                                                <div class="mb-3 row">
+                                                    <label for="example-text-input" class="col-lg-2 col-md-3 col-sm-3 col-form-label text-end">Account Type<span class="text-danger">  *</span></label>
+                                                    <div class="col-lg-10 col-md-9 col-sm-9">
+                                                        <div class=" p-2 border bg-light">
+                                                            @Html.DisplayFor(model => model.account.AccountType.Name)
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 row">
+                                                    <label for="example-text-input" class="col-lg-2 col-md-3 col-sm-3 col-form-label text-end">Account Status<span class="text-danger">  *</span></label>
+                                                    <div class="col-lg-10 col-md-9 col-sm-9">
+                                                        <div class=" p-2 border bg-light">
+                                                            @Html.DisplayFor(model => model.account.Status.Name)
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 row">
+                                                    <label for="example-text-input" class="col-lg-2 col-md-3 col-sm-3 col-form-label text-end">Website</label>
+                                                    <div class="col-lg-10 col-md-9 col-sm-9">
+                                                        <div class=" p-2 border bg-light" style="height: 36px;">
+                                                            @Html.DisplayFor(model => model.account.WebSite)
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 row">
+                                                    <label for="example-text-input" class="col-lg-2 col-md-3 col-sm-3 col-form-label text-end">Location<span class="text-danger">  *</span></label>
+                                                    <div class="col-lg-10 col-md-9 col-sm-9">
+                                                        <div class=" p-2 border bg-light">
+                                                            @Html.DisplayFor(model => model.account.Address.City)
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 row">
+                                                    <label for="example-text-input" class="col-lg-2 col-md-3 col-sm-3 col-form-label text-end">User<span class="text-danger">  *</span></label>
+                                                    <div class="col-lg-10 col-md-9 col-sm-9">
+                                                        <div class=" p-2 border bg-light">
+                                                            @Html.DisplayFor(model => model.account.User.Name)
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div><!--end col-->
+                                        </div><!--end row-->
+                                    </div>
+                                    <div class="tab-pane" id="step2">
+                                        <div>
+                                            @Html.Partial("~/Views/Accounts/_SalesPartialView.cshtml")
+                                        </div>
+                                    </div>
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <div class="tab-pane" id="step3">
+                                            <div>
+                                                @Html.Partial("~/Views/Accounts/_ServicePartialView.cshtml")
+                                            </div>
+                                        </div>
+                                    }
+                                    <div class="tab-pane" id="step4">
+                                        <div>
+                                            @Html.Partial("~/Views/Accounts/_DevicePartialView.cshtml")
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="step5">
+                                        <div>
+                                            @Html.Partial("~/Views/Accounts/_WorkFlowsPartialView.cshtml")
+                                        </div>
+                                    </div>
+                                </div>
+                            </form><!--end form-->
+
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </div><!--end col-->
+            </div><!--end row-->
+        </div>
+        <!-- Page-Title -->
+    </div>
+</div>
+
+@*<script src="~/TIjQuery/AccountDetailjQuery.js"></script>*@
+<script src="~/TIjQuery/AccountDetailjQuery.js"></script>
+

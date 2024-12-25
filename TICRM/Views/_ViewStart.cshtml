@@ -1,0 +1,25 @@
+﻿@{
+
+    var dynamicLayout = (string)Session["DynamicLayout"];
+
+    string cLayout = "";
+    if (dynamicLayout == "Demo 5")
+    {
+        cLayout = "~/Views/Shared/_LayoutMetronic5.cshtml";
+    }
+    else if (dynamicLayout == "Demo 10")
+    {
+        cLayout = "~/Views/Shared/_LayoutMetronic10.cshtml";
+    }
+    else if (dynamicLayout == "Demo 11")
+    {
+        cLayout = "~/Views/Shared/_LayoutMetronic11.cshtml";
+    }
+    else
+    {
+        cLayout = "~/Views/Shared/_LayoutMetronicMaster.cshtml";
+    }
+    Layout = cLayout;
+
+
+}

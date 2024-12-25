@@ -1,0 +1,38 @@
+﻿@model IEnumerable<TICRM.DTOs.OpportunityDto>
+<div class="col-md-4">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">Opportunities</h3>
+            <div class="box-tools pull-right">
+                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
+        </div><!-- /.box-header -->
+        <div class="box-body">
+            <ul class="products-list product-list-in-box">
+                @foreach (var item in Model)
+            {
+                    <li class="item">
+                        <div class="product-img">
+                            <img src="http://placehold.it/50x50/d2d6de/ffffff" alt="Product Image">
+                        </div>
+                        <div class="product-info">
+                            <a href="/Opportunities/Edit/@item.OpportunityId" class="product-title">@item.Title<span class="label label-success pull-right">$@item.Amount</span></a>
+                            <span class="product-description">
+                                @item.Description
+                            </span>
+                            <a href="/Opportunities/Edit/@item.OpportunityId" class="btn btn-box-tool pull-right"><i class="fa fa-edit"></i></a>
+                            <a href="/Opportunities/Details/@item.OpportunityId" class="btn btn-box-tool pull-right"><i class="fa fa-info-circle"></i></a>
+                            <a href="/Opportunities/Delete/@item.OpportunityId" class="btn btn-box-tool pull-right"><i class="fa fa-remove"></i></a>
+                        </div>
+                    </li><!-- /.item -->
+                   
+                }
+            </ul>
+        </div><!-- /.box-body -->
+        <div class="box-footer clearfix">
+            <a href="/Opportunities/Create" class="btn btn-sm btn-default btn-flat pull-left"><i class="fa fa-plus"></i></a>
+            <a href="/Opportunities/Index" class="btn btn-sm btn-default btn-flat pull-right"><i class="fa  fa-list"></i></a>
+        </div><!-- /.box-footer -->
+    </div>
+</div>

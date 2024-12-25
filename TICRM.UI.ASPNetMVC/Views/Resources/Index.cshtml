@@ -1,0 +1,154 @@
+﻿@model IEnumerable<TICRM.DTOs.ResourceDto>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <button type="button" class="btn TopPageButton" onclick="location.href='@Url.Action("Create", "Resources")'"><i class="fa fa-plus-circle text-primary me-2"></i>New<i class="fa fa-angle-down ms-2"></i></button>
+                        <button type="button" class="btn TopPageButton" id="RefreshPage"><i class="fa fa-clock text-primary me-2"></i>Refresh<i class="fa fa-angle-down ms-2"></i></button>
+                        <button type="submit" class="btn TopPageButton" id="btnExport"><i class="fa fa-download text-primary me-2"></i>Export<i class="fa fa-angle-down ms-2"></i></button>
+
+                    </div>
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="#">SWUICH</a>
+                                </li><!--end nav-item-->
+                                <li class="breadcrumb-item">
+                                    <a href="#">Devices</a>
+                                </li><!--end nav-item-->
+                                <li class="breadcrumb-item active">Resources</li>
+                            </ol>
+                        </div>
+                        <span class="page-title">Resources</span>
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div>
+            <!-- end page title end breadcrumb -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h4 class="card-title">Resource Details</h4>
+                                </div><!--end col-->
+                            </div>  <!--end row-->
+                        </div><!--end card-header-->
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="myTable" class="table font-15 page-content-wrapper">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Phone Number</th>
+                                            <th>Phone Office</th>
+                                            <th>Status</th>
+                                            <th>Website</th>
+                                            <th>Assigned Team</th>
+                                            <th>Assigned User</th>
+                                            <th>Address</th>
+                                            <th>Current Address</th>
+                                            <th>Description</th>
+                                            <th>Actions</th>
+                                        </tr><!--end tr-->
+                                    </thead>
+
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.Name</td>
+                                                <td>@item.Email</td>
+                                                <td>@item.PhoneHome</td>
+                                                <td>@item.PhoneOffice</td>
+                                                <td>@Html.DisplayFor(modelItem => item.Status.Name)</td>
+                                                <td>@item.Website</td>
+                                                <td>@Html.DisplayFor(modelItem => item.Team.Name)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.User.Name)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.Address1.Street1)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.Address2.Street2)</td>
+                                                <td>@item.Description</td>
+                                                <td>
+                                                    <a href="/Resources/Edit/@item.ResourceId.ToString()" title="Edit Resource"><i class="las la-pen text-secondary font-19"></i></a>
+                                                    <a href="/Resources/ResourceDetail/@item.ResourceId.ToString()" title="View Resource"><i class="las la-eye font-19"></i></a>
+                                                    <a href="#" onclick="execute('@item.ResourceId.ToString()')" title="Delete Resource"><i class="las la-trash-alt text-secondary font-19"></i></a>
+
+                                                </td>
+                                            </tr><!--end tr-->
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </div> <!--end col-->
+            </div><!--end row-->
+
+        </div><!-- container -->
+        
+        <!--Start Footer-->
+        <!-- Footer Start -->
+        <footer class="footer text-center text-sm-start">
+            ©
+            <script>
+                document.write(new Date().getFullYear())
+            </script> Tech Implement
+        </footer>
+        <!-- end Footer -->
+        <!--end footer-->
+    </div>
+    <!-- end page content -->
+</div>
+<!-- end page-wrapper -->
+<script>
+
+    function execute(id) {
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to delete",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!',
+        }).then(function (result) {
+
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '/Resources/Delete/',
+                    type: "delete",
+                    data: { id: id },
+                    success: function () {
+                        location.reload();
+                        Swal.fire(
+                            'Deleted!',
+                            'Your record has been deleted.',
+                            'success'
+                        )
+
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        swal("Error deleting!", "Please try again", "error");
+                    }
+                });
+            }
+        })
+
+    }
+
+</script>

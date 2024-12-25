@@ -1,0 +1,86 @@
+﻿@model TICRM.DTOs.ReadingDto
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutTICRM.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Reading</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Value)
+        </dd>
+
+        <dt>
+            Margin Of Error
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MarginOfErrorInPercent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            Reading Type
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReadingType.Name)
+        </dd>
+
+        <dt>
+            Reading Unit
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReadingUnit.Name)
+        </dd>
+
+        <dt>
+            Status
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status.Name)
+        </dd>
+
+        <dt>
+            Assigned Team
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Team.Name)
+        </dd>
+
+        <dt>
+            Assigned User
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ReadingId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+
+@Scripts.Render("~/bundles/ReadingsScript")

@@ -1,0 +1,177 @@
+﻿
+@model TICRM.DTOs.ContactDto
+
+<div class="modal-header modal-header-rightside">
+        <h5 class="modal-header-title" id="exampleModalLabel">CONTACT DETAILS</h5>
+        <button type="button" class="close modalrightsideClose" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">X</span>
+        </button>
+</div>
+<div class="modal-body">
+    <div id="DetialsContact">
+        <div class="tab-content">
+            <div class="tab-pane active show" id="m_portlet_tab_Leads" role="tabpanel">
+
+                <div class="row container">
+                    <table class="tb-horizontal">
+                        <tr>
+                            <th class="blockquote">@Html.DisplayNameFor(model => model.Name)</th>
+                            <td class="blockquote">@Html.DisplayFor(model => model.Name)</td>
+                        </tr>
+                        <tr>
+                            <th class="blockquote"> Phone Number</th>
+                            <td class="blockquote">@Html.DisplayFor(model => model.Phone)</td>
+                        </tr>
+                        <tr>
+                            <th class="blockquote">@Html.DisplayNameFor(model => model.Email)</th>
+                            <td class="blockquote">@Html.DisplayFor(model => model.Email)</td>
+                        </tr>
+                        <tr>
+                            <th class="blockquote">@Html.DisplayNameFor(model => model.Address)</th>
+                            <td class="blockquote">@Html.DisplayFor(model => model.Address)</td>
+                        </tr>
+                        <tr>
+                            <th class="blockquote">Status</th>
+                            <td class="blockquote">@Html.DisplayFor(model => model.Status.Name)</td>
+                        </tr>
+                        <tr>
+                            <th class="blockquote">Assigned Team</th>
+                            <td class="blockquote">@Html.DisplayFor(model => model.Team.Name)</td>
+                        </tr>
+                        <tr>
+                            <th class="blockquote"> Assigned User</th>
+                            <td class="blockquote">@Html.DisplayFor(model => model.User.Name)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="m-portlet">
+            <div href="#Contacts" class="m-portlet__head collapsible" data-toggle="collapse">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon"><i class="fa fa-bell"></i></span>
+                        <h3 class="m-portlet__head-text">
+                            Recent Cases
+                        </h3>
+                    </div>
+                </div>
+
+                <div class="m-portlet__head-tools">
+                    <ul class="m-portlet__nav">
+                        <li class="m-portlet__nav-item">
+                            <div class="m-dropdown focus ">
+                                <i class="fas fa-bars fa-lg swuich-icon" dropdown-toggle" id="dropdownMenuButton"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" onclick="CreateContactCase()">Create Case</a>
+                                </div>
+                            </div>
+
+                        </li>
+                        <li class="m-portlet__nav-item">
+                            <i class="la la-angle-down"></i>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+
+            <div id="Contacts" class="m-portlet__body collapse" style="height: 350px;">
+
+                <div class="m-scrollable" data-scrollable="true" data-height="300" style="height: 300px; overflow: hidden;">
+                    <div class="m-list-timeline m-list-timeline--skin-light">
+                        <div class="m-list-timeline__items">
+                            @foreach (var item in Model.ContactCases)
+                            {
+                                <div class="m-list-timeline__item" onclick="LoadCase('@item.CaseId')">
+                                    <span class="m-list-timeline__badge m-list-timeline__badge--success"></span>
+                                    <span class="m-list-timeline__text">
+                                        <span class="m-link m-link--metal m-timeline-3__item-link">
+                                            @item.CaseTitle
+                                        </span><br />
+                                        @item.Description
+                                    </span>
+                                    <span class="m-list-timeline__time">@item.CreatedDate</span>
+                                </div>
+
+                            }
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div id="createCaseContact" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed " style="display:none;">
+        <h2>Create Case</h2>
+
+        <div class="form-group m-form__group row">
+            <div class="col-lg-6">
+                <label class="control-label">Case title</label><br />
+                <div class="input-group">
+
+                    <input class="form-control m-input" id="CaseTitleContact" name="CaseTitleContact" value="" required>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label class="control-label">Case Type</label><br />
+                @Html.DropDownList("CaseTypeDropdown", null, "-- Select --", htmlAttributes: new { @class = "form-control", id = "CaseTypeContact" })
+            </div>
+
+
+        </div>
+
+        <div class="form-group m-form__group row">
+            <div class="col-lg-6">
+                <label class="control-label">Description</label><br />
+                <input class="form-control m-input" id="CaseDescriptionContact" name="CaseDescriptionContact" required>
+
+            </div>
+            <div class="col-lg-6">
+                <label class="control-label">Origin</label><br />
+                <input class="form-control m-input" id="CaseOriginContact" name="CaseOriginContact" required>
+            </div>
+        </div>
+
+        <div class="form-group m-form__group row">
+            <div class="col-lg-6">
+                <label class="control-label">Assigned User</label><br />
+
+                <div class="m-input-icon m-input-icon--right">
+                    @Html.DropDownList("AssignedUserDropdown", null, "-- Select --", htmlAttributes: new { @class = "form-control", id = "AssignedUserCaseContact" })
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label class="control-label">Assigned Team</label><br />
+
+                <div class="m-input-icon m-input-icon--right">
+                    @Html.DropDownList("AssignedTeamDropdown", null, "-- Select --", htmlAttributes: new { @class = "form-control", id = "AssignedTeamCaseContact" })
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group m-form__group row">
+            <div class="col-lg-6">
+                <button type="button" onclick="CaseCreateContact('@Model.ContactId')" class="btn btn-success "><i class="la la-save"></i> Submit</button>
+                <button type="button" class="btn btn-secondary" onclick="CancelCaseContact()" data-dismiss="modal"><i class="la la-refresh "></i> Cancel</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal-footer modal-rightside-footer">
+    <a href="@Url.Action("Edit", "Contact" , new { id=Model.ContactId })" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air"><i class="fa fa-pencil-alt"></i> &nbsp; Edit</a>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>
+

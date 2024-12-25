@@ -1,0 +1,96 @@
+﻿@model IEnumerable<TICRM.DTOs.EmailIntegrationDto>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="form-group">
+                        @if (ViewBag.IsNew)
+                        {
+                            <button type="button" class="btn TopPageButton" onclick="location.href='@Url.Action("EmailConfiguration", "EmailIntegration")'"><i class="fa fa-plus-circle text-primary me-2"></i>New<i class="fa fa-angle-down ms-2"></i></button>
+                        }
+                        <button type="button" class="btn TopPageButton" id="RefreshPage"><i class="fa fa-clock text-primary me-2"></i>Refresh<i class="fa fa-angle-down ms-2"></i></button>
+                        <button type="submit" class="btn TopPageButton" id="btnExport"><i class="fa fa-download text-primary me-2"></i>Export<i class="fa fa-angle-down ms-2"></i></button>
+                    </div>
+
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="#">Swuich</a>
+                                </li><!--end nav-item-->
+                                <li class="breadcrumb-item">
+                                    <a href="#">Customer</a>
+                                </li><!--end nav-item-->
+                                <li class="breadcrumb-item active">Email Integration</li>
+                            </ol>
+                        </div>
+                        <span class="page-title">Email Integration</span>
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div>
+            <!-- end page title end breadcrumb -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h4 class="card-title">Email Integration Details</h4>
+                                </div><!--end col-->
+                            </div>  <!--end row-->
+                        </div><!--end card-header-->
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="myTable" class="table font-15 page-content-wrapper">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Sender Email</th>
+                                            <th>Host</th>
+                                            <th>Port</th>
+                                            <th>Subject</th>
+                                            <th>Actions</th>
+                                        </tr><!--end tr-->
+                                    </thead>
+
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@(item.SenderEmail)</td>
+                                                <td>@item.Host</td>
+                                                <td>@item.Port</td>
+                                                <td>@item.Subject</td>
+                                                <td>
+                                                    @if (ViewBag.IsUpdate)
+                                                    {
+                                                        <a href="/EmailIntegration/EditEmailConfiguration/@item.id.ToString()" title="Edit Account"><i class="las la-pen text-secondary font-19"></i></a>
+                                                    }
+                                                </td>
+                                            </tr><!--end tr-->
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div><!--end card-body-->
+
+                    </div><!--end card-->
+                </div> <!--end col-->
+            </div><!--end row-->
+        </div><!-- container -->
+    </div>
+    <!-- end page content -->
+</div>
+
+
+

@@ -1,0 +1,126 @@
+﻿
+
+/* Start: Custom CSS Theme*/
+.m-page__container {
+    padding: 0 1% !important;
+}
+
+/* End: Custom CSS Theme*/
+
+/* Start: Right Side Slider */
+.modal-RightSide-slideout {
+    min-height: 100%;
+    margin: 0 0 0 auto;
+    background: #fff;
+}
+
+.modal-rightside-fade .modal-rightside-dialog.modal-RightSide-slideout {
+    -webkit-transform: translate(100%,0)scale(1) !important;
+    transform: translate(100%,0)scale(1) !important;
+}
+
+.modal-rightside-fade.show .modal-rightside-dialog.modal-RightSide-slideout {
+    -webkit-transform: translate(0,0) !important;
+    transform: translate(0,0) !important;
+    display: flex !important;
+    align-items: stretch !important;
+    -webkit-box-align: stretch !important;
+    height: 100% !important;
+}
+
+    .modal-rightside-fade.show .modal-rightside-dialog.modal-RightSide-slideout .modal-body {
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+
+.modal-RightSide-slideout .modal-content-rightside {
+    border: 0;
+}
+
+#RightSideModal {
+    padding-right: 0px !important;
+}
+
+.modalrightsideClose {
+    line-height: initial !important;
+    color: #fff !important;
+}
+
+.modal-header-rightside {
+    border-radius: unset;
+    color: #fff !important;
+    background-color: #7FCEFF;
+    border-color: #7FCEFF;
+}
+
+.modal-RightSide-slideout .modal-header-rightside, .modal-RightSide-slideout .modal-rightside-footer {
+    height: 69px !important;
+    display: block !important;
+}
+
+    .modal-RightSide-slideout .modal-header-rightside h5 {
+        float: left;
+    }
+
+
+/* End: Right Side Slider */
+/*//////////////////////////////////////////////////////////////////////////*/
+/* Sttart: Map Right Side Slider */
+.modal-MapRightSlider-slideout {
+    min-height: 100%;
+    margin: 0 0 0 auto;
+    background: #fff;
+}
+
+.modal-MapRightSlider-fade .modal-MapRightSlider-dialog.modal-MapRightSlider-slideout {
+    -webkit-transform: translate(100%,0)scale(1) !important;
+    transform: translate(100%,0)scale(1) !important;
+}
+
+.modal-MapRightSlider-fade.show .modal-MapRightSlider-dialog.modal-MapRightSlider-slideout {
+    -webkit-transform: translate(0,0) !important;
+    transform: translate(0,0) !important;
+    display: flex !important;
+    align-items: stretch !important;
+    -webkit-box-align: stretch !important;
+    height: 100% !important;
+}
+
+    .modal-MapRightSlider-fade.show .modal-MapRightSlider-dialog.modal-MapRightSlider-slideout .modal-body {
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+
+.modal-MapRightSlider-slideout .modal-content-MapRightSlider {
+    border: 0;
+}
+
+#MapRightSliderModal {
+    padding-right: 0px !important;
+}
+
+.modalMapRightSliderClose {
+    line-height: initial !important;
+    color: #fff !important;
+}
+
+.modal-header-MapRightSlider {
+    border-radius: unset;
+    color: #525151 !important;
+    background-color: #7FCEFF;
+    border-color: #7f8fff;
+}
+
+.modal-MapRightSlider-slideout .modal-header-MapRightSlider, .modal-MapRightSlider-slideout .modal-MapRightSlider-footer {
+    height: 69px !important ];
+    display: block !important;
+}
+
+    .modal-MapRightSlider-slideout .modal-header-MapRightSlider h5 {
+        float: left;
+    }
+.modal-body-MapRightSlider{
+    padding: 0px !important;
+}
+/* End: Map Right Side Slider */
+/*//////////////////////////////////////////////////////////////////////////*/

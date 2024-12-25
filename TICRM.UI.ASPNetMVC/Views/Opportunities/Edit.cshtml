@@ -1,0 +1,135 @@
+﻿@model TICRM.DTOs.OpportunityDto
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <h4 class="page-title">Edit Opportunity</h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "OpportunityEditForm", @class = "m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.OpportunityId)
+
+                            <div class="row">
+
+                                <div class="col-lg-6">
+                                    <div class="mb-3 row">
+                                        <label for="example-text-input" class="col-sm-2 col-form-label text-end">Amount<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control m-input", maxlength = "50", @placeholder = "Enter opportunity amount" } })
+                                            @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-email-input" class="col-sm-2 col-form-label text-end">Opportunity Stage<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(model => model.OpportunityStageId, Model.OpportunityStageDropdown, "-- Select --", htmlAttributes: new { @class = "form-control SearchableDropDown" })
+                                            @Html.ValidationMessageFor(model => model.OpportunityStageId, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-password-input" class="col-sm-2 col-form-label text-end">Assigned User<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(model => model.AssignedUser, Model.AssignedUserDropdown, "-- Select --", htmlAttributes: new { @class = "form-control SearchableDropDown" })
+                                            @Html.ValidationMessageFor(model => model.AssignedUser, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-number-input" class="col-sm-2 col-form-label text-end">Description<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control m-input", @placeholder = "Enter Description" } })
+                                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-datetime-local-input" class="col-sm-2 col-form-label text-end">Latitude<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.EditorFor(model => model.Latitude, new { htmlAttributes = new { @class = "form-control m-input", @placeholder = "Enter Latitude" } })
+                                            @Html.ValidationMessageFor(model => model.Latitude, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row has-success">
+                                        <label for="inputHorizontalSuccess" class="col-sm-2 col-form-label text-end">Longitude <span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.EditorFor(model => model.Longitude, new { htmlAttributes = new { @class = "form-control m-input", @placeholder = "Enter Longitude" } })
+                                            @Html.ValidationMessageFor(model => model.Longitude, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="mb-3 row">
+                                        <label for="example-date-input" class="col-sm-2 col-form-label text-end">Title<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control m-input", @placeholder = "Enter opportunity title" } })
+                                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-url-input" class="col-sm-2 col-form-label text-end">Probability<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(model => model.ProbabilityId, Model.ProbabilityDropdown, "-- Select --", htmlAttributes: new { @class = "form-control SearchableDropDown" })
+                                            @Html.ValidationMessageFor(model => model.ProbabilityId, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-month-input" class="col-sm-2 col-form-label text-end">Status<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(model => model.StatusId, Model.StatusDropdown, "-- Select --", htmlAttributes: new { @class = "form-control SearchableDropDown" })
+                                            @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-week-input" class="col-sm-2 col-form-label text-end">Assigned Team<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(model => model.AssignedTeam, Model.AssignedTeamDropdown, "-- Select --", htmlAttributes: new { @class = "form-control SearchableDropDown" })
+                                            @Html.ValidationMessageFor(model => model.AssignedTeam, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-time-input" class="col-sm-2 col-form-label text-end">Account<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(model => model.AccountId, Model.AccountsDropdown, "-- Select --", htmlAttributes: new { @class = "form-control SearchableDropDown" })
+                                            @Html.ValidationMessageFor(model => model.AssignedTeam, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <a href="/Opportunities/Index" class="btn btn-primary ">
+                                        <i class="la la-arrow-left"></i>
+                                        <span>Back to List</span>
+                                    </a>
+                                    <button type="submit" id="savebtn" class="btn btn-primary float-end"><i class="la la-save"></i>Update</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <!--end card-body-->
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,481 @@
+﻿@model TICRM.DTOs.CaseDto
+
+<div class="modal-header modal-header-rightside">
+    <h5 class="modal-header-title" id="exampleModalLabel">@Html.DisplayFor(model => model.CaseTitle)</h5>
+    <button type="button" class="close modalrightsideClose" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">X</span>
+    </button>
+</div>
+<h3 id="caseId" style="display:none">@Model.CaseId </h3>
+
+<div class="modal-body">
+    <div class="details">
+        <table class="tb-horizontal">
+            <tr>
+                <th class="blockquote">@Html.DisplayNameFor(model => model.CaseTitle)</th>
+                <td class="blockquote">@Html.DisplayFor(model => model.CaseTitle)</td>
+            </tr>
+            <tr>
+                <th class="blockquote">@Html.DisplayNameFor(model => model.CaseTypeDto.Name)</th>
+                <td class="blockquote">@Html.DisplayFor(model => model.CaseTypeDto.Name)</td>
+            </tr>
+            <tr>
+                <th class="blockquote">Contact</th>
+                <td class="blockquote">@Html.DisplayFor(model => model.ContactDto.Name)</td>
+            </tr>
+            <tr>
+                <th class="blockquote">Team Name</th>
+                <td class="blockquote">@Html.DisplayFor(model => model.Team.Name)</td>
+            </tr>
+            <tr>
+                <th class="blockquote">User Name</th>
+                <td class="blockquote">@Html.DisplayFor(model => model.User.Name)</td>
+            </tr>
+            <tr>
+                <th class="blockquote">Status</th>
+                <td class="blockquote">@Html.DisplayFor(model => model.CaseStatusDto.Name)</td>
+            </tr>
+            <tr>
+                <th class="blockquote">  @Html.DisplayNameFor(model => model.Description)</th>
+                <td class="blockquote">@Html.DisplayFor(model => model.Description)</td>
+            </tr>
+        </table>
+
+        <div class="m-portlet">
+            <div href="#activities" class="m-portlet__head collapsible" data-toggle="collapse">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon"><i class="fa fa-bell"></i></span>
+                        <h3 class="m-portlet__head-text">
+                            Recent Activities
+                        </h3>
+                    </div>
+                </div>
+
+                <div class="m-portlet__head-tools">
+                    <ul class="m-portlet__nav">
+                        <li class="m-portlet__nav-item">
+                            <div class="m-dropdown focus ">
+                                @if (Model.CaseStatusDto.Name == "Active")
+                                {
+                                    <i class="fas fa-bars fa-lg swuich-icon" dropdown-toggle" id="dropdownMenuButton"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                }
+                                else if (Model.CaseStatusDto.Name == "Resolved")
+                                {
+                                    <i class="fas fa-bars fa-lg swuich-icon" dropdown-toggle" id="dropdownMenuButton"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="pointer-events:none; color:#adadad;"></i>
+                                }
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" onclick="CreateCaseActivity()">Create Activity</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="m-portlet__nav-item">
+                            <i class="la la-angle-down"></i>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div id="activities" class="m-portlet__body collapse" style="height: 350px;">
+
+                <div class="m-scrollable" data-scrollable="true" data-height="300" style="height: 300px; overflow: hidden;">
+                    <div class="m-list-timeline m-list-timeline--skin-light">
+                        <div class="m-list-timeline__items">
+                            @foreach (var item in Model.CasesActivities)
+                            {
+                                <div class="m-list-timeline__item">
+                                    <span class="m-list-timeline__badge m-list-timeline__badge--success"></span>
+                                    <span class="m-list-timeline__text">
+                                        <span class="m-link m-link--metal m-timeline-3__item-link">
+                                            @item.Type
+                                        </span><br />
+                                        @item.Description
+                                    </span>
+                                    <span class="m-list-timeline__time">@item.CreatedDate</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div href="#note" class="m-portlet__head collapsible mobile" data-toggle="collapse">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon"><i class="fa fa-sticky-note"></i></span>
+
+                        <h3 class="m-portlet__head-text">
+                            Add Notes
+                        </h3>
+                    </div>
+                </div>
+                <div class="m-portlet__head-tools">
+                    <ul class="m-portlet__nav">
+                        <li class="m-portlet__nav-item">
+                            <div class="m-dropdown focus ">
+                                @if (Model.CaseStatusDto.Name == "Active")
+                                {
+                                    <i class="fas fa-bars fa-lg swuich-icon" dropdown-toggle" id="dropdownMenuButton"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                }
+                                else if (Model.CaseStatusDto.Name == "Resolved")
+                                {
+                                    <i class="fas fa-bars fa-lg swuich-icon" dropdown-toggle" id="dropdownMenuButton"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="pointer-events:none; color:#adadad;"></i>
+                                }
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" onclick="CreateCaseNote()">Create Note</a>
+                                </div>
+                            </div>
+
+                        </li>
+                        <li class="m-portlet__nav-item">
+                            <i class="la la-angle-down"></i>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div id="note" class="m-portlet__body collapse">
+                <div id="noteDetails" class="tab-content" data-scrollable="true" data-height="200" data-mobile-height="200">
+
+                    <div class="m-widget3">
+
+                        @foreach (var item in Model.CaseNotes)
+                        {
+                            <div class="m-widget3__item">
+                                <div class="m-widget3__header">
+
+                                    <div class="m-widget3__info" style="padding-left:unset !important;">
+                                        <span class="m-widget3__username">
+                                            <a>@item.CreatedBy</a> | @item.CreatedDate
+                                        </span><br>
+                                        <span class="m-widget3__time">
+
+                                        </span>
+                                    </div>
+
+                                </div>
+                                <div class="m-widget3__body">
+                                    <p class="m-widget3__text">
+                                        @item.Note1
+                                    </p>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+
+                </div>
+
+                <div id="createNote" style="display:none">
+                    <div class="row">
+                        <div class="col-12 col-lg-12 col-sm-12 col-md-12">
+                            <blockquote class="blockquote">
+                                <textarea class="form-control" id="noteContent" name="noteContent" placeholder="Enter a Note" rows="9" aria-describedby="memo-error" aria-invalid="false"></textarea>
+                            </blockquote>
+
+
+                        </div>
+                    </div>
+                    <div style="display:flex;float:right;">
+                        <button type="button" onclick="CreateNote()" class="btn btn-success "><i class="la la-save"></i> Submit</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="la la-refresh "></i> Cancel</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="">
+                <div href="#workorders" class="m-portlet__head collapsible" data-toggle="collapse" aria-expanded="true">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <span class="m-portlet__head-icon"><i class="fa fa-bell"></i></span>
+                            <h3 class="m-portlet__head-text">
+                                Recent Workorders
+                            </h3>
+                        </div>
+                    </div>
+
+                    <div class="m-portlet__head-tools">
+                        <ul class="m-portlet__nav">
+                            <li class="m-portlet__nav-item">
+                                <div class="m-dropdown focus ">
+                                    <i class="fas fa-bars fa-lg swuich-icon" dropdown-toggle"="" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" onclick="CreateOppCase()">Create Workorder</a>
+                                    </div>
+                                </div>
+
+                            </li>
+                            <li class="m-portlet__nav-item">
+                                <i class="la la-angle-down"></i>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                </div>
+
+                <div id="workorders" class="m-portlet__body collapse show" style="">
+
+                    <div class="m-scrollable" data-scrollable="true" data-height="300" style="height: 300px; overflow: hidden;">
+                        <div class="m-list-timeline m-list-timeline--skin-light">
+                            <div class="m-list-timeline__items">
+                                <div class="m-list-timeline__item" onclick="LoadCase('c275a3c7-015f-4eb8-b864-e6bced5ab875')">
+                                    <span class="m-list-timeline__badge m-list-timeline__badge--success"></span>
+                                    <span class="m-list-timeline__text">
+                                        <span class="m-link m-link--metal m-timeline-3__item-link">
+                                            Opportunity
+                                        </span><br>
+                                        Test By Akhtar
+                                    </span>
+                                    <span class="m-list-timeline__time"></span>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="createActivity" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed " style="display:none;">
+        <h2>Create Activity</h2>
+
+        <div class="form-group m-form__group row">
+            <div class="col-lg-6">
+                <label class="control-label">Activity Name</label><br />
+                <div class="input-group">
+
+                    <input class="form-control m-input" id="ActivityNameValueofcases" name="ActivityNameValueofcases" value="" required>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label class="control-label">Activity Type</label><br />
+
+                @Html.DropDownList("ActivityType", Model.ActivityType, "-- Select --", htmlAttributes: new { @class = "form-control m-input", @id = "ActivityTypeCase" })
+            </div>
+
+
+        </div>
+
+        <div class="form-group m-form__group row">
+            <div class="col-lg-6">
+                <label class="control-label">Description</label><br />
+                <input class="form-control m-input" id="ActivityDescriptionCase" name="ActivityDescription" required>
+
+            </div>
+            <div class="col-lg-6">
+                <label class="control-label">Activity Status</label><br />
+                <div class="input-group">
+                    @Html.DropDownListFor(model => model.StatusId, Model.StatusDropdown, "-- Select --", htmlAttributes: new { @class = "form-control", @id = "CaseStatusActivity" })
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group m-form__group row">
+            <div class="col-lg-6">
+                <label class="control-label">Assigned User</label><br />
+
+                <div class="m-input-icon m-input-icon--right">
+                    @Html.DropDownListFor(model => model.AssignedUser, Model.AssignedUserDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input", @id = "CaseUserActivity" })
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label class="control-label">Assigned Team</label><br />
+
+                <div class="m-input-icon m-input-icon--right">
+                    @Html.DropDownListFor(model => model.AssignedTeam, Model.AssignedTeamDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input", @id = "CaseTeamActivity" })
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="createActivity" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed " style="display:none;">
+        <h2>Create Activity</h2>
+
+        <div class="form-group m-form__group row">
+            <div class="col-lg-6">
+                <label class="control-label">Activity Name</label><br />
+                <div class="input-group">
+
+                    <input class="form-control m-input" id="ActivityNameValueofcases" name="ActivityNameValueofcases" value="" required>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label class="control-label">Activity Type</label><br />
+
+                @Html.DropDownList("ActivityType", Model.ActivityType, "-- Select --", htmlAttributes: new { @class = "form-control m-input", @id = "ActivityTypeCase" })
+            </div>
+
+
+        </div>
+
+        <div class="form-group m-form__group row">
+            <div class="col-lg-6">
+                <label class="control-label">Description</label><br />
+                <input class="form-control m-input" id="ActivityDescriptionCase" name="ActivityDescription" required>
+
+            </div>
+            <div class="col-lg-6">
+                <label class="control-label">Activity Status</label><br />
+                <div class="input-group">
+                    @Html.DropDownListFor(model => model.StatusId, Model.StatusDropdown, "-- Select --", htmlAttributes: new { @class = "form-control", @id = "CaseStatusActivity" })
+
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group m-form__group row">
+            <div class="col-lg-6">
+                <label class="control-label">Assigned User</label><br />
+
+                <div class="m-input-icon m-input-icon--right">
+                    @Html.DropDownListFor(model => model.AssignedUser, Model.AssignedUserDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input", @id = "CaseUserActivity" })
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label class="control-label">Assigned Team</label><br />
+
+                <div class="m-input-icon m-input-icon--right">
+                    @Html.DropDownListFor(model => model.AssignedTeam, Model.AssignedTeamDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input", @id = "CaseTeamActivity" })
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="ResolveCase" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed " style="display:none;">
+        <h2>Resolve Case</h2>
+
+        <div class="form-group m-form__group row">
+            <div class="col-lg-6">
+                <label class="control-label">Resolution Type</label><br />
+                <div class="input-group">
+                    @Html.DropDownList("ResulutionTypeDropdown", Model.CaseResolutionDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input", @id = "ResolutionType" })
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label class="control-label">Resolution</label><br />
+                <input class="form-control m-input" id="CaseResolution" name="CaseResolution" value="" required>
+            </div>
+
+        </div>
+
+        <div class="form-group m-form__group row">
+            <div class="col-lg-6">
+                <label class="control-label">Total Time</label><br />
+                <input class="form-control m-input" id="CaseTotalTime" name="CaseTotalTime" value="" required>
+            </div>
+            <div class="col-lg-6">
+                <label class="control-label">Billable Time</label><br />
+                <input class="form-control m-input" id="CaseBillableTime" name="CaseBillableTime" value="" required>
+            </div>
+        </div>
+
+        <div class="form-group m-form__group row">
+            <div class="col-lg-6">
+                <label class="control-label">Remarks</label><br />
+                <input class="form-control m-input" id="CaseRemarks" name="CaseRemarks" value="" required>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div id="scheduleCase" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed " style="display:none;">
+        <h2>Schedule Case</h2>
+
+        <div class="form-group m-form__group row">
+            <div class="col-lg-6">
+                <label class="control-label">Date</label><br />
+                <div class="input-group">
+                    <input type="date" class="form-control m-input " id="scheduleDate" name="scheduleDate" value="" required>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label class="control-label">Time</label><br />
+                <div class="input-group">
+                    <input type="time" class="form-control m-input " id="scheduleTime" name="scheduleTime" value="" required>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group m-form__group row">
+
+            <div class="col-lg-6">
+                <label class="control-label">Assigned Team</label><br />
+
+                <div class="m-input-icon m-input-icon--right">
+                    @Html.DropDownListFor(model => model.AssignedTeam, Model.AssignedTeamDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input", @id = "CaseTeamSchedule" })
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label class="control-label">Assigned User</label><br />
+
+                <div class="m-input-icon m-input-icon--right">
+                    @Html.DropDownListFor(model => model.AssignedUser, Model.AssignedUserDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input", @id = "CaseUserSchedule" })
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+<div class="modal-footer modal-rightside-footer" style="display: block !important" id="caseButtons">
+    <div class="form-actions no-color">
+        <a href="@Url.Action("Edit", "Cases", new { id = Model.CaseId })" class="btn btn-secondary"><i class="fa fa-pencil-alt"></i> Edit</a>
+        @if (Model.CaseStatusDto.Name == "Active")
+        {
+            <a href="javascript:ResolveCase('@Model.CaseId');" class="btn btn-secondary"><i class="fa fa-pencil-alt"></i> Resolve</a>
+        }
+        else
+        {
+            <a href="javascript:ReActivateCase('@Model.CaseId');" class="btn btn-secondary"><i class="fa fa-pencil-alt"></i> ReActivate</a>
+        }
+        <button type="button" onclick="ScheduleCaseForm()" class="btn btn-secondary"><i class="la la-save"></i> Schedule Case</button>
+
+        <button type="button" onclick="$('#m_modal_Details').modal('hide');" class="btn btn-secondary"><i class="la la-refresh"></i> Cancel</button>
+    </div>
+</div>
+
+<div class="modal-footer modal-rightside-footer" style="display: none !important" id="caseActivityButtons">
+    <div class="col-lg-6">
+        <button type="button" onclick="ActivityCreate()" class="btn btn-success "><i class="la la-save"></i> Submit</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="la la-refresh "></i> Cancel</button>
+    </div>
+</div>
+
+<div class="modal-footer modal-rightside-footer" style="display: none !important" id="caseNotesButtons">
+    <div class="col-lg-6">
+        <button type="button" onclick="CaseResolution()" class="btn btn-success "><i class="la la-save"></i> Submit</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="la la-refresh "></i> Cancel</button>
+    </div>
+</div>
+
+
+<div class="modal-footer modal-rightside-footer" style="display: none !important" id="caseScheduleButtons">
+    <div class="col-lg-6">
+        <button type="button" onclick="ScheduleCase()" class="btn btn-success "><i class="la la-save"></i> Schedule</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="la la-refresh "></i> Cancel</button>
+    </div>
+</div>

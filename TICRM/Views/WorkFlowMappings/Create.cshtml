@@ -1,0 +1,150 @@
+﻿@model TICRM.DTOs.WorkFlowMappingDTO
+
+@{
+    ViewBag.Title = "Create WorkFlow Mappings";
+}
+
+<!-- BEGIN: Subheader -->
+<div class="m-subheader ">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <h3 class="m-subheader__title m-subheader__title--separator">WorkFlow Mappings</h3>
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                <li class="m-nav__item m-nav__item--home">
+                    <a href="@Url.Action("Index","Dashboard")" class="m-nav__link m-nav__link--icon">
+                        <i class="m-nav__link-icon la la-home"></i>
+                    </a>
+                </li>
+                <li class="m-nav__separator">-</li>
+                <li class="m-nav__item">
+                    <a href="@Url.Action("Index","WorkFlowMappings")" class="m-nav__link">
+                        <span class="m-nav__link-text">WorkFlow Mappings</span>
+                    </a>
+                </li>
+                <li class="m-nav__separator">-</li>
+                <li class="m-nav__item">
+                    <a href="@Url.Action("Create","WorkFlowMappings")" class="m-nav__link">
+                        <span class="m-nav__link-text">@ViewBag.Title</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+<!-- END: Subheader -->
+<div class="m-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <!--begin::Portlet-->
+            <div class="m-portlet">
+
+                <!--begin::Form-->
+
+                @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "CreateMappingForm", @class = "m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="m-portlet__body">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+                                    <label>Source</label>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.WorkFlowId, "WorkFlowId", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownListFor(model => model.WorkFlowId, Model.WorkflowDropdown, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.WorkFlowId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Action, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownListFor(model => model.Action, Model.ActionDropdown, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Action, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.SourceType, "SourceType", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownListFor(model => model.SourceType, Model.SourceTypeDropdown, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.SourceType, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group" id="DivSourceValue">
+                                    @Html.LabelFor(model => model.SourceValue, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        <select class="form-control" id="SourceValue" name="SourceValue"></select>
+                                        @*@Html.EditorFor(model => model.SourceValue, new { htmlAttributes = new { @class = "form-control" } })*@
+                                        @Html.ValidationMessageFor(model => model.SourceValue, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group" style="display:none;">
+                                    @Html.LabelFor(model => model.SourceData, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.SourceData, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.SourceData, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            <div class="col-md-6">
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <hr />
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="col-md-6" id="AppendDivInputFields">
+
+                            </div>
+                            <div class="col-md-6"></div>
+
+
+                        </div>
+
+
+
+                    </div>
+                    <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                        <div class="m-form__actions m-form__actions--solid">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <button type="button" id="btnSave" class="btn btn-success"><i class="la la-save"></i> Submit</button>
+                                    <button type="reset" class="btn btn-secondary"><i class="la la-refresh"></i> Cancel</button>
+                                </div>
+                                <div class="col-lg-6 m--align-right">
+                                    <a href="/WorkFlowMappings/Index" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
+                                        <span>
+                                            <i class="la la-arrow-left"></i>
+                                            <span>Back to List</span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+                <!--end::Form-->
+            </div>
+            <!--end::Portlet-->
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/bundles/WorkFlowMappingsScript")

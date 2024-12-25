@@ -1,0 +1,48 @@
+﻿@model TICRM.DTOs.AddressDto
+
+
+<div class="modal-header modal-header-rightside">
+    <h5 class="modal-header-title" id="exampleModalLabel">ADDRESS DETAILS</h5>
+    <button type="button" class="close modalrightsideClose" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">X</span>
+    </button>
+</div>
+<div class="modal-body">
+    <table class="tb-horizontal">
+        <tr>
+            <th class="blockquote">@Html.DisplayNameFor(model => model.Street1)</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.Street1)</td>
+        </tr>
+        <tr>
+            <th class="blockquote">@Html.DisplayNameFor(model => model.Street2)</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.Street2)</td>
+        </tr>
+        <tr>
+            <th class="blockquote">City</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.City)</td>
+        </tr>
+        <tr>
+            <th class="blockquote">State</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.State)</td>
+        </tr>
+        <tr>
+            <th class="blockquote">Zip</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.Zip)</td>
+        </tr>
+        <tr>
+            <th class="blockquote">Country</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.Country)</td>
+        </tr>
+     </table>
+</div>
+
+<div class="modal-footer modal-rightside-footer">
+
+    <div class="form-actions no-color">
+        <a href="@Url.Action("Edit", "Addresses", new { id = Model.AddressId })" class="btn btn-secondary"><i class="fa fa-pencil-alt"></i> Edit</a>
+
+        <button type="button" onclick="$('#m_modal_Details').modal('hide');" class="btn btn-secondary"><i class="la la-refresh"></i> Cancel</button>
+    </div>
+
+</div>
+

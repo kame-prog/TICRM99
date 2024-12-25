@@ -1,0 +1,190 @@
+﻿@model TICRM.DTOs.CustomerAssetDto
+
+@{
+    ViewBag.Title = "CustomerAssetDetail";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+<style>
+    .inp-bor {
+        border: 1px solid #e8ebf3;
+    }
+</style>
+<div class="page-wrapper">
+    <!-- Page Content-->
+    <div class="page-content-tab">
+        <div class="container-fluid">
+            <div class="form-group">
+                <button type="button" class="btn " onclick="location.href='@Url.Action("Create", "CustomerAssets")'"><i class="fa fa-plus-circle text-primary me-2"></i>New<i class="fa fa-angle-down ms-2"></i></button>
+                <button type="button" class="btn" id="RefreshPage"><i class="fa fa-clock text-primary me-2"></i>Refresh<i class="fa fa-angle-down ms-2"></i></button>
+            </div>
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <h4 class="page-title"><b>@Html.DisplayFor(model => model.Title)</b></h4>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div>
+                                <!--end page-title-box-->
+                                <!--end col-->
+
+                                <div class="col-sm-12">
+                                    <div class="tab-content" id="nav-tabContent">
+                                        <div class="tab-pane active">
+                                            <div class="row">
+                                                <h4 class="card-title mt-3 mb-1"><span class="fa fa-info-circle" style="margin-left:25px">Customer Asset Detail</span></h4>
+                                                <br />
+                                                <div class="mb-3 row">
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="mb-3 row">
+                                                        <label for="example-text-input" class="col-lg-2 col-md-3 col-sm-3 col-form-label text-end">Title<span class="text-danger">  *</span></label>
+                                                        <div class="col-lg-10 col-md-9 col-sm-9">
+                                                            <div class=" p-2 border bg-light">@Html.DisplayFor(model => model.Title)</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3 row">
+                                                        <label for="example-text-input" class="col-lg-2 col-md-3 col-sm-3 col-form-label text-end">Account<span class="text-danger">  *</span></label>
+                                                        <div class="col-lg-10 col-md-9 col-sm-9">
+                                                            <div class=" p-2 border bg-light">@Html.DisplayFor(model => model.Account.Name)</div>
+                                                            @Html.HiddenFor(model => model.Account.AccountId)
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3 row">
+                                                        <label for="example-text-input" class="col-lg-2 col-md-3 col-sm-3 col-form-label text-end">Manufacturer<span class="text-danger">  </span></label>
+                                                        <div class="col-lg-10 col-md-9 col-sm-9">
+                                                            <div class=" p-2 border bg-light" style="height:35px">@Html.DisplayFor(model => model.Manufacture)</div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="mb-3 row">
+                                                        <label for="example-text-input" class="col-lg-2 col-md-3 col-sm-3 col-form-label text-end" style="padding-top:1px">Year Of Manufacturer<span class="text-danger">  </span></label>
+                                                        <div class="col-lg-10 col-md-9 col-sm-9">
+                                                            <div class=" p-2 border bg-light" style="height:35px">@Html.DisplayFor(model => model.YearOfManufacture)</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group mb-3">
+                                                        <label for="example-text-input" class="col-12 col-lg-2 col-md-3 col-sm-3 col-form-label text-end" style="margin-right:5px; padding-right:10px">Asset Value<span class="text-danger">  </span></label>
+
+
+                                                        <div class=" col-sm-10 p-2 border bg-light form-control">@Html.DisplayFor(model => model.Value) </div>
+                                                        <span class="input-group-text" id="CurrencyName"></span>
+                                                    @*<div class="col-lg-10 col-md-9 col-sm-9">
+                                                        <div class="col-sm-10 p-2 border bg-light form-control">@Html.DisplayFor(model => model.Value) </div>
+                                                        <span class="input-group-text col-sm-2" id="CurrencyName"></span>
+                                                    </div>*@
+
+
+                                                    </div>
+                                                    <div class="mb-3 row">
+                                                        <label for="example-text-input" class="col-lg-2 col-md-3 col-sm-3 col-form-label text-end">SKU<span class="text-danger">  *</span></label>
+                                                        <div class="col-lg-10 col-md-9 col-sm-9">
+                                                            <div class=" p-2 border bg-light">@Html.DisplayFor(model => model.SKU)</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3 row">
+                                                        <label for="example-text-input" class="col-lg-2 col-md-3 col-sm-3 col-form-label text-end">Assigned User<span class="text-danger">  *</span></label>
+                                                        <div class="col-lg-10 col-md-9 col-sm-9">
+                                                            <div class=" p-2 border bg-light">@Html.DisplayFor(model => model.User.Name)</div>
+                                                        </div>
+                                                    </div>
+                                                </div><!--end col-->
+                                                <div class="col-md-6">
+                                                    <div class="mb-3 row">
+                                                        <label for="example-text-input" class="col-lg-2 col-md-3 col-sm-3 col-form-label text-end">Asset Type<span class="text-danger">  *</span></label>
+                                                        <div class="col-lg-10 col-md-9 col-sm-9">
+                                                            <div class=" p-2 border bg-light">@Html.DisplayFor(model => model.CustomerAssetType.Name)</div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="mb-3 row">
+                                                        <label for="example-text-input" class="col-lg-2 col-md-3 col-sm-3 col-form-label text-end">Location<span class="text-danger">  *</span></label>
+                                                        <div class="col-lg-10 col-md-9 col-sm-9">
+                                                            <div class=" p-2 border bg-light">@Html.DisplayFor(model => model.Location.Name)</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3 row">
+                                                        <label for="example-text-input" class="col-lg-2 col-md-3 col-sm-3 col-form-label text-end">Model<span class="text-danger">  </span></label>
+                                                        <div class="col-lg-10 col-md-9 col-sm-9">
+                                                            <div class=" p-2 border bg-light" style="height:35px">@Html.DisplayFor(model => model.Model)</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3 row">
+                                                        <label for="example-text-input" class="col-lg-2 col-md-3 col-sm-3 col-form-label text-end" style="margin-bottom:15px">Status<span class="text-danger">  *</span></label>
+                                                        <div class="col-lg-10 col-md-9 col-sm-9">
+                                                            <div class=" p-2 border bg-light">@Html.DisplayFor(model => model.Status.Name)</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group mb-3">
+                                                        <label for="example-text-input" class="col-12 col-lg-2 col-md-3 col-sm-3 col-form-label text-end" style="margin-right: 4px; padding-right: 10px ">Depreciated Value<span class="text-danger">  </span></label>
+
+                                                        <div class=" col-sm-10 p-2 border bg-light form-control">@Html.DisplayFor(model => model.DepriciatedValue) </div>
+                                                        <span class="input-group-text" id="CurrencyName1"></span>
+                                                    </div>
+                                                    <div class="mb-3 row">
+                                                        <label for="example-text-input" class="col-lg-2 col-md-3 col-sm-3 col-form-label text-end">Description<span class="text-danger">  *</span></label>
+                                                        <div class="col-lg-10 col-md-9 col-sm-9">
+                                                            <div class=" p-2 border bg-light">@Html.DisplayFor(model => model.Description)</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3 row">
+                                                        <label for="example-text-input" class="col-lg-2 col-md-3 col-sm-3 col-form-label text-end">Assigned Team<span class="text-danger">  *</span></label>
+                                                        <div class="col-lg-10 col-md-9 col-sm-9">
+                                                            <div class=" p-2 border bg-light">@Html.DisplayFor(model => model.Team.Name)</div>
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                </div><!--end col-->
+                                            </div><!--end row-->
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <a href="/CustomerAssets/Index" class="btn btn-primary ">
+                                                <i class="la la-arrow-left"></i>
+                                                <span>Back to List</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+ 
+    $(document).ready(function () {
+        var obj = { value: $('#Account_AccountId').val() }
+        
+        $.ajax({
+            type: "GET",
+            url: "/CustomerAssets/GetAccCurrencyName",
+            data: obj,
+            contentType: "application/json; charset=utf-8",
+
+            success: function (response) {
+
+                $("#CurrencyName").text(response);
+                $("#CurrencyName1").text(response);
+            },
+            failure: function () {
+                alert("Failed!");
+            }
+        });
+    })
+</script>

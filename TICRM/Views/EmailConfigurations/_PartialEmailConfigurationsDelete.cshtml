@@ -1,0 +1,98 @@
+﻿@model TICRM.DTOs.EmailConfigurationDTO
+
+<div class="m-portlet m-portlet--tabs">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-tools">
+            <ul class="nav nav-tabs m-tabs-line m-tabs-line--success m-tabs-line--2x" role="tablist">
+                <li class="nav-item m-tabs__item">
+                    <a class="nav-link m-tabs__link active show" data-toggle="tab" href="#m_portlet_tab_EmailConfigurations" role="tab" aria-selected="true">
+                        <i class="la la-user-md"></i> Email Configurations
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="m-portlet__body">
+        <div class="tab-content">
+            <div class="tab-pane active show" id="m_portlet_tab_EmailConfigurations" role="tabpanel">
+
+                <div class="row container">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Email)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.UserName)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.UserName)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Password)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Password)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.CreatedDate)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.CreatedDate)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.CreatedBy)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.CreatedBy)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.UpdatedDate)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.UpdatedDate)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.UpdatedBy)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.UpdatedBy)
+                        </dd>
+
+                    </dl>
+                </div>
+                <div class="clearfix">
+                    <hr />
+                </div>
+
+                @using (Html.BeginForm("Delete/" + Model.EmailConfigurationId, "EmailConfigurations", FormMethod.Post, new { id = "DeleteForm" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <button type="button" id="deletebtn" onclick="Delete_Record()" class="btn btn-success"> Confirm</button>
+                        <button type="button" onclick="$('#m_modal_Delete').modal('hide');" class="btn btn-secondary"><i class="la la-refresh"></i> Cancel</button>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+    </div>
+</div>

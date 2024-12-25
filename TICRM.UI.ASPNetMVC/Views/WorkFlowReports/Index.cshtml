@@ -1,0 +1,116 @@
+﻿@model IEnumerable<TICRM.DTOs.WorkFlowReportDTO>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <button type="button" class="btn TopPageButton" onclick="location.href='@Url.Action("Create", "WorkFlowReports")'"><i class="fa fa-plus-circle text-primary me-2"></i>New<i class="fa fa-angle-down ms-2"></i></button>
+                        <button type="button" class="btn TopPageButton" id="RefreshPage"><i class="fa fa-clock text-primary me-2"></i>Refresh<i class="fa fa-angle-down ms-2"></i></button>
+                        <button type="submit" class="btn TopPageButton" id="btnExport"><i class="fa fa-download text-primary me-2"></i>Export<i class="fa fa-angle-down ms-2"></i></button>
+
+                    </div>
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="#">Metrica</a>
+                                </li><!--end nav-item-->
+                                <li class="breadcrumb-item">
+                                    <a href="#">CRM</a>
+                                </li><!--end nav-item-->
+                                <li class="breadcrumb-item active">Work Flow Reports</li>
+                            </ol>
+                        </div>
+                        <div>
+                        <span class="page-title">Work Flow Reports</span></div>
+
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div>
+            <!-- end page title end breadcrumb -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h4 class="card-title">Work Flow Reports Details</h4>
+                                </div><!--end col-->
+                            </div>  <!--end row-->
+                        </div><!--end card-header-->
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="myTable" class="table font-15 page-content-wrapper">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Work Flow</th>
+                                            <th>Action</th>
+                                            <th>Work Flow Status</th>
+                                            <th>Work Flow Action Status</th>
+                                            <th>Applied To</th>
+                                            <th>Frequency</th>
+                                            <th>Priority</th>
+                                            <th>Account</th>
+                                            <th>Device</th>
+                                            <th>Actions</th>
+                                        </tr><!--end tr-->
+                                    </thead>
+
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <a href="@Url.Action("WorkFlowReportsDetail", "WorkFlowReports", new { id = item.WorkFlowReportId })">@item.WorkFlow.Name</a>
+                                                </td>
+                                                <td>@item.Action</td>
+                                                <td>@item.WorkFlowStatus</td>
+                                                <td>@item.WorkFlowActionStatus</td>
+                                                <td>@item.AppliedTo</td>
+                                                <td>@item.Frequency</td>
+                                                <td>@item.Priority</td>
+                                                <td>@item.AccountName</td>
+                                                <td>@item.DeviceName</td>
+                                                <td>
+                                                    <a href="/WorkFlowReports/Edit/@item.WorkFlowReportId.ToString()" title="Edit WorkFlowReport"><i class="las la-pen text-secondary font-19"></i></a>
+                                                    <a href="/WorkFlowReports/WorkFlowReportsDetail/@item.WorkFlowReportId.ToString()" title="View WorkFlowReport"><i class="las la-eye font-19"></i></a>
+                                                    <a href="/WorkFlowReports/DeleteConfirmed/@item.WorkFlowReportId.ToString()"><i class="las la-trash-alt text-secondary  font-19" title="Delete WorkFlowReport"></i></a>
+                                                </td>
+                                            </tr><!--end tr-->
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </div> <!--end col-->
+            </div><!--end row-->
+
+        </div><!-- container -->
+       
+        <!--Start Footer-->
+        <!-- Footer Start -->
+        <footer class="footer text-center text-sm-start">
+            ©
+            <script>
+                document.write(new Date().getFullYear())
+            </script> Tech Implement
+        </footer>
+        <!-- end Footer -->
+        <!--end footer-->
+    </div>
+    <!-- end page content -->
+</div>
+<!-- end page-wrapper -->

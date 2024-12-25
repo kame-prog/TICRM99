@@ -1,0 +1,22 @@
+[
+  {
+    "outputFileName": "Content/CustomCSS.min.css",
+    "inputFiles": [
+      "Content/CustomCSS.css"
+    ]
+  },
+  {
+    "outputFileName": "Content/bundle.css",
+    "inputFiles": [
+      "Content/bootstrap.css",
+      "Content/CustomCSS.css",
+      "Content/jquery.bootgrid.css"
+    ]
+  },
+  {
+    "outputFileName": "Content/Metronic/assets/vendors/custom/datatables/datatables.bundle.min.js",
+    "inputFiles": [
+      "Content/Metronic/assets/vendors/custom/datatables/datatables.bundle.js"
+    ]
+  }
+]

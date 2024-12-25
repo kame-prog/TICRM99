@@ -1,0 +1,37 @@
+oppertunity spellings done 
+Location done
+latitude and longitude
+
+one to many reading unit(many) and type 
+
+auditing of tables (will do)
+-logic execution on pre and post events should be registerd(in memeory) - (e.g: email and sms)
+event pipeline
+
+account type 
+location type 
+probabilty  
+account size
+
+meta data goes to admin side 
+
+
+
+import , export
+
+list view - (customized views) 
+edit view
+Record View
+Quick create
+
+include 
+
+
+activity table (link with all tables)
+activity type(phone,email,meeting,Task)
+email setup
+
+//
+code commenting, naming convetions 
+
+

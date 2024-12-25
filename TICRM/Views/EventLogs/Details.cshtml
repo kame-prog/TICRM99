@@ -1,0 +1,115 @@
+﻿@model TICRM.DTOs.EventLogDTO
+
+@{
+    ViewBag.Title = "Details EventLogs";
+    Layout = "~/Views/Shared/_LayoutDataTable.cshtml";
+}
+<section class="content">
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Details EventLogs</h3>
+            <hr />
+        </div><!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div>
+                        <h4>EventLog</h4>
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Name)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Type)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Type)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Status)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Status)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Message)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Message)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Color)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Color)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.IPAddress)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.IPAddress)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.CreatedDate)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.CreatedDate)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.CreatedBy)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.CreatedBy)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.UpdatedDate)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.UpdatedDate)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.UpdatedBy)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.UpdatedBy)
+                            </dd>
+
+                        </dl>
+                    </div>
+                    <p>
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.EventLogId }) |
+                        <a href="/EventLogs/Index" class="btn btn-default">Back to List</a>
+                    </p>
+                </div>
+                <div class="col-md-6"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="~/Content/plugins/jQuery/jQuery-2.1.3.min.js"></script>
+<script type="text/javascript" src="~/TIScripts/ModulesScripts/EventLogs.js"></script>
+

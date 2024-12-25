@@ -1,0 +1,93 @@
+﻿@model TICRM.DTOs.WorkOrderDto
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutDataTable.cshtml";
+}
+
+<section class="content">
+
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Delete WorkOrder</h3>
+            <hr />
+            <h3>Are you sure you want to delete this?</h3>
+        </div><!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-6">
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Title)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Title)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.NTE)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.NTE)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Description)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Description)
+                            </dd>
+
+                            <dt>
+                                Status
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Status.Name)
+                            </dd>
+
+                            <dt>
+                                Assigned Team
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Team.Name)
+                            </dd>
+
+                            <dt>
+                                Assigned User
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.User.Name)
+                            </dd>
+
+                            <dt>
+                                Work Stage
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.WorkStage.Name)
+                            </dd>
+
+                        </dl>
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-actions no-color">
+                                <input type="submit" value="Delete" class="btn btn-default" /> |
+                                @Html.ActionLink("Back to List", "Index")
+                            </div>
+                        }
+                </div>
+                <div class="col-md-6"></div>
+            </div>
+        </div>
+    </div>
+
+</section>

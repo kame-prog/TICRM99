@@ -1,0 +1,150 @@
+﻿@model TICRM.DTOs.ReadingDto
+
+@{
+    ViewBag.Title = "Create Readings";
+}
+
+<!-- BEGIN: Subheader -->
+<div class="m-subheader ">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <h3 class="m-subheader__title m-subheader__title--separator">Readings</h3>
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                <li class="m-nav__item m-nav__item--home">
+                    <a href="@Url.Action("Index","Home")" class="m-nav__link m-nav__link--icon">
+                        <i class="m-nav__link-icon la la-home"></i>
+                    </a>
+                </li>
+                <li class="m-nav__separator">-</li>
+                <li class="m-nav__item">
+                    <a href="@Url.Action("Index","Readings")" class="m-nav__link">
+                        <span class="m-nav__link-text">Readings</span>
+                    </a>
+                </li>
+                <li class="m-nav__separator">-</li>
+                <li class="m-nav__item">
+                    <a href="@Url.Action("Create","Readings")" class="m-nav__link">
+                        <span class="m-nav__link-text">@ViewBag.Title</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+<!-- END: Subheader -->
+<div class="m-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <!--begin::Portlet-->
+            <div class="m-portlet">
+                <!--begin::Form-->
+
+                @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "ReadingsCreateForm", @class = "m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="m-portlet__body">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group m-form__group row">
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.Value, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Value, new { htmlAttributes = new { @class = "form-control m-input" } })
+                                @Html.ValidationMessageFor(model => model.Value, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.ReadingTypeId, "Reading Type", htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.ReadingTypeId, Model.ReadingTypeDropdown, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ReadingTypeId, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+
+                        <div class="form-group m-form__group row">
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.ReadingUnitId, "Reading Unit", htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.ReadingUnitId, Model.ReadingUnitDropdown, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ReadingUnitId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.MarginOfErrorInPercent, "Margin Of Error In Percent", htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.MarginOfErrorInPercent, new { htmlAttributes = new { @class = "form-control m-input" } })
+                                @Html.ValidationMessageFor(model => model.MarginOfErrorInPercent, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group m-form__group row">
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.Value, "Asset Value", htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Value, new { htmlAttributes = new { @class = "form-control m-input" } })
+                                @Html.ValidationMessageFor(model => model.Value, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.StatusId, "Status", htmlAttributes: new { @class = "control-label" })
+                                <div class="m-input-icon m-input-icon--right">
+                                    @Html.DropDownListFor(model => model.StatusId, Model.StatusDropdown, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group m-form__group row">
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.AssignedUser, "Assigned User", htmlAttributes: new { @class = "control-label" })
+                                <div class="m-input-icon m-input-icon--right">
+                                    @Html.DropDownListFor(model => model.AssignedUser, Model.AssignedUserDropdown, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.AssignedUser, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.AssignedTeam, "Assigned Team", htmlAttributes: new { @class = "control-label" })
+                                <div class="m-input-icon m-input-icon--right">
+                                    @Html.DropDownListFor(model => model.AssignedTeam, Model.AssignedTeamDropdown, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.AssignedTeam, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group m-form__group row">
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })
+                                <div class="m-input-icon m-input-icon--right">
+                                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control m-input" } })
+                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-lg-6"></div>
+
+                        </div>
+                    </div>
+
+                    <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                        <div class="m-form__actions m-form__actions--solid">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <button type="button" id="savebtn" class="btn btn-success"><i class="la la-save"></i> Submit</button>
+                                    <button type="reset" class="btn btn-secondary"><i class="la la-refresh"></i> Cancel</button>
+                                </div>
+                                <div class="col-lg-6 m--align-right">
+                                    <a href="/Readings/Index" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
+                                        <span>
+                                            <i class="la la-arrow-left"></i>
+                                            <span>Back to List</span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+                <!--end::Form-->
+            </div>
+            <!--end::Portlet-->
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/ReadingsScript")

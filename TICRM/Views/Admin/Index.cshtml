@@ -1,0 +1,1497 @@
+﻿@model TICRM.DTOs.AccountViewModel
+
+@{
+    ViewBag.Title = "Admin Panel";
+}
+@Styles.Render("~/bundles/AdminCSS")
+<style>
+    .box {
+        background-color: azure;
+        margin-bottom: 13%;
+    }
+
+    .box-part {
+        border-radius: 0;
+        padding: 30px 5px;
+        margin: auto 0px;
+        display: block;
+    }
+
+    .fa {
+        margin-bottom: 12%;
+    }
+</style>
+
+<!-- BEGIN: Subheader -->
+<div class="m-subheader ">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <h3 class="m-subheader__title m-subheader__title--separator">Admin Panel</h3>
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                <li class="m-nav__item m-nav__item--home">
+                    <a href="@Url.Action("Index","Dashboard")" class="m-nav__link m-nav__link--icon">
+                        <i class="m-nav__link-icon la la-home"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+<!-- END: Subheader -->
+<div class="m-content">
+    <div class="m-portlet__body">
+        <div id="">
+            <div class="m-portlet m-portlet--mobile">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <h3 class="m-portlet__head-text">
+                                General Settings
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="m-portlet__head-tools">
+
+                    </div>
+                </div>
+
+                <div class="m-portlet__body">
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-12">
+                            <div class="info-box row">
+                                <span class="info-box-icon " style="background-color:#7fceff;"><i class="fa fa-4x fa-users"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Teams</span>
+                                    <span class="info-box-number">@ViewBag.Team</span>
+                                </div><!-- /.info-box-content -->
+                            </div><!-- /.info-box --><br />
+                            <div class="info-box row" style="margin-top:-12px">
+                                <span class="info-box-icon " style="background-color:#7fceff;"><i class="fa fa-4x fa-user"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Users</span>
+                                    <span class="info-box-number">@ViewBag.Users</span>
+                                </div><!-- /.info-box-content -->
+                            </div><!-- /.info-box --><br />
+                            <div class="info-box row" style="margin-top:-12px">
+                                <span class="info-box-icon " style="background-color:#7fceff;"><i class="fa fa-4x fa-user"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Accounts</span>
+                                    <span class="info-box-number">@ViewBag.Accounts</span>
+                                </div><!-- /.info-box-content -->
+                            </div><!-- /.info-box --><br />
+                            <div class="info-box row" style="margin-top:-12px">
+                                <span class="info-box-icon " style="background-color:#7fceff;"><i class="fa fa-4x fa-user"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Workorders</span>
+                                    <span class="info-box-number">@ViewBag.Workorders</span>
+                                </div><!-- /.info-box-content -->
+                            </div><!-- /.info-box -->
+                        </div>
+                        <div class="col-lg-4 col-sm-12">
+                            <div class="m-portlet m-portlet--mobile">
+
+                                <div class="m-portlet__body">
+                                    <div class="row">
+                                        <div class="col-6">
+
+                                            <div class="box">
+                                                <div class="box-part text-center">
+                                                    <a href="/CloudConfiguration/Index">
+                                                        <i class="fa fa-key fa-2x" style="color: #7fceff" aria-hidden="true"></i>
+
+                                                        <div class="title">
+                                                            <h4>Credentials for Azzure and IBM</h4>
+                                                        </div>
+                                                    </a>
+
+                                                </div>
+                                            </div>
+                                            <div class="box">
+                                                <div class="box-part text-center">
+                                                    <a href="/Users/Index">
+                                                        <i class="fa fa-user fa-4x" style="color: #7fceff" aria-hidden="true"></i>
+
+                                                        <div class="title">
+                                                            <h4>User Administration</h4>
+                                                        </div>
+                                                    </a>
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-6">
+                                            <div class="box">
+                                                <div class="box-part text-center">
+                                                    <a href="/Locations/Create">
+                                                        <i class="fa fa-map-marker fa-4x" aria-hidden="true"></i>
+
+                                                        <div class="title">
+                                                            <h4>Locations</h4>
+                                                        </div>
+                                                    </a>
+
+
+                                                </div>
+                                            </div>
+                                            <div class="box">
+                                                <div class="box-part text-center">
+
+                                                    <i class="fa fa-envelope fa-4x" style="color: #7fceff" aria-hidden="true"></i>
+
+                                                    <div class="title">
+                                                        <h4>Email Configurations</h4>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-5 col-sm-12">
+                            <div class="m-portlet m-portlet--mobile">
+                                <div class="m-portlet__head">
+                                    <div class="m-portlet__head-caption">
+                                        <div class="m-portlet__head-title">
+                                            <h3 class="m-portlet__head-text">
+                                                Accounts
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div class="m-portlet__head-tools">
+
+                                    </div>
+                                </div>
+                                <div class="m-portlet__body">
+                                    <div id="AccountsMap" style="height: 350px; width: 100%;"></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="m-portlet m-portlet--mobile">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <h3 class="m-portlet__head-text">
+                                Connectivity
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="m-portlet__head-tools">
+
+                    </div>
+                </div>
+                <div class="m-portlet__body">
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-12">
+                            <div class="info-box row">
+                                <span class="info-box-icon " style="background-color:#7fceff;"><i class="fa fa-4x fa-users"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Firmwares</span>
+                                    <span class="info-box-number">@ViewBag.Firmwares</span>
+                                </div><!-- /.info-box-content -->
+                            </div><!-- /.info-box --><br />
+                            <div class="info-box row" style="margin-top:-12px">
+                                <span class="info-box-icon " style="background-color:#7fceff;"><i class="fa fa-4x fa-user"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Gateways</span>
+                                    <span class="info-box-number">@ViewBag.Gateways</span>
+                                </div><!-- /.info-box-content -->
+                            </div><!-- /.info-box --><br />
+                            <div class="info-box row" style="margin-top:-12px">
+                                <span class="info-box-icon " style="background-color:#7fceff;"><i class="fa fa-4x fa-user"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Disconnections</span>
+                                    <span class="info-box-number">@ViewBag.Disconnections</span>
+                                </div><!-- /.info-box-content -->
+                            </div><!-- /.info-box --><br />
+                            <div class="info-box row" style="margin-top:-12px">
+                                <span class="info-box-icon " style="background-color:#7fceff;"><i class="fa fa-4x fa-user"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Consumptions</span>
+                                    <span class="info-box-number">@ViewBag.Consumptions</span>
+                                </div><!-- /.info-box-content -->
+                            </div><!-- /.info-box -->
+                        </div>
+
+                        <div class="col-lg-4 col-sm-12">
+                            <div class="row">
+                                <div class="col-6">
+
+                                    <div class="box">
+                                        <div class="box-part text-center">
+                                            <a href="/Devices/DeviceSensorGraph">
+                                                <i class="fa fa-microchip fa-4x" aria-hidden="true"></i>
+
+                                                <div class="title">
+                                                    <h4>Device Configurations</h4>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="box">
+                                        <div class="box-part text-center">
+                                            <a href="#">
+                                                <i class="fa fa-download fa-4x" aria-hidden="true"></i>
+
+                                                <div class="title">
+                                                    <h4>Import Devices from IBM</h4>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-6">
+
+                                    <div class="box">
+                                        <div class="box-part text-center">
+                                            <a href="/BulkDevices/Index">
+                                                <i class="fa fa-upload fa-4x" aria-hidden="true"></i>
+
+                                                <div class="title">
+                                                    <h4>Create Devices</h4>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="box">
+                                        <div class="box-part text-center">
+                                            <a href="javascript:MqttConfigurations();">
+                                                <i class="fa fa-upload fa-4x" aria-hidden="true"></i>
+
+                                                <div class="title">
+                                                    <h4>Mqtt Configurations</h4>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-5 col-sm-12">
+                            <div class="m-portlet m-portlet--mobile">
+                                <div class="m-portlet__head">
+                                    <div class="m-portlet__head-caption">
+                                        <div class="m-portlet__head-title">
+                                            <h3 class="m-portlet__head-text">
+                                                Devices
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div class="m-portlet__head-tools">
+
+                                    </div>
+                                </div>
+                                <div class="m-portlet__body">
+                                    <div id="DevicesMap" style="height: 350px; width: 100%;"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="m-portlet m-portlet--mobile">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <h3 class="m-portlet__head-text">
+                                Workflows
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="m-portlet__head-tools">
+
+                    </div>
+                </div>
+                <div class="m-portlet__body">
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-12">
+                            <div class="info-box row">
+                                <span class="info-box-icon " style="background-color:#7fceff;"><i class="fa fa-4x fa-users"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Workflows</span>
+                                    <span class="info-box-number">@ViewBag.Workflows</span>
+                                </div><!-- /.info-box-content -->
+                            </div><!-- /.info-box --><br />
+                            <div class="info-box row" style="margin-top:-12px">
+                                <span class="info-box-icon " style="background-color:#7fceff;"><i class="fa fa-4x fa-user"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Workflows Reports</span>
+                                    <span class="info-box-number">@ViewBag.WorkflowReports</span>
+                                </div><!-- /.info-box-content -->
+                            </div><!-- /.info-box --><br />
+
+                        </div>
+
+                        <div class="col-lg-4 col-sm-12">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="box">
+                                        <div class="box-part text-center">
+                                            <a href="/WorkFlowReports/Index">
+                                                <i class="fa fa-file-invoice fa-4x" aria-hidden="true"></i>
+
+                                                <div class="title">
+                                                    <h4>Workflow Reports</h4>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-6">
+
+                                    <div class="box">
+                                        <div class="box-part text-center">
+                                            <a href="/WorkFlows/WorkFlowDesigner">
+                                                <i class="fa fa-project-diagram fa-4x" aria-hidden="true"></i>
+
+                                                <div class="title">
+                                                    <h4>Work Flow Designer</h4>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-5 col-sm-12">
+                            <div class="m-portlet">
+
+
+                                @*Workflows*@
+
+                                <div class="m-portlet__head" aria-expanded="true">
+                                    <div class="m-portlet__head-caption">
+                                        <div class="m-portlet__head-title">
+                                            <span class="m-portlet__head-icon"><i class="la la-bar-chart"></i></span>
+
+                                            <h3 class="m-portlet__head-text">
+                                                WorkFlow Reports
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div class="m-portlet__head-tools">
+
+                                        <ul class="m-portlet__nav">
+                                            <li class="m-portlet__nav-item">
+                                                <i class="la la-angle-down"></i>
+
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+                                <div class="m-portlet__body">
+                                    <div class="" data-scrollable="true" data-height="200" data-mobile-height="200">
+
+                                        <div class="m-timeline-3">
+
+                                            @foreach (var item in Model.workflowReportAdmin)
+                                            {
+                                                <div class="m-timeline-3__items">
+                                                    <div class="m-timeline-3__item m-timeline-3__item--info row">
+                                                        <div class="col-8">
+                                                            <span class="m-timeline-3__item-time">@item.Action</span>
+                                                            <div class="m-timeline-3__item-desc">
+                                                                <span class="m-timeline-3__item-text">
+                                                                    @item.WorkFlow.Name
+                                                                </span><br>
+                                                                <span class="m-timeline-3__item-text">
+                                                                    @item.WorkFlow.Description
+                                                                </span><br>
+                                                                <span class="m-timeline-3__item-user-name">
+                                                                    @item.DeviceName
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="m-timeline-3__item-link float-right col-4">
+                                                            @if (item.WorkFlowStatus != null)
+                                                            {
+                                                                if (item.WorkFlowStatus == "Active")
+                                                                {
+                                                                    <span class="m-badge m-badge--success m-badge--wide" style="margin: 15px;">@item.WorkFlowStatus</span>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <span class="m-badge m-badge--danger m-badge--wide" style="margin: 15px;">@item.WorkFlowStatus</span>
+                                                                }
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div>
+
+                                                </div>
+
+                                            }
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- Start:Map Right Slider Modal -->
+<div class="modal fade modal-MapRightSlider-fade" id="MapRightSliderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog modal-MapRightSlider-dialog modal-MapRightSlider-slideout" role="document">
+        <div class="modal-content modal-content-MapRightSlider">
+            <div class="modal-header modal-header-MapRightSlider">
+
+                <h5 id="Dname" class=" modal-header-title" style="font-size:30px;padding-top:5px;">&nbsp;&nbsp;</h5>
+
+                <button type="button" class="close modalMapRightSliderClose" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+
+
+            </div>
+            <div class="modal-body modal-body-MapRightSlider">
+                <div id="btnsCloud" class="m-portlet m-portlet--mobile  m-portlet--rounded">
+                    <div class="m-portlet__body">
+                        <div class="row col-sm-12" id="toggle_event_editing">
+                            <div class=" col-sm-4">
+                                <div>
+                                    <a onclick="ToConfirms()" class="btn btn-success ">
+                                        <span style="color:white">
+                                            <i class="la la-plus"></i>
+                                            <span>Update FW</span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class=" col-sm-4">
+                                <div>
+                                    <a onclick="nevToURL()" class="btn btn-success">
+                                        <span style="color:white">
+                                            <i class="la la-cloud"></i>
+                                            <span>Go To IBM</span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class=" col-sm-4">
+                                <div>
+                                    <a href="#workflow" class="btn btn-success" data-toggle="collapse">
+                                        <span style="color:white">
+                                            <i class="la la-edit"></i>
+                                            <span>Create Workflow</span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div id="btnsAmazon" class="m-portlet m-portlet--mobile  m-portlet--rounded">
+                    <div class="m-portlet__body">
+                        <div class="row col-sm-12" id="toggle_event_editing">
+                            <div class=" col-sm-4">
+                                <div>
+                                    <a onclick="ToConfirms()" class="btn btn-success">
+                                        <span style="color:white">
+                                            <i class="la la-plus"></i>
+                                            <span>Update FW</span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class=" col-sm-4">
+                                <div>
+                                    <a class="btn btn-success">
+                                        <span style="color:white">
+                                            <i class="la la-cloud"></i>
+                                            <span>Go To AWS</span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class=" col-sm-4">
+                                <div>
+                                    <a href="#workflow" class="btn btn-success" data-toggle="collapse">
+                                        <span style="color:white">
+                                            <i class="la la-edit"></i>
+                                            <span>Create Workflow</span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id="btnsINCA" class="m-portlet m-portlet--mobile  m-portlet--rounded">
+                    <div class="m-portlet__body">
+                        <div class="row col-sm-12" id="toggle_event_editing">
+                            <div class=" col-sm-4">
+                                <div>
+                                    <a href="#config" class="btn btn-success" data-toggle="collapse">
+                                        <span style="color:white">
+                                            <i class="la la-edit"></i>
+                                            <span>Configure</span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class=" col-sm-4">
+                                <div>
+                                    <a href="#firmware" class="btn btn-success" data-toggle="collapse">
+                                        <span style="color:white">
+                                            <i class="la la-plus"></i>
+                                            <span>Update FW</span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class=" col-sm-4">
+                                <div>
+                                    <a href="#workflow" class="btn btn-success" data-toggle="collapse">
+                                        <span style="color:white">
+                                            <i class="la la-edit"></i>
+                                            <span>Create Workflow</span>
+                                        </span>
+                                    </a>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div id="workflow" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed collapse">
+                    <div class="row">
+                        <span class="nav-item">
+                            <i href="#workflow" class="fa fa-2x fa-arrow-circle-left collapsible" data-toggle="collapse" style="margin-left: 22px; margin-top: 21px; margin-bottom: -10px; color:#525151;"></i>
+
+                        </span>
+                        <h3 style="margin-left: 11px; margin-top: 20px; margin-bottom: -10px;">Device Workflow</h3>
+
+                    </div>
+
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-6">
+                            <label class="control-label">Name</label><br />
+                            <div class="input-group">
+
+                                <input class="form-control m-input" id="Wname" name="Wname">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="control-label">Sensor</label><br />
+                            <select class="form-control m-input" id="Wsensors">
+                                <option>
+                                    Temperature
+                                </option>
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-6">
+                            <label class="control-label">Threshold</label><br />
+                            <div class="row">
+                                <div class="input-group col-6">
+
+                                    <input class="form-control m-input" id="WThreshold" name="WThreshold" placeholder="<=">
+                                </div>
+                                <div class="input-group col-6">
+
+                                    <input class="form-control m-input" id="WThreshold1" name="WThreshold1" placeholder=">=">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6">
+
+                            <label class="control-label" for="Wpriority">
+                                Priority
+                            </label>
+                            <select class="form-control m-input" id="Wpriority">
+                                <option>
+                                    High
+                                </option>
+                                <option>
+                                    Medium
+                                </option>
+                                <option>
+                                    Low
+                                </option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-6">
+                            <label class="control-label" for="Waction">
+                                Action
+                            </label>
+                            <select class="form-control m-input" id="Waction">
+                                <option>
+                                    Email
+                                </option>
+                                <option>
+                                    Alert
+                                </option>
+                                <option>
+                                    Note
+                                </option>
+                                <option>
+                                    Sugar CRM
+                                </option>
+                                <option>
+                                    Dynamics 365
+                                </option>
+
+                            </select>
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="control-label">Description</label><br />
+                            <div class="input-group">
+                                <input class="form-control m-input" id="Wdescription" name="Wdescription">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-6">
+                            <label class="control-label"></label><br />
+
+                            <label class="m-checkbox m-checkbox--state-success">
+                                <input id="checkbox" onclick="checkbox()" type="checkbox">
+                                Enable Cloud CRMs
+                                <span></span>
+                            </label>
+                        </div>
+                        <div id="crm" style="display:none" class="col-lg-6">
+                            <label class="control-label" for="WCloud">
+                                Select CRM
+                            </label>
+                            <select class="form-control m-input" id="WCloud">
+                                <option>
+                                    SUGAR CRM
+                                </option>
+                                <option>
+                                    DYNAMICS CRM
+                                </option>
+                                <option>
+                                    SUITE CRM
+                                </option>
+                                <option>
+                                    ZOHO CRM
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-6">
+                            <button type="button" onclick="PostData()" class="btn btn-success "><i class="la la-save"></i> Submit</button>
+                            <button type="reset" href="#workflow" data-toggle="collapse" class="btn btn-secondary collapsible"><i class="la la-refresh "></i> Cancel</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="firmware" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed collapse">
+                    <div class="row">
+                        <span class="nav-item">
+                            <i href="#firmware" class="fa fa-2x fa-arrow-circle-left collapsible" data-toggle="collapse" style="margin-left: 22px; margin-top: 21px; margin-bottom: -10px; color:#525151;"></i>
+
+                        </span>
+                        <h3 style="margin-left: 11px; margin-top: 20px; margin-bottom: -10px;">Update Firmware</h3>
+
+                    </div>
+
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-6">
+                            <label class="control-label">Firmware Version</label><br />
+                            <div class="input-group">
+
+                                <input class="form-control m-input" id="FWver" name="FWver">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="control-label">Description</label><br />
+                            <input class="form-control m-input" id="FWdes">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-6">
+                            <label class="control-label">Server Address</label><br />
+                            <div class="input-group">
+
+                                <input class="form-control m-input" id="FWser" name="FWser">
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6">
+                            <label>Firmware File</label><br />
+                            <div class="input-group">
+
+                                <div class="custom-file">
+
+                                    <input type="file" class="custom-file-input" id="file" name="file"
+                                           aria-describedby="inputGroupFileAddon01">
+                                    <label class="custom-file-label" for="file">Choose firmware</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-6">
+                            <button type="button" onclick="PostDataFW()" class="btn btn-success"><i class="la la-save"></i> Submit</button>
+                            <button type="reset" href="#firmware" data-toggle="collapse" class="btn btn-secondary collapsible"><i class="la la-refresh "></i> Cancel</button>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div id="config" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed collapse">
+                    <div class="row">
+                        <span class="nav-item">
+                            <i href="#config" class="fa fa-2x fa-arrow-circle-left collapsible" data-toggle="collapse" style="margin-left: 22px; margin-top: 21px; margin-bottom: -10px; color:#525151;"></i>
+
+                        </span>
+                        <h3 style="margin-left: 11px; margin-top: 20px; margin-bottom: -10px;">Device Configuration</h3>
+
+                    </div>
+
+                    <div class="form-group m-form__group row">
+
+                        <div class="col-lg-6 col-sm-12 col-md-12 col-xs-12">
+
+
+                            <div class="form-group">
+                                <label for="SensorId">Sensor</label>
+                                <select name="SensorId" id="SensorIdDropDownList" class="form-control"></select>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="col-lg-6 col-sm-12 col-md-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="GraphId">Graph</label>
+                                <select name="GraphId" id="GraphIdDropDownlist" class="form-control"></select>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="m-form__actions m-form__actions--solid">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <button type="button" id="submit_DeviceSensorTemplate" class="btn btn-success"><i class="la la-save"></i> Submit</button>
+                                <button type="reset" href="#workflow" data-toggle="collapse" class="btn btn-secondary collapsible"><i class="la la-refresh "></i> Cancel</button>
+
+                            </div>
+                            <div class="col-lg-6 m--align-right">
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="m-portlet m-portlet--mobile  m-portlet--rounded" id="HideAndShowTank">
+                    <div class="m-portlet__body">
+                        <div class="m-portlet__head-title">
+                            <h3 class="m-portlet__head-text">
+                                Tank Level &nbsp;&nbsp;&nbsp;
+                            </h3>
+                        </div>
+                        <div class=" ">
+
+
+                            <div class="cup">
+                                <h1 style="padding: 50% 0;">40%</h1>
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Temprature Line Chart -->
+                <div class="m-portlet m-portlet--mobile  m-portlet--rounded" id="HideAndShowLineChart">
+                    <div class="m-portlet__body">
+                        <div class="m-portlet__head-title">
+                            <h3 class="m-portlet__head-text">
+                                Device Temprature &nbsp;&nbsp;&nbsp;
+                            </h3>
+                        </div>
+                        <div class="row ">
+
+                            <div class="col-9">
+                                <p class="text-center">
+                                </p>
+                                <div id="chartContainer" style="height: 120px;"></div>
+                            </div>
+                            <div class="col-3">
+                                <span id="temperatureValue" style="margin-top: 30%; margin-left: -60%; font-size:65px"></span>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Medical -->
+
+                <div class="row" id="HideAndShowLightOnOff">
+                    <div class="col-xl-12">
+                        <div class="m-portlet m-portlet--mobile  m-portlet--rounded">
+                            <div class="m-portlet__body">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="m-portlet__head-title">
+                                            <h3 class="m-portlet__head-text">
+                                                Device Light On/Off &nbsp;&nbsp;&nbsp;
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="col-xs-12" style="float:right">
+                                            <div class="btn-group" id="toggle_event_editing">
+                                                <button type="button" class="btn btn-info locked_active">OFF</button>
+                                                <button type="button" class="btn btn-default unlocked_inactive">ON</button>
+                                            </div>
+                                            <hr />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6" id="HideAndShowLightOnOff1">
+                                        <i class="la la-lightbulb-o text-center" id="BulbOnOffId" style="font-size: 200px;width:200px;color: hsla(50, 0%, 50%, 1);display:block;"></i>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <i class="fa fa-lightbulb-o text-center" id="BulbOnOffId" style="font-size: 400px;color: hsla(50, 0%, 50%, 1);display:block;"></i>
+                                    </div>
+
+                                </div>
+                                <div class="col-xs-12" id="sliderHideAndShowOnLight">
+                                    <hr />
+                                    <div class="col-xs-2"></div>
+                                    <div class="col-xs-8">
+                                        <div class="slidecontainer">
+                                            <input type="range" min="1" max="100" value="100" class="slider" id="myRange">
+                                            <p>Value: <span id="myRangeValue"></span></p>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-xs-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--End::Section-->
+                <!--Begin::Section-->
+
+                <div class="row" id="HideAndShowMap">
+
+                    <div class="col-xl-12">
+                        <div class="m-portlet m-portlet--mobile  m-portlet--rounded">
+
+                            <div class="m-portlet__body">
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">
+                                        MAP &nbsp;&nbsp;&nbsp;
+                                    </h3>
+                                </div>
+                                <div class="col-md-12">
+                                    <p class="text-center">
+                                    </p>
+
+                                    <div id="routing-response" style="float: right; padding-left: 20px;">
+
+                                    </div>
+                                    <div id="routing-error" style="float: right; padding-left: 20px;">
+                                    </div>
+
+                                    <div id="routing-map"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--End::Section-->
+                <!--Device Medical-->
+                <div class="row" id="HideAndShowMedical">
+                    <div class="col-6">
+                        <div class="m-portlet m-portlet--mobile  m-portlet--rounded">
+                            <div class="m-portlet__body">
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">
+                                        Heart Beat
+                                    </h3>
+                                </div>
+                                <span id="counterb" class="row"></span>
+                                <div class="row">
+
+                                    <div style="float:right;width:auto;">
+                                        <div class='container'>
+                                            <div class='card temp'>
+                                                <div class='inner'>
+                                                    <img src="~/Content/Images/img_491812.png" class="icons" />
+                                                    <div class='title'>
+                                                        <div class='text'>Heart Beat</div>
+                                                    </div>
+                                                    <span class='number' id="heartbeatvalue"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="m-portlet m-portlet--mobile  m-portlet--rounded">
+
+                            <div class="m-portlet__body">
+
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">
+                                        Fever
+                                    </h3>
+                                </div>
+                                <span id="counter" class="row"></span>
+                                <div class="row">
+                                    <div style="float:left;width:auto; margin-top: 50px;">
+                                        <div id="wrapper">
+                                            <div id="termometer">
+                                                <div id="temperature" style="height: 90%"></div>
+                                                <div id="graduations"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div style="float:right;width:45%;">
+                                        <div class='container'>
+                                            <div class='card temp'>
+                                                <div class='inner'>
+                                                    <div class='icon'></div>
+                                                    <div class='title'>
+                                                        <div class='text'>TEMPERATURE</div>
+                                                    </div>
+                                                    <span class='number' id="feverValue"></span>
+                                                    @*<div class='measure'>FAHRENHEIT</div>*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="m-portlet m-portlet--mobile  m-portlet--rounded">
+
+                    <div class="m-portlet__body">
+                        <div class="m-portlet__head-title">
+                            <h3 class="m-portlet__head-text">
+                                Summary &nbsp;&nbsp;&nbsp;
+                            </h3>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="Dinfo-box">
+                                <span class="Dinfo-box-icon bg-aqua"><img src="/Content/Images/devices_image.png" style="height:90%" /></span>
+                                <div class="Dinfo-box-content">
+
+                                    <br />
+                                    <div class="">
+                                        <div class="row">
+                                            <div class="col-6" style="text-align:center">
+                                                <span>Mac</span>
+                                            </div>
+                                            <div class="col-6" style="text-align:center">
+                                                <span>EMEI</span>
+
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row" style="margin-top:-5px">
+                                            <div class="col-6" style="text-align:center">
+                                                <span id="MacVal"></span>
+
+                                            </div>
+                                            <div class="col-6" style="text-align:center">
+                                                <span id="EmeiVal"></span>
+
+                                            </div>
+                                        </div>
+
+                                        @*info *@
+                                    </div>
+                                    <br />
+
+                                    <br />
+
+                                    <div class="">
+                                        <div class="row">
+                                            <div class="col-6" style="text-align:center">
+                                                <span>Latitude</span>
+                                            </div>
+                                            <div class="col-6" style="text-align:center">
+                                                <span>Logitude</span>
+
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="row" style="margin-top:-5px">
+                                            <div class="col-6" style="text-align:center">
+                                                <span id="LatVal"></span>
+
+                                            </div>
+                                            <div class="col-6" style="text-align:center">
+                                                <span id="LongVal"></span>
+
+                                            </div>
+                                        </div>
+
+                                        @*info *@
+                                    </div>
+                                    <input type="hidden" id="Did" />
+                                    <input type="hidden" id="macaddress" />
+
+
+                                </div><!-- /.info-box-content -->
+                            </div><!-- /.info-box -->
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <!-- End:Map Right Slider Modal -->
+    </div>
+</div>
+
+
+<!-- Account Right Side Bar -->
+<!-- Start:Map Right Slider Modal -->
+<div class="modal fade modal-MapRightSlider-fade" id="accountDetailRightSliderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog modal-MapRightSlider-dialog modal-MapRightSlider-slideout" role="document">
+        <div class="modal-content modal-content-MapRightSlider">
+            <div class="modal-header modal-header-MapRightSlider">
+
+                <h5 class=" modal-header-title" id="accountPanelTitle" style="font-size:30px;padding-top:5px;"></h5>
+
+                <button type="button" class="close modalMapRightSliderClose" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+
+
+            </div>
+            <div class="modal-body modal-body-MapRightSlider">
+
+
+                <!-- Temprature Line Chart -->
+                <div class="">
+
+
+                    <div class="">
+                        <div class="m-portlet m-portlet--tab" style="background-color:#F7FCFF">
+                            <div class="m-portlet__head">
+                                <div class="m-portlet__head-caption">
+                                    <div class="m-portlet__head-title">
+                                        <span class="m-portlet__head-icon m--hide">
+                                            <i class="la la-gear"></i>
+                                        </span>
+                                        <h3 class="m-portlet__head-text">
+                                            Costs
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-portlet__body">
+                                <div id="costchart" style="height: 200px; width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="">
+                        <div class="m-portlet m-portlet--tab" style="background-color:#F7FCFF">
+                            <div class="m-portlet__head">
+                                <div class="m-portlet__head-caption">
+                                    <div class="m-portlet__head-title">
+                                        <span class="m-portlet__head-icon m--hide">
+                                            <i class="la la-gear"></i>
+                                        </span>
+                                        <h3 class="m-portlet__head-text">
+                                            Sales
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-portlet__body">
+                                <div id="salesChartAcc" style="height: 200px; width: 100%;"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+                <div class="row">
+
+                    <div class="col-6">
+                        <div class="">
+                            <div class="m-portlet m-portlet--tab" style="background-color:#F7FCFF">
+                                <div class="m-portlet__head">
+                                    <div class="m-portlet__head-caption">
+                                        <div class="m-portlet__head-title">
+                                            <span class="m-portlet__head-icon m--hide">
+                                                <i class="la la-gear"></i>
+                                            </span>
+                                            <h3 class="m-portlet__head-text">
+                                                Customer Assets
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-portlet__body">
+                                    <div class="counter">
+                                        <i class="la la-money fa-2x"></i>
+                                        <h2 id="assetsCountData" class="timer count-title count-number" data-to="" data-speed="1500"></h2>
+                                        <p class="count-text ">Customer Assets</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="m-portlet m-portlet--tab" style="background-color:#F7FCFF">
+                                <div class="m-portlet__head">
+                                    <div class="m-portlet__head-caption">
+                                        <div class="m-portlet__head-title">
+                                            <span class="m-portlet__head-icon m--hide">
+                                                <i class="la la-gear"></i>
+                                            </span>
+                                            <h3 class="m-portlet__head-text">
+                                                Workflow Reports
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-portlet__body">
+                                    <div class="counter">
+                                        <i class="la la-bar-chart fa-2x"></i>
+                                        <h2 id="workflowCountData" class="timer count-title count-number" data-to="" data-speed="1500"></h2>
+                                        <p class="count-text ">Workflow Reports</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="">
+                            <div class="m-portlet m-portlet--tab" style="background-color:#F7FCFF">
+                                <div class="m-portlet__head">
+                                    <div class="m-portlet__head-caption">
+                                        <div class="m-portlet__head-title">
+                                            <span class="m-portlet__head-icon m--hide">
+                                                <i class="la la-gear"></i>
+                                            </span>
+                                            <h3 class="m-portlet__head-text">
+                                                Devices
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-portlet__body">
+                                    <div class="counter">
+                                        <i class="fa fa-microchip fa-2x"></i>
+                                        <h2 id="devicesCountData" class="timer count-title count-number" data-to="" data-speed="1500"></h2>
+                                        <p class="count-text ">Devices</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="">
+                            <div class="m-portlet m-portlet--tab" style="background-color:#F7FCFF">
+                                <div class="m-portlet__head">
+                                    <div class="m-portlet__head-caption">
+                                        <div class="m-portlet__head-title">
+                                            <span class="m-portlet__head-icon m--hide">
+                                                <i class="la la-gear"></i>
+                                            </span>
+                                            <h3 class="m-portlet__head-text">
+                                                Work Orders
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-portlet__body">
+                                    <div class="counter">
+                                        <i class="fa fa-tasks fa-2x"></i>
+                                        <h2 id="workorderCountData" class="timer count-title count-number" data-to="" data-speed="1500"></h2>
+                                        <p class="count-text ">Work Orders</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+        <!-- End:Map Right Slider Modal -->
+    </div>
+</div>
+
+
+
+<!--Mqtt Configuration Right Side Panel-->
+<div class="modal fade modal-MapRightSlider-fade" id="MqttConfigurations" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog modal-MapRightSlider-dialog modal-MapRightSlider-slideout" role="document">
+        <div class="modal-content modal-content-MapRightSlider">
+            <div class="modal-header modal-header-MapRightSlider">
+
+                <h5 class=" modal-header-title modal-header-custom-text">MQTT Configurations</h5>
+
+                <button type="button" class="close modalMapRightSliderClose" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+
+            </div>
+            <div class="modal-body modal-body-MapRightSlider">
+                <!--Topics-->
+
+                <div id="MessageScreen">
+                    <div class="m-portlet m-portlet--tab">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <span class="m-portlet__head-icon">
+                                        <i class="la la-gear ml-2"></i>
+                                    </span>
+                                    <h3 class="m-portlet__head-text">
+                                        Topics Registered
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-portlet__body" id="SubscribedTopicsList">
+                            <h5>No Topic Subscribed Yet</h5>
+                        </div>
+                    </div>
+                    <!--Messaging-->
+                    <div class="m-portlet m-portlet--tab">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <span class="m-portlet__head-icon">
+                                        <i class="fa fa-envelope-open ml-2"></i>
+                                    </span>
+                                    <h3 class="m-portlet__head-text">
+                                        Messages
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-portlet__body">
+                            <div class="m-widget2" id="receivedMessagesArea">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="PublishandSubscribeScreen">
+                    <div class="m-portlet m-portlet--tab">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <span class="m-portlet__head-icon">
+                                        <i class="fa fa-gear"></i>
+                                    </span>
+                                    <h1 class="m-portlet__head-text display-3" style="cursor:pointer;" onclick="toggleMqttScreens()">
+                                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-portlet__body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h2>
+                                        Publish
+                                    </h2><br />
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+
+                                        <input type="text" class="form-control m-input" id="PublishTopic" name="Topic" placeholder="Topic" required="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <input class="form-control m-input" id="PublishQos" name="Qos" type="number" placeholder="QoS level 0-2">
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-6">
+                                    <br />
+                                    <div class="input-group">
+                                        <input class="form-control m-input" id="PublishMessage" name="Message" type="text" placeholder="Message">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-9"></div>
+                                <div class="col-lg-2"><button class="btn btn-info" onclick="publishToMqtt()">Publish</button></div>
+                            </div>
+                        </div>
+                        <div class="m-portlet__body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h2>
+                                        Subscribe
+                                    </h2><br />
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+
+                                        <input type="text" class="form-control m-input" id="SubscribeTopic" name="Topic" placeholder="Topic" required="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <input class="form-control m-input" id="SubscribeQos" name="Qos" type="number" placeholder="QoS level 0-2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-9"></div>
+                                <div class="col-lg-2"><button class="btn btn-info" onclick="subscribetoMQTT()">Subscribe</button></div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!--Messaging-->
+                    <div class="m-portlet m-portlet--tab">
+                        <div class="m-portlet__foot" style="position: absolute; bottom: 0;">
+                            <button type="button" class="btn btn-info" onclick="toggleMqttScreens()" id="InteractButton">Interact</button>
+
+                            <button type="button" class="btn btn-outline-info" data-dismiss="modal" aria-label="Close">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End:Device Right Slider Modal -->
+    </div>
+</div>
+
+<script src="http://www.hivemq.com/demos/websocket-client/js/mqttws31.js" type="text/javascript"></script>
+
+
+@Scripts.Render("~/bundles/AdminScript")

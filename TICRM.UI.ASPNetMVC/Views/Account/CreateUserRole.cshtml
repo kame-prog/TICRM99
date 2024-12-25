@@ -1,0 +1,138 @@
+﻿@model TICRM.DTOs.UserRoleDto
+@{
+    ViewBag.Title = "CreateUserRole";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <h4 class="page-title">User Role</h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+            <div class="col-lg-12">
+
+
+                <div class="card">
+
+                    <div class="card-body">
+                        <!--Start form-->
+
+                        @using (Html.BeginForm("CreateUserRole", "Account", FormMethod.Post, new { id = "my-form" , @class = " m-form", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="row">
+                               
+                                <div class="col-lg-6">
+                                    <div class="mb-3 row">
+                                        <label for="example-text-input" class="col-sm-2 col-form-label text-end">First Name<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control m-input", @placeholder = "Enter First name", autocomplete = "off" } })
+                                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row">
+                                        <label for="example-text-input" class="col-sm-2 col-form-label text-end">Phone Number<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control m-input", @placeholder = "Enter Phone Number", autocomplete = "off" } })
+                                            @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-text-input" class="col-sm-2 col-form-label text-end">Password<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.PasswordFor(m => m.Password, new { @class = "form-control m-input m-login__form-input--last", placeholder = "Password" })
+                                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                
+                                    <div class="mb-3 row">
+                                        <label for="example-text-input" class="col-sm-2 col-form-label text-end">Confirm Password<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control m-input m-login__form-input--last", placeholder = "Confirm password" })
+                                            @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3 row">
+                                        <label for="example-text-input" class="col-sm-2 col-form-label text-end">Last Name<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control m-input", @placeholder = "Enter Last name", autocomplete = "off" } })
+                                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-text-input" class="col-sm-2 col-form-label text-end">Email<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control m-input", @placeholder = "example@gmail.com", autocomplete = "off" } })
+                                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                            <span class="mt-2 mb-2 text-danger">@ViewBag.ExistEmail</span>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-text-input" class="col-sm-2 col-form-label text-end">Roles<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(m => m.RoleName, new SelectList(ViewBag.RoleList, "Value", "Text"), "--Select--", new { @class = "form-control bg-light m-input m-login__form-input--last SearchableDropDown"})
+                                            @Html.ValidationMessageFor(m => m.RoleName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                </div>
+                                @Html.HiddenFor(m => m.Company, new { Value = @Session["UserCompany"] })
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <a href="/Account/UserRoleList" class="btn btn-primary ">
+                                        <i class="la la-arrow-left"></i>
+                                        <span>Back to List</span>
+                                    </a>
+                                    <button class="btn btn-primary" type="submit" style="float:right">Register <i class="fas fa-sign-in-alt ms-1"></i></button>
+                                </div>
+                            </div>
+                        }
+                        <!--end form-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        var error = '@ViewBag.EmailConfigmsg';
+        if (error.length != 0) {
+            var myForm = document.getElementById("my-form");
+            var formElements = myForm.elements;
+            for (var i = 0; i < formElements.length; i++) {
+                formElements[i].disabled = true;
+            }
+
+            swal.fire({
+                title: "Warning",
+                html: error + "<br />Click <a href='@Url.Action("EmailConfiguration", "EmailIntegration")'>here</a> for email configuration.",
+                icon: "warning",
+                button: "Ok",
+            });
+        }
+
+    })
+
+
+</script>
+
+

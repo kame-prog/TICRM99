@@ -1,0 +1,126 @@
+﻿
+@{
+    ViewBag.Title = "Cloud Configuration";
+}
+
+<!-- BEGIN: Subheader -->
+<div class="m-subheader ">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <h3 class="m-subheader__title m-subheader__title--separator">Cloud Configuration</h3>
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                <li class="m-nav__item m-nav__item--home">
+                    <a href="@Url.Action("Index","CloudConfiguration")" class="m-nav__link m-nav__link--icon">
+                        <i class="m-nav__link-icon la la-home"></i>
+                    </a>
+                </li>
+                <li class="m-nav__separator">-</li>
+                <li class="m-nav__item">
+                    <a href="@Url.Action("Index","CloudConfiguration")" class="m-nav__link">
+                        <span class="m-nav__link-text">Cloud Configuration</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!--Create Button-->
+        <div>
+
+        </div>
+    </div>
+</div>
+
+<!-- END: Subheader -->
+<div class="m-content">
+
+    <div class="m-portlet m-portlet--mobile">
+
+        <div class="m-portlet__body">
+
+            <div class="form-group m-form__group row">
+
+                <div class="col-lg-6 m--margin-top-10">
+
+                    <label class="control-label" for="UserName">UserName *</label>
+                    <input class="form-control m-input text-box single-line" data-val="true" data-val-required="The UserName field is required." id="UserName" maxlength="50" name="UserName" type="text" value="">
+                    <span class="field-validation-valid text-danger" data-valmsg-for="UserName" data-valmsg-replace="true"></span>
+
+                </div>
+
+                <div class="col-lg-6 m--margin-top-10">
+
+                    <label class="control-label" for="Password">Password *</label>
+                    <input class="form-control m-input text-box single-line" data-val="true" data-val-required="The Password field is required." id="Password" maxlength="50" name="Password" type="text" value="">
+                    <span class="field-validation-valid text-danger" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+
+                </div>
+
+
+
+                <div class="col-lg-6 m--margin-top-10">
+
+                    <label class="control-label" for="OrganizationId">Organization Id *</label>
+                    <input class="form-control m-input text-box single-line" data-val="true" data-val-required="The OrganizationId field is required." id="OrganizationId" maxlength="50" name="OrganizationId" type="text" value="">
+                    <span class="field-validation-valid text-danger" data-valmsg-for="OrganizationId" data-valmsg-replace="true"></span>
+
+                </div>
+
+                <div class="col-lg-6 m--margin-top-10">
+
+                    <label class="control-label" for="APIKey">API Key *</label>
+                    <input class="form-control m-input text-box single-line" data-val="true" data-val-required="The APIKey field is required." id="APIKey" maxlength="50" name="APIKey" type="text" value="">
+                    <span class="field-validation-valid text-danger" data-valmsg-for="APIKey" data-valmsg-replace="true"></span>
+
+                </div>
+
+                <div class="col-lg-6 m--margin-top-10">
+
+                    <label class="control-label" for="AuthToken">Auth Token *</label>
+                    <input class="form-control m-input text-box single-line" data-val="true" data-val-required="The AuthToken field is required." id="AuthToken" maxlength="50" name="AuthToken" type="text" value="">
+                    <span class="field-validation-valid text-danger" data-valmsg-for="AuthToken" data-valmsg-replace="true"></span>
+
+                </div>
+
+
+                <div class="col-lg-6 m--margin-top-10">
+
+                    <label class="control-label" for="DeviceType">DeviceType</label>
+                    <input class="form-control m-input text-box single-line" data-val="true" data-val-required="The DeviceType field is required." id="DeviceType" maxlength="50" name="DeviceType" type="text" value="">
+                    <span class="field-validation-valid text-danger" data-valmsg-for="DeviceType" data-valmsg-replace="true"></span>
+
+                </div>
+
+
+                <div class="col-lg-6 m--margin-top-10">
+
+                    <label class="control-label" for="DeviceId">DeviceId</label>
+                    <input class="form-control m-input text-box single-line" data-val="true" data-val-required="The DeviceId field is required." id="DeviceId" maxlength="50" name="DeviceId" type="text" value="">
+                    <span class="field-validation-valid text-danger" data-valmsg-for="DeviceId" data-valmsg-replace="true"></span>
+
+                </div>
+
+
+
+            </div>
+
+            <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                <div class="m-form__actions m-form__actions--solid">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <button type="button" id="savebtn" class="btn btn-success"><i class="la la-save"></i> Submit</button>
+                            <button type="reset" class="btn btn-secondary"><i class="la la-refresh"></i> Cancel</button>
+                        </div>
+                        <div class="col-lg-6 m--align-right">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- END EXAMPLE TABLE PORTLET-->
+</div>
+
+@Scripts.Render("~/bundles/CloudConfigurationScript")

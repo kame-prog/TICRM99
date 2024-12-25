@@ -1,0 +1,92 @@
+﻿@model TICRM.DTOs.OpportunityDto
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutTICRM.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Opportunity</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            Currency
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Currency.Name)
+        </dd>
+
+        <dt>
+            Assigned Team
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Team.Name)
+        </dd>
+
+        <dt>
+            Assigned User
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Name)
+        </dd>
+
+        <dt>
+            Opportunity Stage
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OpportunityStage.Name)
+        </dd>
+
+        <dt>
+            Pobability
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pobability.Name)
+        </dd>
+
+        <dt>
+            Status
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OpportunityId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+@Scripts.Render("~/bundles/OpportunitiesScript")

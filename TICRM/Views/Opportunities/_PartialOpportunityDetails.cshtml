@@ -1,0 +1,101 @@
+﻿@model TICRM.DTOs.OpportunityDto
+
+<div class="m-portlet m-portlet--tabs">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-tools">
+            <ul class="nav nav-tabs m-tabs-line m-tabs-line--success m-tabs-line--2x" role="tablist">
+                <li class="nav-item m-tabs__item">
+                    <a class="nav-link m-tabs__link active show" data-toggle="tab" href="#m_portlet_tab_Opportunities" role="tab" aria-selected="true">
+                        <i class="la la-user-md"></i> Opportunities
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="m-portlet__body ">
+
+        <div class="tab-content">
+            <div class="tab-pane active show" id="m_portlet_tab_Opportunities" role="tabpanel">
+
+                <div class="row container">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Amount)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Amount)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Title)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Description)
+                        </dd>
+                        <dt>
+                            Currency
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Currency.Name)
+                        </dd>
+                        <dt>
+                            Assigned Team
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Team.Name)
+                        </dd>
+                        <dt>
+                            Assigned User
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.User.Name)
+                        </dd>
+                        <dt>
+                            Opportunity Stage
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.OpportunityStage.Name)
+                        </dd>
+
+                        <dt>
+                            Pobability
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Pobability.Name)
+                        </dd>
+
+                        <dt>
+                            Status
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Status.Name)
+                        </dd>
+
+                    </dl>
+                </div>
+                <div class="clearfix">
+                    <hr />
+                </div>
+                <div class="box-header clearfix">
+                    <a href="@Url.Action("Edit", "Opportunities", new { id = Model.OpportunityId })" class="btn btn-sm btn-default btn-flat pull-right"><i class="fa fa-pencil-alt"></i></a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

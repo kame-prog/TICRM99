@@ -1,0 +1,211 @@
+﻿@model TICRM.DTOs.CaseDto
+
+<div class="modal-header modal-header-rightside">
+    <h5 class="modal-header-title" id="exampleModalLabel">@Html.DisplayFor(model => model.CaseTitle)</h5>
+    <button type="button" class="close modalrightsideClose" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">X</span>
+    </button>
+</div>
+<h3 id="caseId" style="display:none">@Model.CaseId </h3>
+
+<div class="modal-body">
+    <div class="details">
+        <table class="tb-horizontal">
+            <tr>
+                <th class="blockquote">@Html.DisplayNameFor(model => model.CaseTitle)</th>
+                <td class="blockquote">@Html.DisplayFor(model => model.CaseTitle)</td>
+            </tr>
+            <tr>
+                <th class="blockquote">@Html.DisplayNameFor(model => model.CaseTypeDto.Name)</th>
+                <td class="blockquote">@Html.DisplayFor(model => model.CaseTypeDto.Name)</td>
+            </tr>
+            <tr>
+                <th class="blockquote">Contact</th>
+                <td class="blockquote">@Html.DisplayFor(model => model.ContactDto.Name)</td>
+            </tr>
+            <tr>
+                <th class="blockquote">Team Name</th>
+                <td class="blockquote">@Html.DisplayFor(model => model.Team.Name)</td>
+            </tr>
+            <tr>
+                <th class="blockquote">User Name</th>
+                <td class="blockquote">@Html.DisplayFor(model => model.User.Name)</td>
+            </tr>
+            <tr>
+                <th class="blockquote">Status</th>
+                <td class="blockquote">@Html.DisplayFor(model => model.CaseStatusDto.Name)</td>
+            </tr>
+            <tr>
+                <th class="blockquote">  @Html.DisplayNameFor(model => model.Description)</th>
+                <td class="blockquote">@Html.DisplayFor(model => model.Description)</td>
+            </tr>
+        </table>
+
+        <div class="m-portlet">
+            <div href="#activities" class="m-portlet__head collapsible" data-toggle="collapse">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon"><i class="fa fa-bell"></i></span>
+                        <h3 class="m-portlet__head-text">
+                            Recent Activities
+                        </h3>
+                    </div>
+                </div>
+
+                <div class="m-portlet__head-tools">
+                    <ul class="m-portlet__nav">
+                        <li class="m-portlet__nav-item">
+                            <div class="m-dropdown focus ">
+                                @if (Model.CaseStatusDto.Name == "Active")
+                                {
+                                    <i class="fas fa-bars fa-lg swuich-icon" dropdown-toggle" id="dropdownMenuButton"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                }
+                                else if (Model.CaseStatusDto.Name == "Resolved")
+                                {
+                                    <i class="fas fa-bars fa-lg swuich-icon" dropdown-toggle" id="dropdownMenuButton"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="pointer-events:none; color:#adadad;"></i>
+                                }
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" onclick="CreateCaseActivity()">Create Activity</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="m-portlet__nav-item">
+                            <i class="la la-angle-down"></i>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div id="activities" class="m-portlet__body collapse" style="height: 350px;">
+
+                <div class="m-scrollable" data-scrollable="true" data-height="300" style="height: 300px; overflow: hidden;">
+                    <div class="m-list-timeline m-list-timeline--skin-light">
+                        <div class="m-list-timeline__items">
+                            @foreach (var item in Model.CasesActivities)
+                            {
+                                <div class="m-list-timeline__item">
+                                    <span class="m-list-timeline__badge m-list-timeline__badge--success"></span>
+                                    <span class="m-list-timeline__text">
+                                        <span class="m-link m-link--metal m-timeline-3__item-link">
+                                            @item.Type
+                                        </span><br />
+                                        @item.Description
+                                    </span>
+                                    <span class="m-list-timeline__time">@item.CreatedDate</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div href="#note" class="m-portlet__head collapsible mobile" data-toggle="collapse">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon"><i class="fa fa-sticky-note"></i></span>
+
+                        <h3 class="m-portlet__head-text">
+                            Add Notes
+                        </h3>
+                    </div>
+                </div>
+                <div class="m-portlet__head-tools">
+                    <ul class="m-portlet__nav">
+                        <li class="m-portlet__nav-item">
+                            <div class="m-dropdown focus ">
+                                @if (Model.CaseStatusDto.Name == "Active")
+                                {
+                                    <i class="fas fa-bars fa-lg swuich-icon" dropdown-toggle" id="dropdownMenuButton"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                                }
+                                else if (Model.CaseStatusDto.Name == "Resolved")
+                                {
+                                    <i class="fas fa-bars fa-lg swuich-icon" dropdown-toggle" id="dropdownMenuButton"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="pointer-events:none; color:#adadad;"></i>
+                                }
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" onclick="CreateCaseNote()">Create Note</a>
+                                </div>
+                            </div>
+
+                        </li>
+                        <li class="m-portlet__nav-item">
+                            <i class="la la-angle-down"></i>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div id="note" class="m-portlet__body collapse">
+                <div id="noteDetails" class="tab-content" data-scrollable="true" data-height="200" data-mobile-height="200">
+
+                    <div class="m-widget3">
+
+                        @foreach (var item in Model.CaseNotes)
+                        {
+                            <div class="m-widget3__item">
+                                <div class="m-widget3__header">
+
+                                    <div class="m-widget3__info" style="padding-left:unset !important;">
+                                        <span class="m-widget3__username">
+                                            <a>@item.CreatedBy</a> | @item.CreatedDate
+                                        </span><br>
+                                        <span class="m-widget3__time">
+
+                                        </span>
+                                    </div>
+
+                                </div>
+                                <div class="m-widget3__body">
+                                    <p class="m-widget3__text">
+                                        @item.Note1
+                                    </p>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+
+                </div>
+
+                <div id="createNote" style="display:none">
+                    <div class="row">
+                        <div class="col-12 col-lg-12 col-sm-12 col-md-12">
+                            <blockquote class="blockquote">
+                                <textarea class="form-control" id="noteContent" name="noteContent" placeholder="Enter a Note" rows="9" aria-describedby="memo-error" aria-invalid="false"></textarea>
+                            </blockquote>
+
+
+                        </div>
+                    </div>
+                    <div style="display:flex;float:right;">
+                        <button type="button" onclick="CreateNote()" class="btn btn-success "><i class="la la-save"></i> Submit</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="la la-refresh "></i> Cancel</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer modal-rightside-footer">
+    @using (Html.BeginForm("Delete/" + Model.CaseId, "Cases", FormMethod.Post, new { id = "DeleteForm" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <button type="button" id="deletebtn" onclick="Delete_Record()" class="btn btn-success"> Confirm</button>
+            <button type="button" onclick="$('#m_modal_Delete').modal('hide');" class="btn btn-secondary"><i class="la la-refresh"></i> Cancel</button>
+        </div>
+    }
+</div>
+

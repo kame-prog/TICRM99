@@ -1,0 +1,259 @@
+﻿@model IEnumerable<TICRM.DTOs.AccountDto>
+
+@{
+    ViewBag.Title = "Account";
+}
+
+<!-- BEGIN: Subheader -->
+<div class="m-subheader ">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <h3 class="">Accounts</h3>
+
+        </div>
+        <!--Create Button-->
+        <div>
+
+            <a href="@Url.Action("Create", "Accounts" )" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air">
+                <span>
+                    <i class="la la-plus"></i>
+                    <span>New Accounts</span>
+                </span>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<!-- END: Subheader -->
+<div class="m-content">
+
+    <div class="m-portlet m-portlet--mobile">
+
+        <div class="m-portlet__body">
+
+            <!--begin: Datatable -->
+            <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
+                <thead>
+                    <tr>
+                       @{ 
+                           IEnumerable<TICRM.Controllers.Counts> personlist = ViewBag.ass as
+               IEnumerable<TICRM.Controllers.Counts>;
+                       }
+                        
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+                        <th>
+                            Type
+                        </th>
+                        <th>
+                            Opportunities
+
+                        </th>
+                        <th>
+                            Locations
+                        </th>
+                        <th>
+                            Customer Assets
+                        </th>
+                        <th>
+                            Devices
+                        </th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        
+                    <tr id=@item.AccountId>
+                        @*@personlist.Where(a = > a.AccountId == item.AccountId)*@
+                      
+                        <td>
+                            <a href="/Accounts/AccountsDetail/@(item.AccountId.ToString())">@(item.Name)</a>
+                        </td>
+
+                        <td>
+                            @item.Email.ToString()
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AccountType.Name)
+                        </td>
+                        <td>
+                            @ViewData[item.AccountId.ToString() + "opp"]
+
+                            <!--Opportunity Count here-->
+                        </td>
+                        <td>
+                            <!--Location Count here-->
+                            @ViewData[item.AccountId.ToString() + "loc"]
+
+                        </td>
+                        <td>
+                            <!--Customer Assets Count here-->
+                            @ViewData[item.AccountId.ToString() + "ass"]
+
+                            @*@personlist.Where(a => a.AccountId == item.AccountId)*@
+
+                        </td>
+                        <td >
+                            @ViewData[item.AccountId.ToString() + "dev"]
+
+                            <!--Device Count here-->
+                        </td>
+                        <td>
+                            <a href="/Accounts/Edit/@item.AccountId.ToString()" title="Edit Account"><i class="fa fa-edit"></i></a> |
+                            <a href="/Accounts/AccountsDetail/@item.AccountId.ToString()" title="View Account"><i class="fa fa-eye"></i></a> |
+                            @*<a href="/Accounts/Delete/@item.AccountId.ToString()" title="Delete Account" class="arial"><i class="fa fa-trash"></i></a>*@
+                            <a href="#" onclick="LoadModalForDelete('@item.AccountId')" title="Delete Account" class="arial"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <h1>
+    </h1>
+
+    <!-- END EXAMPLE TABLE PORTLET-->
+</div>
+
+
+
+
+@section scripts{
+
+    <script>
+        
+        $(document).ready(function () {
+
+            $('#m_table_1').DataTable({
+                responsive: true,
+                scrollY: false,
+                scrollX: false,
+                scrollCollapse: true,
+                //== Pagination settings
+                dom: `<'row'<'col-sm-6 text-left'f><'col-sm-6 text-right'B>>
+                                                                        <'row'<'col-sm-12'tr>>
+                                                                        <'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
+
+                buttons: [
+                    'print',
+                    'pdfHtml5',
+                ],
+                columnDefs: [
+                    {
+                        targets: [0, 5],   //first name & last name
+                        orderable: false
+                    },
+                    {
+                        targets: 8,
+                        render: function (data, type, full, meta) {
+                            var status = {
+                                Active: { 'title': 'Active', 'class': ' m-badge--success' },
+                                Inactive: { 'title': 'InActive', 'class': ' m-badge--danger' },
+                            };
+                            if (typeof status[data] === 'undefined') {
+                                return data;
+                            }
+                            return '<span class="m-badge ' + status[data].class + ' m-badge--wide">' + status[data].title + '</span>';
+                        },
+                    }
+                ]
+            });
+
+
+        });
+
+
+
+        var LoadModalForDetails = function (id) {
+            // not remove this function because it use for open details of account form search click it use in easy auto complte funtion contact to development branch
+            // in master page use in EasyautoCompleteSearch
+
+            $('body').addClass('m-page--loading');
+
+            $.ajax({
+                type: "GET",
+                url: "/Accounts/AccountDetailsPartial",
+                data: { id: id },
+                contentType: "application/json; charset=utf-8",
+                dataType: "text",
+                success: function (response) {
+
+                    $("#m_modal_Details").children('.modal-dialog.modal-rightside-dialog.modal-RightSide-slideout').children('.modal-content').html('').html(response);
+                    $('#m_table_Assets').DataTable({
+                        columnDefs: [
+                            { "width": "10px", "targets": 0 },
+                            { "width": "40px", "targets": 1 },
+                            { "width": "100px", "targets": 2 },
+                            { "width": "70px", "targets": 3 },
+                            { "width": "70px", "targets": 4 },
+                            { "width": "70px", "targets": 5 },
+                            { "width": "70px", "targets": 6 },
+                            { "width": "70px", "targets": 7 },
+                            { "width": "70px", "targets": 8 }
+                        ]
+
+
+                    });
+                    $('#m_table_Location').DataTable({ scrollX: true });
+                    $('#m_table_Device').DataTable({ scrollX: true });
+                    $('#m_table_Opportunity').DataTable({ scrollX: true });
+                    $('#m_modal_Details').modal('show');
+
+                    $('body').removeClass('m-page--loading');
+                },
+                failure: function () {
+                    alert("Failed!");
+                    $('body').removeClass('m-page--loading');
+                }
+            });
+        }
+
+        var LoadModalForDelete = function (id) {
+            // not remove this function because it use for open details of account form search click it use in easy auto complte funtion contact to development branch
+            // in master page use in EasyautoCompleteSearch
+
+            $('body').addClass('m-page--loading');
+
+            $.ajax({
+                type: "GET",
+                url: "/Accounts/PartialDeleteOnId",
+                data: { id: id },
+                contentType: "application/json; charset=utf-8",
+                dataType: "text",
+                success: function (response) {
+                    debugger
+                    $("#m_modal_Delete").children('.modal-dialog').children('.modal-content').html('').html(response);
+
+                    $('#m_modal_Delete').modal('show');
+                    $('body').removeClass('m-page--loading');
+                },
+                failure: function () {
+                    debugger
+                    alert("Failed!");
+                    $('body').removeClass('m-page--loading');
+                }
+            });
+        }
+
+        
+    </script>
+
+}
+

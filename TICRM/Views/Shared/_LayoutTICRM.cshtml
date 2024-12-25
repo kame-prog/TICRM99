@@ -1,0 +1,964 @@
+﻿
+@using Microsoft.AspNet.Identity
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TECH IMPLEMENT CRM | Dashboard</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <!-- Bootstrap 3.3.2 -->
+
+
+    <link href="~/Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- Font Awesome Icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Ionicons -->
+    <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <!-- DATA TABLES -->
+    <link href="~/Content/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <!-- Morris chart -->
+    <link href="~/Content/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
+    <!-- jvectormap -->
+    <link href="~/Content/plugins/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+    <!-- Daterange picker -->
+    <link href="~/Content/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+    <!-- loading plugin -->
+    <link href="~/Content/JqueryLoading/loading.css" rel="stylesheet" />
+    <!-- Theme style -->
+    <link href="~/Content/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link href="~/Content/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="skin-blue">
+    <div class="wrapper">
+
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="https://techimplement.com/" class="logo"><b>Tech</b>Implement</a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" class="" id="SearchFieldId" style="width:500px;" placeholder="Start here..">
+                    </div>
+                    <button type="button" class="btn" onclick="ClearSearchSession()" id="ClearSearchId"><i class="fa fa-trash"></i></button>
+                    <input type="text" class="form-control col-md-1" disabled="disabled" id="inputTwo">
+
+                </form>
+                <div class="pull-left">
+                    <ul class="nav navbar-nav" id="searchNavigationList"></ul>
+                </div>
+                <!-- Navbar Right Menu -->
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+
+                        <!-- Messages: style can be found in dropdown.less-->
+                        <li class="dropdown messages-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="label label-success">4</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have 4 messages</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+                                        <li>
+                                            <!-- start message -->
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <img src="~/Content/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+                                                </div>
+                                                <h4>
+                                                    Support Team
+                                                    <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                                                </h4>
+                                                <p>Why not buy a new awesome theme?</p>
+                                            </a>
+                                        </li><!-- end message -->
+                                        <li>
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <img src="~/Content/dist/img/user3-128x128.jpg" class="img-circle" alt="user image" />
+                                                </div>
+                                                <h4>
+                                                    AdminLTE Design Team
+                                                    <small><i class="fa fa-clock-o"></i> 2 hours</small>
+                                                </h4>
+                                                <p>Why not buy a new awesome theme?</p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <img src="~/Content/dist/img/user4-128x128.jpg" class="img-circle" alt="user image" />
+                                                </div>
+                                                <h4>
+                                                    Developers
+                                                    <small><i class="fa fa-clock-o"></i> Today</small>
+                                                </h4>
+                                                <p>Why not buy a new awesome theme?</p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <img src="~/Content/dist/img/user3-128x128.jpg" class="img-circle" alt="user image" />
+                                                </div>
+                                                <h4>
+                                                    Sales Department
+                                                    <small><i class="fa fa-clock-o"></i> Yesterday</small>
+                                                </h4>
+                                                <p>Why not buy a new awesome theme?</p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <img src="~/Content/dist/img/user4-128x128.jpg" class="img-circle" alt="user image" />
+                                                </div>
+                                                <h4>
+                                                    Reviewers
+                                                    <small><i class="fa fa-clock-o"></i> 2 days</small>
+                                                </h4>
+                                                <p>Why not buy a new awesome theme?</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">See All Messages</a></li>
+                            </ul>
+                        </li>
+                        <!-- Notifications: style can be found in dropdown.less -->
+                        <li class="dropdown notifications-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-bell-o"></i>
+                                <span class="label label-warning">10</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have 10 notifications</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the page and may cause design problems
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-users text-red"></i> 5 new members joined
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-shopping-cart text-green"></i> 25 sales made
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-user text-red"></i> You changed your username
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">View all</a></li>
+                            </ul>
+                        </li>
+                        <!-- Tasks: style can be found in dropdown.less -->
+                        <li class="dropdown tasks-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-flag-o"></i>
+                                <span class="label label-danger">9</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have 9 tasks</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+                                        <li>
+                                            <!-- Task item -->
+                                            <a href="#">
+                                                <h3>
+                                                    Design some buttons
+                                                    <small class="pull-right">20%</small>
+                                                </h3>
+                                                <div class="progress xs">
+                                                    <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="sr-only">20% Complete</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li><!-- end task item -->
+                                        <li>
+                                            <!-- Task item -->
+                                            <a href="#">
+                                                <h3>
+                                                    Create a nice theme
+                                                    <small class="pull-right">40%</small>
+                                                </h3>
+                                                <div class="progress xs">
+                                                    <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="sr-only">40% Complete</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li><!-- end task item -->
+                                        <li>
+                                            <!-- Task item -->
+                                            <a href="#">
+                                                <h3>
+                                                    Some task I need to do
+                                                    <small class="pull-right">60%</small>
+                                                </h3>
+                                                <div class="progress xs">
+                                                    <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="sr-only">60% Complete</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li><!-- end task item -->
+                                        <li>
+                                            <!-- Task item -->
+                                            <a href="#">
+                                                <h3>
+                                                    Make beautiful transitions
+                                                    <small class="pull-right">80%</small>
+                                                </h3>
+                                                <div class="progress xs">
+                                                    <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                        <span class="sr-only">80% Complete</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li><!-- end task item -->
+                                    </ul>
+                                </li>
+                                <li class="footer">
+                                    <a href="#">View all tasks</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- User Account: style can be found in dropdown.less -->
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="~/Content/dist/img/user2-160x160.jpg" class="user-image" alt="User Image" />
+                                <span class="hidden-xs">Alexander Pierce</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header">
+                                    <img src="~/Content/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+                                    <p>
+                                        Alexander Pierce - Web Developer
+                                        <small>Member since Nov. 2012</small>
+                                    </p>
+                                </li>
+                                <!-- Menu Body -->
+                                <li class="user-body">
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Followers</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Sales</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Friends</a>
+                                    </div>
+                                </li>
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                    </div>
+                                    <div class="pull-right">
+
+                                        @*<a href="javascript:document.getElementById('logoutForm').submit()" class="btn btn-default btn-flat">Sign out</a>*@
+
+                                        @if (Request.IsAuthenticated)
+                                        {
+                                            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                            {
+                                                @Html.AntiForgeryToken()
+
+                                                <a href="javascript:document.getElementById('logoutForm').submit()" class="btn btn-default btn-flat">Sign out</a>
+                                            }
+                                        }
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="~/Content/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
+                    </div>
+                    <div class="pull-left info">
+                        <p>Alexander Pierce</p>
+                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    </div>
+                </div>
+                <!-- search form -->
+                <form action="#" method="get" class="sidebar-form">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search..." />
+                        <span class="input-group-btn">
+                            <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </form>
+                <!-- /.search form -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu">
+                    <li class="header">MAIN NAVIGATION</li>
+                    <li class="active treeview">
+                        <a href="#">
+                            <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("Index", "Home" )" class="elements"><i class="fa fa-circle-o"></i> Dashboard</a></li>
+                            @*
+                                <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>*@
+                        </ul>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-edit"></i>
+                            <span>Modules</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("Index", "Leads" )" class="elements"><i class="fa fa-circle-o"></i> Lead</a></li>
+
+                            <li>
+                                <a href="@Url.Action("Index", "Opportunities" )" class="elements"><i class="fa fa-circle-o"></i> Opportunity</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "Accounts" )" class="elements"><i class="fa fa-circle-o"></i> Customer</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "CustomerAssets" )" class="elements"><i class="fa fa-circle-o"></i> Customer Asset</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "Readings" )" class="elements"><i class="fa fa-circle-o"></i> Reading</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "ServiceCalls" )" class="elements"><i class="fa fa-circle-o"></i> Service Call</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "WorkFlows" )" class="elements"><i class="fa fa-circle-o"></i> Work Flows</a>
+                            </li>
+
+                            <li>
+                                <a href="@Url.Action("WorkFlowDesigner", "WorkFlows" )" class="elements"><i class="fa fa-circle-o"></i> Work Flows Designer</a>
+                            </li>
+
+                            <li>
+                                <a href="@Url.Action("Index", "WorkFlowReports" )" class="elements"><i class="fa fa-circle-o"></i> Work Flows Report</a>
+                            </li>
+
+                            <li>
+                                <a href="@Url.Action("Index", "WorkFlowMappings" )" class="elements"><i class="fa fa-circle-o"></i> Work Flows Mapping</a>
+                            </li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-circle-o"></i>Manage Resources <i class="fa fa-angle-left pull-right"></i></a>
+                                <ul class="treeview-menu">
+                                    <li>
+                                        <a href="@Url.Action("Index", "Resources" )" class="elements"><i class="fa fa-circle-o"></i> Resource</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Index", "ResourceSkills" )" class="elements"><i class="fa fa-circle-o"></i> Resource Skill</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Index", "ResourceAvailabilities" )" class="elements"><i class="fa fa-circle-o"></i> Resource Availability</a>
+                                    </li>
+
+
+                                    @*
+                <li>
+                    <a href="#"><i class="fa fa-circle-o"></i> Level Two <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                        <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+                    </ul>
+                </li>*@
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="@Url.Action("Index", "WorkOrders" )" class="elements"><i class="fa fa-circle-o"></i> Work Order</a>
+                            </li>
+
+
+
+                        </ul>
+                    </li>
+
+
+
+                    @if (Request.IsAuthenticated && User.IsInRole("Administrator"))
+                    {
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-share"></i> <span>Administrator</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a href="#"><i class="fa fa-circle-o"></i> System <i class="fa fa-angle-left pull-right"></i></a>
+                                    <ul class="treeview-menu">
+
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> Configuration</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> Users</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> Roles</a></li>
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> Permessions</a></li>
+
+                                    </ul>
+                                </li>
+
+
+                                <li>
+                                    <a href="#"><i class="fa fa-circle-o"></i> Meta Data <i class="fa fa-angle-left pull-right"></i></a>
+                                    <ul class="treeview-menu">
+
+                                        <li><a href="@Url.Action("Index", "ReadingTypes" )"><i class="fa fa-circle-o"></i> Reading Type</a></li>
+                                        <li><a href="@Url.Action("Index", "ReadingUnits" )"><i class="fa fa-circle-o"></i> Reading Unit</a></li>
+                                        <li><a href="@Url.Action("Index", "Addresses" )"><i class="fa fa-circle-o"></i> Address</a></li>
+                                        <li><a href="@Url.Action("Index", "Locations" )"><i class="fa fa-circle-o"></i> Location</a></li>
+                                        <li><a href="@Url.Action("Index", "Alerts" )"><i class="fa fa-circle-o"></i> Alert</a></li>
+                                        <li><a href="@Url.Action("Index", "EventLogs" )"><i class="fa fa-circle-o"></i> Event Logs</a></li>
+                                        <li><a href="@Url.Action("Index", "EventMonitors" )"><i class="fa fa-circle-o"></i> Event Monitors</a></li>
+                                        <li><a href="@Url.Action("Index", "EventNotifications" )"><i class="fa fa-circle-o"></i> Event Notifications</a></li>
+                                        @*
+        <li>
+            <a href="#"><i class="fa fa-circle-o"></i> Level Two <i class="fa fa-angle-left pull-right"></i></a>
+            <ul class="treeview-menu">
+                <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+            </ul>
+        </li>*@
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-th"></i> <span>Devices</span> <small class="label pull-right bg-green">new</small>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="@Url.Action("Index", "ControlPanel" )"><i class="fa fa-circle-o"></i> Control Panel</a></li>
+                                <li><a href="@Url.Action("Index", "Devices" )"><i class="fa fa-circle-o"></i> Manage Devices</a></li>
+                                <li><a href="@Url.Action("Create", "Devices" )"><i class="fa fa-circle-o"></i> Register Device</a></li>
+                            </ul>
+                        </li>
+
+
+                    }
+                    @if (Request.IsAuthenticated && (User.IsInRole("Administrator") || User.IsInRole("Manager")))
+                    {
+
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-files-o"></i>
+                                <span>Notifications</span>
+                                <span class="label label-primary pull-right">15</span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="" class="elements"><i class="fa fa-circle-o"></i> Item 1</a></li>
+                                <li><a href="" class="elements"><i class="fa fa-circle-o"></i> Item 2</a></li>
+                                <li><a href="" class="elements"><i class="fa fa-circle-o"></i> Item 3</a></li>
+                                @*
+                                    <li><a><i class="fa fa-circle-o"></i> Boxed</a></li>
+                                    <li><a><i class="fa fa-circle-o"></i> Fixed</a></li>
+                                    <li><a><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>*@
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-calendar"></i> <span>Calendar</span>
+                                <small class="label pull-right bg-red">3</small>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-envelope"></i> <span>Mailbox</span>
+                                <small class="label pull-right bg-yellow">12</small>
+                            </a>
+                        </li>
+
+                        <li><a href="#"><i class="fa fa-book"></i> Documentation</a></li>
+
+                        <li>
+                            <a href="@Url.Action("Index", "Calendar" )" class="elements"><i class="fa fa-circle-o"></i> Calendar</a>
+                        </li>
+                        <li class="header">LABELS</li>
+                        <li><a href="#"><i class="fa fa-circle-o text-danger"></i> Important</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o text-warning"></i> Warning</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o text-info"></i> Information</a></li>
+
+                    }
+
+
+
+                </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+        <!-- Right side column. Contains the navbar and content of the page -->
+
+        <div class="content-wrapper">
+            <!-- Main content -->
+            @RenderBody()
+
+
+        </div><!-- /.content-wrapper -->
+
+
+
+
+
+
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 2.0
+            </div>
+            <strong>Copyright &copy; 2018-2019 <a href="https://techimplement.com/">TechImplement</a>.</strong> All rights reserved.
+        </footer>
+
+
+    </div><!-- ./wrapper -->
+    <!-- jQuery 2.1.3 -->
+    <script src="~/Content/plugins/jQuery/jQuery-2.1.3.min.js"></script>
+    <!-- Bootstrap 3.3.2 JS -->
+    <script src="~/Content/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- DATA TABES SCRIPT -->
+    <script src="~/Content/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="~/Content/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+    <!-- FastClick -->
+    <script src='~/Content/plugins/fastclick/fastclick.min.js'></script>
+    <!-- AdminLTE App -->
+    <script src="~/Content/dist/js/app.min.js" type="text/javascript"></script>
+    <!-- Sparkline -->
+    <script src="~/Content/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
+    <!-- jvectormap -->
+    <script src="~/Content/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js" type="text/javascript"></script>
+    <script src="~/Content/plugins/jvectormap/jquery-jvectormap-world-mill-en.js" type="text/javascript"></script>
+    <!-- daterangepicker -->
+    <script src="~/Content/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+    <!-- datepicker -->
+    <script src="~/Content/plugins/datepicker/bootstrap-datepicker.js" type="text/javascript"></script>
+    <!-- iCheck -->
+    <script src="~/Content/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+    <!-- SlimScroll 1.3.0 -->
+    <script src="~/Content/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <!-- ChartJS 1.0.1 -->
+    <script src="~/Content/plugins/chartjs/Chart.min.js" type="text/javascript"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    @*<script src="~/Content/dist/js/pages/dashboard2.js" type="text/javascript"></script>*@
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/Content/dist/js/demo.js" type="text/javascript"></script>
+
+
+    <!-- loading plugin -->
+    <script src="~/Content/JqueryLoading/loading.js"></script>
+
+    <script src="~/Content/EasyAutocomplete-1.3.5/jquery.easy-autocomplete.js"></script>
+    <link href="~/Content/EasyAutocomplete-1.3.5/easy-autocomplete.min.css" rel="stylesheet" />
+    <link href="~/Content/EasyAutocomplete-1.3.5/easy-autocomplete.themes.min.css" rel="stylesheet" />
+
+
+
+    <script type="text/javascript">
+        $(function () {
+            $("#example1").dataTable();
+        });
+    </script>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+
+
+    <script src="http://www.hivemq.com/demos/websocket-client/js/mqttws31.js" type="text/javascript"></script>
+    <script>
+        var globalint = 0;
+        var globalArray = new Array();
+        var globalDevicesArray = new Array();
+
+        var globalSelectedDevice;
+
+    </script>
+
+    <script type="text/javascript">
+        //Using the HiveMQ public Broker, with a random client Id
+        var client = new Messaging.Client("broker.hivemq.com", 8000, "TechImplement_id_" + parseInt(Math.random() * 100, 10));
+
+        //Gets  called if the websocket/mqtt connection gets disconnected for any reason
+        client.onConnectionLost = function (responseObject) {
+            //Depending on your scenario you could implement a reconnect logic here
+            alert("connection lost: " + responseObject.errorMessage);
+        };
+
+        //Gets called whenever you receive a message for your subscriptions
+        client.onMessageArrived = function (message) {
+
+            var url = window.location.pathname;
+            var array = message.payloadString.split(',');
+            globalArray.push([array[0], array[1], array[2], array[3]]);
+
+
+            if (globalDevicesArray.indexOf(array[1]) > -1) {
+                console.log("is in array");
+            }
+            else {
+
+                console.log("is NOT in array");
+                globalDevicesArray.push(array[1]);
+
+                $('#deviceCountDashboard').text(globalDevicesArray.length);
+
+                if (url == "/Home/Index" || url == "/Home") {
+                    getListofDevices(array[1]);
+                    //conectedDeviceCount();
+                }
+                else if (url == "/Home" || url == "/Home/Index" || url == "/") {
+                    $('#connectedDeviceCount').html(globalDevicesArray.length);
+                    //UpdatePieChart();
+                }
+            }
+            var DeviceSelected = localStorage.getItem('selectedDevice');
+            if (DeviceSelected != null) {
+                globalSelectedDevice = DeviceSelected;
+            }
+            var d = new Date();
+            var Time = d.getHours() + '' + d.getMinutes() + d.getSeconds();
+
+            if (url == "/Home" || url == "/Home/Index" || url == "/") {
+                $('#messages').append('<span>Topic: ' + message.destinationName + '  | ' + array[0] + '</span><br/>');
+                updateMap(array[1], array[2], array[3]);
+            }
+            else if ((url == "/Devices/device" || url == "/devices/device") && (DeviceSelected == array[1] || globalSelectedDevice == array[1])) {
+                $('#messages').append('<span>Topic: ' + message.destinationName + '  | ' + array[0] + '</span><br/>');
+                updateChart(new Date(), Math.round(array[0]));
+            }
+            else if ((url == "/Devices/device" || url == "/devices/device") && (DeviceSelected == null || globalSelectedDevice == null)) {
+                window.location.href = "../Devices/Index";
+            }
+        };
+
+
+        $("#btnSendCommand").click(function () {
+
+            if ($("#btnSendCommand").text() == "Send Command") {
+                if ($("#txtValue").val().length > 0) {
+
+                    if (Number.isInteger(parseInt($("#txtValue").val()))) {
+
+                        publish($("#txtValue").val(), 'delay', 2);
+
+                        alert($("#commandDropDown").val() + ' - Command successfully send with value = ' + $("#txtValue").val());
+                    }
+                }
+                else {
+                    alert($("#commandDropDown").val() + ' - Command successfully send with value = ' + $("#txtValue").val());
+
+
+                }
+
+            }
+            else if ($("#btnSendCommand").text() == "Save Service Date") {
+                var date = $('#txtDate').val();
+                if (date == "" || date == "undefined") {
+
+                    alert("Please enter a device service date");
+
+                }
+                else {
+                    if (validateDate(date)) {
+                        var myDate = new Date(date);
+                        var today = new Date();
+
+                        if (myDate >= today) {
+                            $.ajax({
+                                url: "/Devices/UpdateDeviceSerivceDate",
+                                type: "get", //send it through get method
+                                data: {
+                                    mac: localStorage.getItem('selectedDevice'),
+                                    date: date
+
+                                },
+                                success: function (response) {
+                                    alert("Device service date updated successfully!");
+                                },
+                                error: function (xhr) {
+                                    //Do Something to handle error
+
+                                }
+                            });
+                        }
+                        else {
+
+                            alert("Device service date must be in future!");
+                        }
+
+                        // alert(localStorage.getItem('selectedDevice'));
+
+
+
+                    }
+                    else {
+                        alert("Please enter a valid device service date");
+                    }
+
+                }
+
+
+
+
+            }
+
+
+        });
+        function validateDate(testdate) {
+            var date_regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+            return date_regex.test(testdate);
+        }
+
+        var conectedDeviceCount = function () {
+
+        }
+
+        //Connect Options
+        var options = {
+            timeout: 3,
+            //Gets Called if the connection has sucessfully been established
+            onSuccess: function () {
+                //  alert("connected");
+                client.subscribe('TiTempSensor', { qos: 2 });
+            },
+            //Gets Called if the connection could not be established
+            onFailure: function (message) {
+                alert("Connection failed: " + message.errorMessage);
+            }
+        };
+
+        //Creates a new Messaging.Message Object and sends it to the HiveMQ MQTT Broker
+        var publish = function (payload, topic, qos) {
+            //Send your message (also possible to serialize it as JSON or protobuf or just use a string, no limitations)
+            var message = new Messaging.Message(payload);
+            message.destinationName = topic;
+            message.qos = qos;
+            client.send(message);
+        }
+
+
+        var MACSelectedForMap = function (mac) {
+            //  var data = event.target.value;
+            localStorage.setItem('selectedDevice', mac);
+            // alert(data);
+            window.location.href = "../Devices/device";
+        }
+        $(document).ready(function () {
+            client.connect(options);
+        });
+
+    </script>
+
+    <script>
+        var SearchData = [];
+        var FirstInSearch = [];
+        //var SearchData = [{ "Result": "<a href='/'>Dashboard</a>", "FirstURL": "/", "Text": "Dashboard", "Type": "URL" }, { "Result": "<a href='/Leads'>Leads</a>", "FirstURL": "/Leads", "Text": "Leads", "Type": "URL" }, { "Result": "<a href='/Opportunities'>Opportunities</a>", "FirstURL": "/Opportunities", "Text": "Opportunities", "Type": "URL" }, { "Result": "<a href='/Accounts'>Accounts</a>", "FirstURL": "/Accounts", "Text": "Accounts", "Type": "URL" }, { "Result": "<a href='/CustomerAssets'>CustomerAssets</a>", "FirstURL": "/CustomerAssets", "Text": "CustomerAssets", "Type": "URL" }, { "Result": "<a href='/ServiceCalls'>ServiceCalls</a>", "FirstURL": "/ServiceCalls", "Text": "ServiceCalls", "Type": "URL" }, { "Result": "<a href='/Readings'>Readings</a>", "FirstURL": "/Readings", "Text": "Readings", "Type": "URL" }, { "Result": "<a href='/Resources'>Resources</a>", "FirstURL": "/Resources", "Text": "Resources", "Type": "URL" }, { "Result": "<a href='/ResourceSkills'>ResourceSkills</a>", "FirstURL": "/ResourceSkills", "Text": "ResourceSkills", "Type": "URL" }, { "Result": "<a href='/ResourceAvailabilities'>ResourceAvailabilities</a>", "FirstURL": "/ResourceAvailabilities", "Text": "ResourceAvailabilities", "Type": "URL" }, { "Result": "<a href='/WorkOrders'>WorkOrders</a>", "FirstURL": "/WorkOrders", "Text": "WorkOrders", "Type": "URL" }, { "Result": "<a href='/ReadingTypes'>ReadingTypes</a>", "FirstURL": "/ReadingTypes", "Text": "ReadingTypes", "Type": "URL" }, { "Result": "<a href='/ReadingUnits'>ReadingUnits</a>", "FirstURL": "/ReadingUnits", "Text": "ReadingUnits", "Type": "URL" }, { "Result": "<a href='/Addresses'>Addresses</a>", "FirstURL": "/Addresses", "Text": "Addresses", "Type": "URL" }, { "Result": "<a href='/Locations'>Locations</a>", "FirstURL": "/Locations", "Text": "Locations", "Type": "URL" }, { "Result": "<a href='/Alerts'>Alerts</a>", "FirstURL": "/Alerts", "Text": "Alerts", "Type": "URL" }, { "Result": "<a href='/ControlPanel'>ControlPanel</a>", "FirstURL": "/ControlPanel", "Text": "ControlPanel", "Type": "URL" }, { "Result": "<a href='/Devices'>Devices</a>", "FirstURL": "/Devices", "Text": "Devices", "Type": "URL" }, { "Result": "<a href='/Devices/Create'>Create Devices</a>", "FirstURL": "/Devices/Create", "Text": "Create Devices", "Type": "URL" }];
+        //var FirstInSearch = [{ "Result": "<a href='/'>Dashboard</a>", "FirstURL": "/", "Text": "Dashboard", "Type": "URL" }, { "Result": "<a href='/Leads'>Leads</a>", "FirstURL": "/Leads", "Text": "Leads", "Type": "URL" }, { "Result": "<a href='/Opportunities'>Opportunities</a>", "FirstURL": "/Opportunities", "Text": "Opportunities", "Type": "URL" }, { "Result": "<a href='/Accounts'>Accounts</a>", "FirstURL": "/Accounts", "Text": "Accounts", "Type": "URL" }, { "Result": "<a href='/CustomerAssets'>CustomerAssets</a>", "FirstURL": "/CustomerAssets", "Text": "CustomerAssets", "Type": "URL" }, { "Result": "<a href='/ServiceCalls'>ServiceCalls</a>", "FirstURL": "/ServiceCalls", "Text": "ServiceCalls", "Type": "URL" }, { "Result": "<a href='/Readings'>Readings</a>", "FirstURL": "/Readings", "Text": "Readings", "Type": "URL" }, { "Result": "<a href='/Resources'>Resources</a>", "FirstURL": "/Resources", "Text": "Resources", "Type": "URL" }, { "Result": "<a href='/ResourceSkills'>ResourceSkills</a>", "FirstURL": "/ResourceSkills", "Text": "ResourceSkills", "Type": "URL" }, { "Result": "<a href='/ResourceAvailabilities'>ResourceAvailabilities</a>", "FirstURL": "/ResourceAvailabilities", "Text": "ResourceAvailabilities", "Type": "URL" }, { "Result": "<a href='/WorkOrders'>WorkOrders</a>", "FirstURL": "/WorkOrders", "Text": "WorkOrders", "Type": "URL" }, { "Result": "<a href='/ReadingTypes'>ReadingTypes</a>", "FirstURL": "/ReadingTypes", "Text": "ReadingTypes", "Type": "URL" }, { "Result": "<a href='/ReadingUnits'>ReadingUnits</a>", "FirstURL": "/ReadingUnits", "Text": "ReadingUnits", "Type": "URL" }, { "Result": "<a href='/Addresses'>Addresses</a>", "FirstURL": "/Addresses", "Text": "Addresses", "Type": "URL" }, { "Result": "<a href='/Locations'>Locations</a>", "FirstURL": "/Locations", "Text": "Locations", "Type": "URL" }, { "Result": "<a href='/Alerts'>Alerts</a>", "FirstURL": "/Alerts", "Text": "Alerts", "Type": "URL" }, { "Result": "<a href='/ControlPanel'>ControlPanel</a>", "FirstURL": "/ControlPanel", "Text": "ControlPanel", "Type": "URL" }, { "Result": "<a href='/Devices'>Devices</a>", "FirstURL": "/Devices", "Text": "Devices", "Type": "URL" }, { "Result": "<a href='/Devices/Create'>Create Devices</a>", "FirstURL": "/Devices/Create", "Text": "Create Devices", "Type": "URL" }];
+
+        $(document).ready(function () {
+            LoadEACSearchList();
+        });
+
+        // save MACAddress in Session
+        function SaveMacAddress(value) {
+
+            var obj = { MacAddress: value }
+
+            $.ajax({
+                type: "POST",
+                url: "/GlobalSearch/SaveMac",
+                data: obj,
+                dataType: "text",
+                async: false,
+                success: function (response) {
+                    console.log(response);
+                },
+                failure: function () {
+                    alert("Failed!");
+                }
+            });
+        }
+
+        // its loading a list in object for search
+        function LoadEACSearchList() {
+            $.ajax({
+                type: "POST",
+                url: "/GlobalSearch/GetEACSearchList",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function (response) {
+                    console.log(response.length);
+
+                    SearchData = new Array();
+                    FirstInSearch = new Array();
+
+                    var FirstInSearchData = response.FirstInSearch;
+                    console.log(FirstInSearchData);
+                    for (var i = 0; i < FirstInSearchData.length; i++) {
+                        FirstInSearch.push(FirstInSearchData[i]);
+                    }
+
+                    if (response.SearchDataList.length == 0) {
+                        SearchData = FirstInSearch;
+
+                    }
+                    else {
+                        var SearchDataList = response.SearchDataList;
+                        for (var i = 0; i < SearchDataList.length; i++) {
+                            SearchData.push(SearchDataList[i]);
+                        }
+                    }
+
+                    EasyautoCompleteSearch();
+                },
+                failure: function () {
+                    alert("Failed!");
+                }
+            });
+        }
+
+        // load Global Search
+        function EasyautoCompleteSearch() {
+            var Searchoptions = {
+                data: SearchData,
+                getValue: "Text",
+
+                list: {
+                    match: {
+                        enabled: true
+                    },
+                    onClickEvent: function () { console.log("onClickEvent") },
+                    onSelectItemEvent: function () {
+                        console.log("onSelectItemEvent");
+                        console.log($("#SearchFieldId").getSelectedItemData().value);
+                        var selectedItemValue = $("#SearchFieldId").getSelectedItemData().value;
+                        $("#inputTwo").val(selectedItemValue).trigger("change");
+                    },
+                    onLoadEvent: function () { console.log("onLoadEvent"); },
+                    onChooseEvent: function () {
+
+                        console.log("onChooseEvent")
+                        var selectedItemType = $("#SearchFieldId").getSelectedItemData().Type;
+                        //searchUrlList.push($("#SearchFieldId").getSelectedItemData().Text);
+
+                        if (selectedItemType == "URL") {
+                            window.location.href = $("#SearchFieldId").getSelectedItemData().FirstURL;
+                        }
+
+                        if (selectedItemType == "MACAddress") {
+                            localStorage.setItem('selectedDevice', $("#SearchFieldId").getSelectedItemData().Result);
+                            var mac = $("#SearchFieldId").getSelectedItemData().Result;
+                            SaveMacAddress(mac);
+                            window.location.href = $("#SearchFieldId").getSelectedItemData().FirstURL;
+                        }
+
+
+
+                    },
+                    onKeyEnterEvent: function () { console.log("onKeyEnterEvent") },
+                    onMouseOverEvent: function () { console.log("onMouseOverEvent") },
+                    onMouseOutEvent: function () { console.log("onMouseOutEvent") },
+                    onHideListEvent: function () { console.log("onHideListEvent") }
+                }
+            };
+            $("#SearchFieldId").easyAutocomplete(Searchoptions);
+        }
+
+        // its is used for Clear a session
+        function ClearSearchSession() {
+            $.ajax({
+                type: "POST",
+                url: "/GlobalSearch/ClearGlobalSearchSession",
+                dataType: "text",
+                async: false,
+                success: function (response) {
+                    console.log(response);
+                    SearchDataAssign();
+                },
+                failure: function () {
+                    alert("Failed!");
+                }
+            });
+        }
+
+        // it loaded again First in search Data
+        function SearchDataAssign() {
+            SearchData = FirstInSearch;
+            EasyautoCompleteSearch();
+        }
+
+        // this function is not in used
+        function ClickOnNavigationLilsk(value) {
+
+            var url = window.location.pathname;
+            if ($.inArray(url, SearchData) !== -1) {
+                alert();
+            }
+            var isexist = false;
+
+            for (var i = 0; i < SearchData.length; i++) {
+                var data = SearchData[i].Text;
+                if (data == value) {
+                    isexist = true;
+                    break;
+                }
+            }
+            alert(isexist);
+
+
+
+        }
+
+
+
+    </script>
+
+</body>
+</html>

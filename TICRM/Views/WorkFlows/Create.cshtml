@@ -1,0 +1,229 @@
+﻿@model TICRM.DTOs.WorkFlowDTO
+
+@{
+    ViewBag.Title = "Create WorkFlows";
+}
+
+<!-- BEGIN: Subheader -->
+<div class="m-subheader ">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <h3 class="m-subheader__title m-subheader__title--separator">WorkFlows</h3>
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                <li class="m-nav__item m-nav__item--home">
+                    <a href="@Url.Action("Index","Dashboard")" class="m-nav__link m-nav__link--icon">
+                        <i class="m-nav__link-icon la la-home"></i>
+                    </a>
+                </li>
+                <li class="m-nav__separator">-</li>
+                <li class="m-nav__item">
+                    <a href="@Url.Action("Index","WorkFlows")" class="m-nav__link">
+                        <span class="m-nav__link-text">WorkFlows</span>
+                    </a>
+                </li>
+                <li class="m-nav__separator">-</li>
+                <li class="m-nav__item">
+                    <a href="@Url.Action("Create","WorkFlows")" class="m-nav__link">
+                        <span class="m-nav__link-text">@ViewBag.Title</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+<!-- END: Subheader -->
+<div class="m-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <!--begin::Portlet-->
+            <div class="m-portlet">
+
+                <!--begin::Form-->
+
+                @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "WorkFlowsCreateForm", @class = "m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="m-portlet__body">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group m-form__group row">
+
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control m-input" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.TriggerCondition, "TriggerCondition", htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.TriggerCondition, Model.TriggerConditionDropdown, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.TriggerCondition, "", new { @class = "text-danger" })
+                            </div>
+
+
+                        </div>
+
+                        <div class="form-group m-form__group row">
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.TriggerIn, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.TriggerIn, new { htmlAttributes = new { @class = "form-control m-input" } })
+                                @Html.ValidationMessageFor(model => model.TriggerIn, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.TriggerOut, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.TriggerOut, new { htmlAttributes = new { @class = "form-control m-input" } })
+                                @Html.ValidationMessageFor(model => model.TriggerOut, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group m-form__group row split">
+                            <div class="col-lg-6 split-fields">
+                                @Html.LabelFor(model => model.TargetOn, "TargetOn", htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.TargetOn, Model.TargetOnDropdown, "-- Select --", htmlAttributes: new { @class = "form-control", @id="TargetOn" })
+                                @Html.ValidationMessageFor(model => model.TargetOn, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-lg-6 split-fields">
+                                @Html.LabelFor(model => model.AppliedTo, "AppliedTo", htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.AppliedTo, Model.AppliedToDropdown, "-- Select --", htmlAttributes: new { @class = "form-control", @id = "AppliedTo" })
+                                @Html.ValidationMessageFor(model => model.AppliedTo, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-lg-6 split-fields" style="display:none">
+                                @Html.LabelFor(model => model.AppliedTo, "AppliedTo", htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.AppliedTo, Model.AppliedToDropdown, "-- Select --", htmlAttributes: new { @class = "form-control", @id = "AppliedTo" })
+                                @Html.ValidationMessageFor(model => model.AppliedTo, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-lg-4 split-fields" style="display:none" id="AppliedToIdRow">
+                                <label class="control-label">Related To</label>
+                                @Html.DropDownListFor(model => model.RelatedToId, Model.RelatedToIdDropdown, "-- Select --", htmlAttributes: new { @class = "form-control", @id = "RelatedToID" })
+                            </div>
+                        </div>
+
+                        <div class="form-group m-form__group row">
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.Frequency, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Frequency, new { htmlAttributes = new { @class = "form-control m-input" } })
+                                @Html.ValidationMessageFor(model => model.Frequency, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.Priority, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Priority, new { htmlAttributes = new { @class = "form-control m-input" } })
+                                @Html.ValidationMessageFor(model => model.Priority, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group m-form__group row">
+
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })
+                                <div class="m-input-icon m-input-icon--right">
+                                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control m-input" } })
+                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.Action, "Action", htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.Action, Model.ActionDropdown, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Action, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+
+                        <div class="form-group m-form__group row">
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.AssignedUser, "Assigned User", htmlAttributes: new { @class = "control-label" })
+                                <div class="m-input-icon m-input-icon--right">
+                                    @Html.DropDownListFor(model => model.AssignedUser, Model.AssignedUserDropdown, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.AssignedUser, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                @Html.LabelFor(model => model.AssignedTeam, "Assigned Team", htmlAttributes: new { @class = "control-label" })
+                                <div class="m-input-icon m-input-icon--right">
+                                    @Html.DropDownListFor(model => model.AssignedTeam, Model.AssignedTeamDropdown, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.AssignedTeam, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                        <div class="m-form__actions m-form__actions--solid">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <button type="button" id="savebtn" class="btn btn-success"><i class="la la-save"></i> Submit</button>
+                                    <button type="reset" class="btn btn-secondary"><i class="la la-refresh"></i> Cancel</button>
+                                </div>
+                                <div class="col-lg-6 m--align-right">
+                                    <a href="/WorkFlows/Index" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
+                                        <span>
+                                            <i class="la la-arrow-left"></i>
+                                            <span>Back to List</span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="loc" name="loc" />
+                }
+                <!--end::Form-->
+            </div>
+            <!--end::Portlet-->
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/WorkFlowsScript")
+
+<script>
+    console.log("Olamba");     
+
+    $('#AppliedTo').on('change', function () {
+        console.log("Olamba");
+        debugger;
+        var x = $("#AppliedTo").val();
+        if (x == "OnUpdate") {
+            console.log("Olamba");     
+            $(".split .col-lg-6").removeClass("col-lg-6");
+            $(".split .split-fields").addClass("col-lg-4");
+            $("#AppliedToIdRow").css("display", "block");
+            var targetOn = $("#TargetOn").val();
+            var obj = { TargetOn: targetOn };
+
+            $.ajax({
+                type: "GET",
+                url: "/WorkFlows/GetRelatedToValue",
+                data: obj,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    $('#RelatedToID').html('');
+                    var options = '';
+                    options += '<option value="Select">Select</option>';
+                    for (var i = 0; i < response.length; i++) {
+
+
+                        if (response[i].Selected == true) {
+                            options += '<option selected="selected" value="' + response[i].Value + '">' + response[i].Text + '</option>';
+                        }
+                        else {
+                            options += '<option value="' + response[i].Value + '">' + response[i].Text + '</option>';
+                        }
+
+                    }
+                    $('#RelatedToID').append(options);
+                },
+                failure: function () {
+                    alert("Failed!");
+                }
+            });
+
+        }
+       
+
+    });
+</script>

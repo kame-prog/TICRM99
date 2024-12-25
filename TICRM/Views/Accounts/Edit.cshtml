@@ -1,0 +1,370 @@
+﻿@model TICRM.DTOs.AccountDto
+
+@{
+    ViewBag.Title = "Edit Account";
+
+}
+        <!-- BEGIN: Subheader -->
+        <div class="m-subheader ">
+            <div class="d-flex align-items-center">
+                <div class="mr-auto">
+                    <h3 class="m-subheader__title m-subheader__title--separator">Account</h3>
+                    <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                        <li class="m-nav__item m-nav__item--home">
+                            <a href="@Url.Action("Index","Home")" class="m-nav__link m-nav__link--icon">
+                                <i class="m-nav__link-icon la la-home"></i>
+                            </a>
+                        </li>
+                        <li class="m-nav__separator">-</li>
+                        <li class="m-nav__item">
+                            <a href="@Url.Action("Index","Accounts")" class="m-nav__link">
+                                <span class="m-nav__link-text">Account</span>
+                            </a>
+                        </li>
+                        <li class="m-nav__separator">-</li>
+                        <li class="m-nav__item">
+                            <a href="@Url.Action("Index","Accounts")" class="m-nav__link">
+                                <span class="m-nav__link-text">@ViewBag.Title</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!--Create Button-->
+                <div>
+                    <a href="@Url.Action("Create", "Accounts" )" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air">
+                        <span>
+                            <i class="la la-plus"></i>
+                            <span>New Accounts</span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- END: Subheader -->
+        <div class="m-content">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!--begin::Portlet-->
+                    <div class="m-portlet">
+
+
+                       
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "AccountsEditForm", @class = "m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" }))
+                        {
+                            @Html.AntiForgeryToken()
+                        <div class="m-portlet__body">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.AccountId)
+
+                            <div class="m-form__content">
+                                <div class="m-alert m-alert--icon alert alert-danger m--hide" role="alert" id="m_form_1_msg">
+                                    <div class="m-alert__icon">
+                                        <i class="la la-warning"></i>
+                                    </div>
+                                    <div class="m-alert__text">
+                                        Oh snap! Change a few things up and try submitting again.
+                                    </div>
+                                    <div class="m-alert__close">
+                                        <button type="button" class="close" data-close="alert" aria-label="Close"></button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group m-form__group row">
+                                <div class="col-lg-6">
+                                    @Html.LabelFor(model => model.Name, "Name *", htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control m-input", maxlength = "50" } })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-lg-6">
+                                    @Html.LabelFor(model => model.AccountTypeId, "Account Type *", htmlAttributes: new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.AccountTypeId, Model.AccountTypeDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input SearchDropDown" })
+                                    @Html.ValidationMessageFor(model => model.AccountTypeId, "", new { @class = "text-danger" })
+                                </div>
+
+
+                            </div>
+
+                            <div class="form-group m-form__group row">
+                                <div class="col-lg-6">
+
+
+                                    @Html.LabelFor(model => model.ShippingAddress, "Shipping Address *", htmlAttributes: new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.ShippingAddress, Model.AddressDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input" })
+                                    @Html.ValidationMessageFor(model => model.ShippingAddress, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-lg-6">
+                                    @Html.LabelFor(model => model.BillingAddress, "Billing Address *", htmlAttributes: new { @class = "control-label" })
+                                    @Html.DropDownListFor(model => model.BillingAddress, Model.AddressDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input" })
+                                    @Html.ValidationMessageFor(model => model.BillingAddress, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group m-form__group row">
+                                <div class="col-lg-6">
+
+
+                                    @Html.LabelFor(model => model.Latitude, "Latitude", htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Latitude, new { htmlAttributes = new { @class = "form-control m-input", maxlength = "50" } })
+
+                                    @Html.ValidationMessageFor(model => model.Latitude, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-lg-6">
+                                    @Html.LabelFor(model => model.Longitude, "Longitude", htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Longitude, new { htmlAttributes = new { @class = "form-control m-input", maxlength = "50" } })
+
+                                    @Html.ValidationMessageFor(model => model.Longitude, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group m-form__group row">
+                                <div class="col-lg-6">
+                                    @Html.LabelFor(model => model.PhoneOffice, "PhoneOffice *", htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.PhoneOffice, new { htmlAttributes = new { @class = "form-control m-input", maxlength = "11" } })
+                                    @Html.ValidationMessageFor(model => model.PhoneOffice, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-lg-6">
+                                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control m-input" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group m-form__group row">
+                                <div class="col-lg-6">
+                                    @Html.LabelFor(model => model.Fax, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Fax, new { htmlAttributes = new { @class = "form-control m-input" } })
+                                    @Html.ValidationMessageFor(model => model.Fax, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-lg-6">
+
+                                    @Html.LabelFor(model => model.WebSite, htmlAttributes: new { @class = "control-label" })
+                                    <div class="m-input-icon m-input-icon--right">
+                                        @Html.EditorFor(model => model.WebSite, new { htmlAttributes = new { @class = "form-control m-input" } })
+                                        @Html.ValidationMessageFor(model => model.WebSite, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group m-form__group row">
+                                <div class="col-lg-6">
+                                    @Html.LabelFor(model => model.AccountSizeId, "Account Size *", htmlAttributes: new { @class = "control-label" })
+                                    <div class="m-input-icon m-input-icon--right">
+                                        @Html.DropDownListFor(model => model.AccountSizeId, Model.AccountSizeDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input" })
+                                        @Html.ValidationMessageFor(model => model.AccountSizeId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    @Html.LabelFor(model => model.IndustryId, "Industry *", htmlAttributes: new { @class = "control-label" })
+                                    <div class="m-input-icon m-input-icon--right">
+                                        @Html.DropDownListFor(model => model.IndustryId, Model.IndustryDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input" })
+                                        @Html.ValidationMessageFor(model => model.IndustryId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group m-form__group row">
+                                <div class="col-lg-6">
+                                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label" })
+                                    <div class="m-input-icon m-input-icon--right">
+                                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control m-input" } })
+                                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    @Html.LabelFor(model => model.StatusId, "Status", htmlAttributes: new { @class = "control-label" })
+                                    <div class="m-input-icon m-input-icon--right">
+                                        @Html.DropDownListFor(model => model.StatusId, Model.StatusDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input" })
+                                        @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group m-form__group row">
+                                <div class="col-lg-6">
+                                    @Html.LabelFor(model => model.AssignedUser, "Assigned User", htmlAttributes: new { @class = "control-label" })
+                                    <div class="m-input-icon m-input-icon--right">
+                                        @Html.DropDownListFor(model => model.AssignedUser, Model.AssignedUserDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input" })
+                                        @Html.ValidationMessageFor(model => model.AssignedUser, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    @Html.LabelFor(model => model.AssignedTeam, "Assigned Team", htmlAttributes: new { @class = "control-label" })
+                                    <div class="m-input-icon m-input-icon--right">
+                                        @Html.DropDownListFor(model => model.AssignedTeam, Model.AssignedTeamDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input" })
+                                        @Html.ValidationMessageFor(model => model.AssignedTeam, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="form-group m-form__group row">
+
+                                <div class="col-lg-6 m-form__group-sub">
+                                    <label class="form-control-label">* IsEventSchedule:</label>
+                                    <span>&nbsp;&nbsp;</span>
+                                    <label class="m-checkbox m-checkbox--solid m-checkbox--brand">
+                                        @Html.CheckBox("IsEventSchedule", true)
+                                        <span></span>
+                                    </label>
+                                </div>
+
+                                <div class="col-lg-6 m-form__group-sub">
+
+                                </div>
+
+                            </div>
+
+
+
+
+                        </div>
+                            <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                                <div class="m-form__actions m-form__actions--solid">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <button type="submit" id="savebtn" class="btn btn-success"><i class="la la-save"></i> Submit</button>
+                                            
+                                        </div>
+                                        <div class="col-lg-6 m--align-right">
+                                            <a href="/Accounts/Index" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
+                                                <span>
+                                                    <i class="la la-arrow-left"></i>
+                                                    <span>Back to List</span>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                        }
+                        <!--end::Form-->
+                    </div>
+                    <!--end::Portlet-->
+                </div>
+            </div>
+        </div>
+  
+
+@section scripts{
+
+    <script>
+
+        $('#savebtn').on('click', function () {
+            mApp.blockPage({
+                overlayColor: "#000000",
+                type: "loader",
+                state: "primary",
+                message: "Processing..."
+            })
+            $('#AccountsEditForm').submit();
+        });
+
+        $('#PhoneOffice').maxlength({
+            warningClass: "m-badge m-badge--warning m-badge--rounded m-badge--wide",
+            limitReachedClass: "m-badge m-badge--success m-badge--rounded m-badge--wide"
+        });
+
+        $('#Name').maxlength({
+            threshold: 10,
+            warningClass: "m-badge m-badge--danger m-badge--rounded m-badge--wide",
+            limitReachedClass: "m-badge m-badge--success m-badge--rounded m-badge--wide",
+            separator: ' of ',
+            preText: 'You have ',
+            postText: ' chars remaining.',
+            validate: true
+        });
+
+        var LoadModalForDetails = function (id) {
+           
+            $('body').addClass('m-page--loading');
+
+            $.ajax({
+                type: "GET",
+                url: "/Accounts/AccountDetailsPartial",
+                data: { id: id },
+                contentType: "application/json; charset=utf-8",
+                dataType: "text",
+                success: function (response) {
+
+                    $('.modal-content').html('').html(response);
+                    $('#m_table_Assets').DataTable({
+                        responsive: true,
+                        scrollY: false,
+                        scrollX: true,
+                        scrollCollapse: false,
+                        columnDefs: [
+                            { "width": "10px", "targets": 0 },
+                            { "width": "40px", "targets": 1 },
+                            { "width": "100px", "targets": 2 },
+                            { "width": "70px", "targets": 3 },
+                            { "width": "70px", "targets": 4 },
+                            { "width": "70px", "targets": 5 },
+                            { "width": "70px", "targets": 6 },
+                            { "width": "70px", "targets": 7 },
+                            { "width": "70px", "targets": 8 }
+                        ]
+                    });
+
+                    $('#m_table_Location').DataTable({
+                        responsive: false,
+                        scrollY: false,
+                        scrollX: true,
+                        scrollCollapse: false
+                    });
+                    $('#m_table_Device').DataTable({
+                        responsive: true,
+                        scrollY: false,
+                        scrollX: true,
+                        scrollCollapse: true,
+                        columnDefs: [
+                            { "width": "20px", "targets": 0 },
+                            { "width": "40px", "targets": 1 },
+                            { "width": "100px", "targets": 2 },
+                            { "width": "70px", "targets": 3 },
+                            { "width": "70px", "targets": 4 },
+                            { "width": "70px", "targets": 5 },
+                            { "width": "70px", "targets": 6 },
+                            { "width": "70px", "targets": 7 },
+                            { "width": "70px", "targets": 8 },
+                            { "width": "70px", "targets": 9 }
+                        ]
+                    });
+                    $('#m_table_Opportunity').DataTable({
+                        responsive: false,
+                        scrollY: false,
+                        scrollX: true,
+                        scrollCollapse: true
+                    });
+                    $('#m_modal_Details').modal('show');
+
+                    $('body').removeClass('m-page--loading');
+                },
+                failure: function () {
+                    alert("Failed!");
+                    $('body').removeClass('m-page--loading');
+                }
+            });
+        }
+
+    </script>
+}
+
+
+
+
+
+
+

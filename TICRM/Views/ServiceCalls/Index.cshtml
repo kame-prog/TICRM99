@@ -1,0 +1,83 @@
+﻿@model IEnumerable<TICRM.DTOs.ServiceCallDto>
+
+@{
+    ViewBag.Title = "Service Calls";
+}
+        <!-- BEGIN: Subheader -->
+<div class="m-subheader ">
+     <div class="d-flex align-items-center">
+         <div class="mr-auto">
+             <h3 class="m-subheader__title m-subheader__title--separator">Service Calls</h3>
+             <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                 <li class="m-nav__item m-nav__item--home">
+                     <a href="@Url.Action("Index","Dashboard")" class="m-nav__link m-nav__link--icon">
+                         <i class="m-nav__link-icon la la-home"></i>
+                     </a>
+                 </li>
+                 <li class="m-nav__separator">-</li>
+                 <li class="m-nav__item">
+                     <a href="@Url.Action("Index","ServiceCalls")" class="m-nav__link">
+                         <span class="m-nav__link-text">Service Calls</span>
+                     </a>
+                 </li>
+             </ul>
+         </div>
+         <!--Create Button-->
+         <div>
+             <a href="@Url.Action("Create", "ServiceCalls" )" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air">
+                 <span>
+                     <i class="la la-plus"></i>
+                     <span>New Service Calls</span>
+                 </span>
+             </a>
+         </div>
+     </div>
+</div>
+
+<!-- END: Subheader -->
+<div class="m-content">
+            <div class="m-portlet m-portlet--mobile">
+               
+                <div class="m-portlet__body">
+
+                    <!--begin: Datatable -->
+                    <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Title)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Detail)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Description)
+                                </th>
+                                <th>
+                                    Status
+                                </th>
+                                <th>
+                                    Assigned Team
+                                </th>
+                                <th>
+                                    Urgency
+                                </th>
+                                <th>
+                                    Assigned User
+                                </th>
+                                <th>
+                                    Work Stage
+                                </th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <!--Table body is populated in the page script section-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- END EXAMPLE TABLE PORTLET-->
+        </div>
+
+@Scripts.Render("~/bundles/ServiceCallsScript")

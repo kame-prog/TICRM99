@@ -1,0 +1,39 @@
+﻿@model TICRM.DTOs.ReadingUnitDto
+
+<div class="modal-header modal-header-rightside">
+    <h5 class="modal-header-title" id="exampleModalLabel">READING UNITS DELETE</h5>
+    <button type="button" class="close modalrightsideClose" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">X</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="tab-content">
+        <div class="tab-pane active show" id="m_portlet_tab_ReadingUnits" role="tabpanel">
+            <div class="row container">
+                <table class="tb-horizontal">
+                    <tr>
+                        <th class="blockquote">Name</th>
+                        <td class="blockquote">@Html.DisplayFor(model => model.Name)</td>
+                    </tr>
+                    <tr>
+                        <th class="blockquote"> Reading Type</th>
+                        <td class="blockquote">@Html.DisplayFor(model => model.ReadingType.Name)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer modal-rightside-footer">
+
+    @using (Html.BeginForm("Delete/" + Model.ReadingUnitId, "ReadingUnits", FormMethod.Post, new { id = "DeleteForm" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <button type="button" id="deletebtn" onclick="Delete_Record()" class="btn btn-success"> Confirm</button>
+            <button type="button" onclick="$('#m_modal_Delete').modal('hide');" class="btn btn-secondary"><i class="la la-refresh"></i> Cancel</button>
+        </div>
+    }
+
+</div>

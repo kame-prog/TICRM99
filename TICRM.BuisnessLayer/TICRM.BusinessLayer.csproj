@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5AFDC5BF-30F8-4ADA-9815-2593093115EB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TICRM.BuisnessLayer</RootNamespace>
+    <AssemblyName>TICRM.BuisnessLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MQTTnet, Version=4.1.0.247, Culture=neutral, PublicKeyToken=fdb7629f2e364a63, processorArchitecture=MSIL">
+      <HintPath>..\packages\MQTTnet.4.1.0.247\lib\net461\MQTTnet.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountManager.cs" />
+    <Compile Include="ActivityManager.cs" />
+    <Compile Include="ActivityTemplateManager.cs" />
+    <Compile Include="AddressManager.cs" />
+    <Compile Include="AdminManager.cs" />
+    <Compile Include="AlertManager.cs" />
+    <Compile Include="Base\BaseManager.cs" />
+    <Compile Include="Base\Extension.cs" />
+    <Compile Include="CalendarManager.cs" />
+    <Compile Include="CaseManager.cs" />
+    <Compile Include="CategoryManager.cs" />
+    <Compile Include="ContactManager.cs" />
+    <Compile Include="CostsManager.cs" />
+    <Compile Include="CosumptionManager.cs" />
+    <Compile Include="CustomerAssetManager.cs" />
+    <Compile Include="DeviceActivityManager.cs" />
+    <Compile Include="DeviceManager.cs" />
+    <Compile Include="DeviceOrderManager.cs" />
+    <Compile Include="DeviceSensorGraphManager.cs" />
+    <Compile Include="DisconnectionManager.cs" />
+    <Compile Include="DiscountManager.cs" />
+    <Compile Include="EmailConfigurationManager.cs" />
+    <Compile Include="EmailTemplateManager.cs" />
+    <Compile Include="EventLogManager.cs" />
+    <Compile Include="EventMonitorManager.cs" />
+    <Compile Include="EventNotificationManager.cs" />
+    <Compile Include="FirmwareManager.cs" />
+    <Compile Include="GlobalSearchManager.cs" />
+    <Compile Include="GraphManager.cs" />
+    <Compile Include="LeadManager.cs" />
+    <Compile Include="LocationManager.cs" />
+    <Compile Include="LoggerManager.cs" />
+    <Compile Include="MqttManager.cs" />
+    <Compile Include="NotesManager.cs" />
+    <Compile Include="OpportunityManager.cs" />
+    <Compile Include="ProductCatelogManager.cs" />
+    <Compile Include="ProductPriceListManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadingManager.cs" />
+    <Compile Include="ReadingTypeManager.cs" />
+    <Compile Include="ReadingUnitManager.cs" />
+    <Compile Include="ResourceManager.cs" />
+    <Compile Include="ServiceCallManager.cs" />
+    <Compile Include="UserAccountManager.cs" />
+    <Compile Include="UserComponents.cs" />
+    <Compile Include="UserManager.cs" />
+    <Compile Include="WorkFlowActivityManager.cs" />
+    <Compile Include="WorkFlowManager.cs" />
+    <Compile Include="WorkFlowMappingManager.cs" />
+    <Compile Include="WorkflowNodeManager.cs" />
+    <Compile Include="WorkFlowReportManager.cs" />
+    <Compile Include="WorkOrderManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TICRM.Cloud.Adapter\TICRM.Cloud.Adapter.csproj">
+      <Project>{d18e137b-ef69-445b-9af9-5a1d3717aa93}</Project>
+      <Name>TICRM.Cloud.Adapter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TICRM.DAL\TICRM.DAL.csproj">
+      <Project>{EDFDB70E-CF84-4050-BDC9-DDA25FB6C31D}</Project>
+      <Name>TICRM.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TICRM.DTOs\TICRM.DTOs.csproj">
+      <Project>{E366D704-4BEF-4833-8D46-0484303F6185}</Project>
+      <Name>TICRM.DTOs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TICRM.Mapper\TICRM.Mapper.csproj">
+      <Project>{29C171A8-6FB5-462B-B104-6D9A1B913EAF}</Project>
+      <Name>TICRM.Mapper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

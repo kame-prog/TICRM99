@@ -1,0 +1,129 @@
+﻿
+@model TICRM.DTOs.AccountViewModel
+
+@using (Ajax.BeginForm("WFCreate", "Accounts", new AjaxOptions()
+{
+    OnSuccess = "WFfuncSuccess",
+    OnFailure = "WFfuncFail",
+    HttpMethod = "POST",
+    LoadingElementId = "WFprogress"
+},
+    new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row">
+        <div class="alert alert-success" role="alert" id="WorkflowMsg" style="display:none;">
+        </div>
+    </div>
+    <div class="row">
+        <div class="alert alert-danger" role="alert" id="WorkflowError" style="display:none;">
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-md-6">
+            <label class="form-label mt-2 mt-md-0">Name<span class="text-danger">  *</span></label>
+            @Html.EditorFor(model => model.workFlow.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter WorkFlow Name" } })
+            @Html.ValidationMessageFor(model => model.workFlow.Name, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="form-label mt-2 mt-md-0">Sensor<span class="text-danger">  *</span></label>
+                @Html.DropDownListFor(model => model.workFlow.TargetOn, Model.workFlow.SensorsDropDown, "-- Select --", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.workFlow.TargetOn, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-md-6">
+            <div class=" row">
+                <div class="col-sm-6">
+                    <label class="form-label mt-2 mt-md-0">Min Threshold<span class="text-danger">  *</span></label>
+                    <br />
+                    @Html.EditorFor(model => model.workFlow.MinThreshold, new { htmlAttributes = new { @class = "form-control m-input", @placeholder = "<=" } })
+                    @Html.ValidationMessageFor(model => model.workFlow.MinThreshold, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-6">
+                    <label class="form-label mt-2 mt-md-0">Max Threshold<span class="text-danger">  *</span></label>
+                    <br />
+                    @Html.EditorFor(model => model.workFlow.Threshold, new { htmlAttributes = new { @class = "form-control m-input", @placeholder = "=>" } })
+                    @Html.ValidationMessageFor(model => model.workFlow.Threshold, "", new { @class = "text-danger" })
+                    <span id="WFThresholdErr" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label mt-2 mt-md-0">Priority <span class="text-danger">  *</span></label>
+            @Html.DropDownListFor(model => model.workFlow.Priority, Model.workFlow.PriorityDropDown, "-- Select --", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.workFlow.Priority, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-md-6">
+            <label class="form-label mt-2 mt-md-0">Description <span class="text-danger">  *</span></label>
+            @Html.EditorFor(model => model.workFlow.Description, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Description" } })
+            @Html.ValidationMessageFor(model => model.workFlow.Description, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-6">
+            <label class="form-label mt-2 mt-md-0">Action  <span class="text-danger">  *</span></label>
+            @Html.DropDownListFor(model => model.workFlow.Action, Model.workFlow.ActionDropdown, "-- Select --", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.workFlow.Action, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group" style="display:none;">
+
+                @Html.HiddenFor(model => model.workFlow.DeviceName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.workFlow.AccountId, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-primary btn-sm mt-2" onclick=" $('#WorkFlowModal form')[0].reset();" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-sm btn-primary btn-sm mt-2">Save</button>
+    </div>
+}
+<!--  Modal for loader -->
+<div id="WFprogress" class="modal">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content" style="background: none;">
+            <div class="modal-body col-12 d-flex justify-content-center text-center">
+                <div class="position-absolute align-items-center  justify-content-center">
+                    <div class="spinner-border thumb-md text-primary " role="status"></div>
+                </div>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<script>
+    function WFfuncSuccess(data) {
+
+        if (data) {
+            /* $('#FirmwareErrMsg').hide();*/
+            $('#WorkflowMsg').show();
+            $("#WorkflowMsg").text("Workflow saved successfully.");
+            /*  $(this).find("input,textarea,select").val('').end();*/
+            $('#WorkFlowModal form')[0].reset();
+            setTimeout(function () {
+                $('#WorkflowMsg').hide();
+                $('#WFThresholdErr').hide();
+                $('#WorkFlowModal').modal('hide');
+
+            }, 3000);
+        } else {
+            $('#WorkflowMsg').hide();
+            $('#WFThresholdErr').show();
+            $("#WFThresholdErr").text("Max Threshold must be greater then Min Threshold.");
+        }
+
+    }
+    function WFfuncFail(err) {
+        $('#WorkflowError').show();
+        $("#WorkflowError").text("Please refresh the page.");
+    };
+</script>

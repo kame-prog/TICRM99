@@ -1,0 +1,73 @@
+﻿@model IEnumerable<TICRM.DTOs.EventNotificationDTO>
+
+@{
+    ViewBag.Title = "Event Notifications";
+}
+<!-- BEGIN: Subheader -->
+<div class="m-subheader ">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <h3 class="m-subheader__title m-subheader__title--separator">Event Notifications</h3>
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                <li class="m-nav__item m-nav__item--home">
+                    <a href="@Url.Action("Index","Dashboard")" class="m-nav__link m-nav__link--icon">
+                        <i class="m-nav__link-icon la la-home"></i>
+                    </a>
+                </li>
+                <li class="m-nav__separator">-</li>
+                <li class="m-nav__item">
+                    <a href="@Url.Action("Index","EventNotifications")" class="m-nav__link">
+                        <span class="m-nav__link-text">Event Notifications</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+<!-- END: Subheader -->
+<div class="m-content">
+
+    <div class="m-portlet m-portlet--mobile">
+        
+        <div class="m-portlet__body">
+
+            <!--begin: Datatable -->
+            <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
+                <thead>
+                    <tr>
+                        <th>
+                            Function Name
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Message)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Color)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IPAddress)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CreatedDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CreatedBy)
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- END EXAMPLE TABLE PORTLET-->
+</div>
+
+@section scripts{
+    <script type="text/javascript" src="~/TIScripts/ModulesScripts/EventNotifications.js"></script>
+}

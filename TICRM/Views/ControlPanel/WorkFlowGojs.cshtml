@@ -1,0 +1,98 @@
+﻿
+@{
+                /**/
+
+                /**/
+
+                ViewBag.Title = "WorkFlowGojs";
+                Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Draggable Link</title>
+    <meta name="description" content="Drag a link to reconnect it. Nodes have custom Adornments for selection, resizing, and reshaping." />
+    <!-- Copyright 1998-2018 by Northwoods Software Corporation. -->
+    <meta charset="UTF-8">
+
+
+    <script src="~/Content/DATA/GoJS-master/release/go.js"></script>
+    <script>
+
+        function init() {
+            var $ = go.GraphObject.make;
+            myDiagram = $(go.Diagram, "myDiagramDiv");
+            var nodeDataArray = [
+                { key: "Alpha", color: "lime" },
+                { key: "Beta", color: "cyan" },
+                { key: "Zeta", isGroup: true },
+                { key: "Delta", color: "pink", group: "Zeta" },
+                {key:"Gamma",color:"maroon",group:"Zeta"}
+            ];
+            var linkDataArray = [
+                { to: "Beta", from: "Alpha", color: "red" }
+                , {from:"Alpha",to:"Zeta"}
+            ];
+
+            myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
+
+            myDiagram.nodeTemplate =
+                $(go.Node, "Auto",
+                $(go.Shape, "RoundedRectangle", { fill: "white" }
+                        , new go.Binding("fill", "color")
+                    ),
+                    $(go.TextBlock, "text", { margin: 10 }, new go.Binding("text", "key"))
+                );
+
+            myDiagram.linkTemplate = $(go.Link, 
+            $(go.Shape,
+            { strokeWidth: 3 }, new go.Binding("stroke", "color")),
+                $(go.Shape, { toArrow: "Standard", stroke: null }
+                    , new go.Binding("fill", "color")
+                )
+
+            );
+
+
+
+        }
+    </script>
+    <!-- The DIV for a Diagram needs an explicit size or else we will not see anything.
+         In this case we also add a background color so we can see that area. -->
+</head>
+
+
+
+<body onload="init()">
+
+
+                <div id="myDiagramDiv" style="width:500px;height:500px;background-color: #DAE4E4;"></div>
+
+
+
+
+
+</body>
+    
+
+
+
+
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

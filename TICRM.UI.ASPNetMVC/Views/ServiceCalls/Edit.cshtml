@@ -1,0 +1,117 @@
+﻿@model TICRM.DTOs.ServiceCallDto
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <h4 class="page-title">Edit Service Calls</h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        @using (Html.BeginForm("Edit", "ServiceCalls", FormMethod.Post, new { id = "ServiceCallsEditForm", @class = "m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.ServiceCallId)
+
+                            <div class="row">
+
+                                <div class="col-lg-6">
+                                    <div class="mb-3 row">
+                                        <label for="example-text-input" class="col-sm-2 col-form-label text-end">Title<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Service Title" } })
+                                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-text-input" class="col-sm-2 col-form-label text-end">Urgency<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(model => model.UrgencyId, Model.UrgencyDropdown, "-- Select --", htmlAttributes: new { @class = "form-control SearchableDropDown" })
+                                            @Html.ValidationMessageFor(model => model.UrgencyId, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-text-input" class="col-sm-2 col-form-label text-end">Assigned User<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(model => model.AssignedUser, Model.AssignedUserDropdown, "-- Select --", htmlAttributes: new { @class = "form-control SearchableDropDown" })
+                                            @Html.ValidationMessageFor(model => model.AssignedUser, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-text-input" class="col-sm-2 col-form-label text-end">Description<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control m-input", @placeholder = "Enter Description" } })
+                                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="mb-3 row">
+                                        <label for="example-url-input" class="col-sm-2 col-form-label text-end">Detail</label>
+                                        <div class="col-sm-10">
+                                            @Html.EditorFor(model => model.Detail, new { htmlAttributes = new { @class = "form-control m-input", @placeholder = "Enter additional detail" } })
+                                            @Html.ValidationMessageFor(model => model.Detail, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-url-input" class="col-sm-2 col-form-label text-end">Service Call Stage<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(model => model.ServiceCallStageId, Model.ServiceCallStageDropdown, "-- Select --", htmlAttributes: new { @class = "form-control SearchableDropDown" })
+                                            @Html.ValidationMessageFor(model => model.ServiceCallStageId, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-url-input" class="col-sm-2 col-form-label text-end">Assigned Team<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(model => model.AssignedTeam, Model.AssignedTeamDropdown, "-- Select --", htmlAttributes: new { @class = "form-control SearchableDropDown" })
+                                            @Html.ValidationMessageFor(model => model.AssignedTeam, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-url-input" class="col-sm-2 col-form-label text-end">Status<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(model => model.StatusId, Model.StatusDropdown, "-- Select --", htmlAttributes: new { @class = "form-control SearchableDropDown" })
+                                            @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <a href="/ServiceCalls/Index" class="btn btn-primary ">
+                                        <i class="la la-arrow-left"></i>
+                                        <span>Back to List</span>
+                                    </a>
+                                    <button type="submit" id="savebtn" class="btn btn-primary float-end"><i class="la la-save"></i> Update</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <!--end card-body-->
+        </div>
+    </div>
+</div>
+
+
+
+

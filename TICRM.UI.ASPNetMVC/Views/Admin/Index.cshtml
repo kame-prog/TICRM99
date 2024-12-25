@@ -1,0 +1,222 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdminDashboard.cshtml";
+}
+
+<div class="page-wrapper">
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <span class="page-title">Administration</span>
+                    </div>
+                    <div class="">
+                        <div class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <span class="page-title">Which feature would you like to work with?</span>
+                                </div><!--end col-->
+                            </div>  <!--end row-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-lg-6">
+                    <div class="card-body">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col">
+                                <div class="media">
+
+                                    <span class="thumb-md justify-content-center d-flex align-items-center bg-primary rounded-circle me-2">
+                                        <i class="ti ti-user text-white"></i>
+                                    </span>
+
+                                    <div class="media-body align-self-center ms-2">
+                                        <a href="/Admin/Allaccounts">
+                                            <p class="font-14 font-weight-semibold mb-0">All Accounts</p>
+                                        </a>
+                                        <p class="mb-0 font-12 text-muted">Here you can see all companies accounts.</p>
+                                    </div>
+                                </div><!--end media-->
+                            </div><!--end col-->
+                        </div><!--end row-->
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card-body">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col">
+                                <div class="media">
+
+                                    <span class="thumb-md justify-content-center d-flex align-items-center bg-info rounded-circle me-2">
+                                        <i class="ti ti-router menu-icon text-white"></i>
+                                    </span>
+
+                                    <div class="media-body align-self-center ms-2">
+                                        <a href="/Admin/AllDevices">
+                                            <p class="font-14 font-weight-semibold mb-0">All Devices</p>
+                                        </a>
+                                        <p class="mb-0 font-12 text-muted">Here you can see all companies devices.</p>
+                                    </div>
+                                </div><!--end media-->
+                            </div><!--end col-->
+                        </div><!--end row-->
+                    </div>
+                </div>
+            </div>
+           
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card-body">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col">
+                                <div class="media">
+
+                                    <span class="thumb-md justify-content-center d-flex align-items-center bg-pink rounded-circle me-2">
+                                        <i class="fas fa-arrow-up text-white"></i>
+                                    </span>
+
+                                    <div class="media-body align-self-center ms-2">
+                                        <a href="https://secure.2checkout.com/cpanel/reports.php" target="_blank">
+                                            <p class="font-14 font-weight-semibold mb-0">Order Device</p>
+                                        </a>
+                                        <p class="mb-0 font-12 text-muted">Here you can see the orders of devices.</p>
+                                    </div>
+                                </div><!--end media-->
+                            </div><!--end col-->
+                        </div><!--end row-->
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card-body">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col">
+                                <div class="media">
+
+                                    <span class="thumb-md justify-content-center d-flex align-items-center bg-warning rounded-circle me-2">
+                                        <i class="fab fa-amazon-pay  text-white"></i>
+                                    </span>
+
+                                    <div class="media-body align-self-center ms-2">
+                                        <a href="/Admin/PaymentConfig">
+                                            <p class="font-14 font-weight-semibold mb-0">Payment Links</p>
+                                        </a>
+                                        <p class="mb-0 font-12 text-muted">Here you can configure the payment link.</p>
+                                    </div>
+                                </div><!--end media-->
+                            </div><!--end col-->
+                        </div><!--end row-->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card-body">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col">
+                                <div class="media">
+
+                                    <span class="thumb-md justify-content-center d-flex align-items-center bg-purple rounded-circle me-2">
+                                        <i class="fab fa-audible text-white"></i>
+                                    </span>
+                                    <div class="media-body align-self-center ms-2">
+                                        <a href="https://secure.2checkout.com/cpanel/accounting_payments_history.php" target="_blank">
+                                            <p class="font-14 font-weight-semibold mb-0">2Checkout</p>
+                                        </a>
+                                        <p class="mb-0 font-12 text-muted">Here you can manages the devices from 2Checkout website.</p>
+                                    </div>
+                                </div><!--end media-->
+                            </div><!--end col-->
+                        </div><!--end row-->
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card-body">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col">
+                                <div class="media">
+
+                                    <span class="thumb-md justify-content-center d-flex align-items-center bg-danger rounded-circle me-2">
+                                        <i class="fa fa-envelope text-white"></i>
+                                    </span>
+
+                                    <div class="media-body align-self-center ms-2">
+                                        <a href="/Admin/EmailsettingList">
+                                            <p class="font-14 font-weight-semibold mb-0">Email Setting</p>
+                                        </a>
+                                        <p class="mb-0 font-12 text-muted">Here you can integrate email with Swuich.</p>
+                                    </div>
+                                </div><!--end media-->
+                            </div><!--end col-->
+                        </div><!--end row-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!--<!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Get Address</title>
+                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPHcns47fUHPSSG_CsYwb7Aq0rwjsdO7E"></script>
+                    <script>
+                      function getAddress() {
+                        var geocoder = new google.maps.Geocoder();
+                        var address = document.getElementById("address").value;
+                        geocoder.geocode({ 'address': address }, function (results, status) {
+                          if (status == google.maps.GeocoderStatus.OK) {
+                            var formattedAddress = results[0].formatted_address;
+                            alert("Formatted address: " + formattedAddress);
+                          } else {
+                            alert("Geocode was not successful for the following reason: " + status);
+                          }
+                        });
+                      }
+                    </script>
+                </head>
+                <body>
+                    <div class="page-wrapper">-->
+                <!-- Page Content-->
+                <!--<div class="page-content-tab">
+                            <div class="container-fluid">
+                                <label for="address">Enter an address:</label>
+                                <input type="text" id="address" name="address">
+                                <button onclick="getAddress()">Get Address</button>
+
+                            </div>
+                            </div>
+                            </div>
+
+
+                </body>
+                </html>-->

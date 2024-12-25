@@ -1,0 +1,158 @@
+﻿@model IEnumerable<TICRM.DTOs.ProductCatelogDTO>
+
+@{
+    /**/
+
+    ViewBag.Title = "Product Catelogs";
+
+    List<TICRM.DTOs.CategoryDto> categoryDtos = new List<TICRM.DTOs.CategoryDto>();
+    categoryDtos = ViewBag.CategoryId;
+}
+
+<!-- BEGIN: Subheader -->
+<div class="m-subheader ">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <h3 class="m-subheader__title m-subheader__title--separator">Product Catelogs</h3>
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                <li class="m-nav__item m-nav__item--home">
+                    <a href="@Url.Action("Index","Dashboard")" class="m-nav__link m-nav__link--icon">
+                        <i class="m-nav__link-icon la la-home"></i>
+                    </a>
+                </li>
+                <li class="m-nav__separator">-</li>
+                <li class="m-nav__item">
+                    <a href="@Url.Action("Index","ProductCatelogs")" class="m-nav__link">
+                        <span class="m-nav__link-text">Product Catelogs</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!--Create Button-->
+        <div>
+            <a href="@Url.Action("Create", "ProductCatelogs" )" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air">
+                <span>
+                    <i class="la la-plus"></i>
+                    <span>New Product Catelog</span>
+                </span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- END: Subheader -->
+<div class="m-content">
+
+    <div class="m-portlet m-portlet--mobile">
+
+        <div class="m-portlet__body">
+
+            <!--begin: Datatable -->
+            <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SerialNumber)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProductName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CategoryId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ValidFrom)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ValidTo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProductNote)
+                        </th>
+
+                        @*<th>
+                                @Html.DisplayNameFor(model => model.CreatedDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CreatedBy)
+                            </th>*@
+                        <th>
+                            Status
+                        </th>
+                        <th>
+                            Team
+                        </th>
+                        <th>
+                            User
+                        </th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SerialNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductName)
+                            </td>
+                            <td>
+                                @{
+                                    TICRM.DTOs.CategoryDto category = categoryDtos.FirstOrDefault(x => x.CategoryId == item.CategoryId);
+                                    var categoryvalue = "";
+
+                                    if (category != null)
+                                    {
+                                        categoryvalue = categoryDtos.FirstOrDefault(x => x.CategoryId == item.CategoryId).Name;
+                                    }
+                                    else { categoryvalue = ""; }
+
+                                }
+                                @categoryvalue
+
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ValidFrom)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ValidTo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductNote)
+                            </td>
+
+                            
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Team.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.User.Name)
+                            </td>
+                            <td>
+                                <a href="/ProductCatelogs/Edit/@item.ProductId"><i class="fa fa-edit"></i></a> |
+                                <a href="#" onclick="LoadModalForDetails('@item.ProductId')" class="arial"><i class="fa fa-eye"></i></a> |
+                                <a href="#" onclick="LoadModalForDelete('@item.ProductId')" class="arial"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- END EXAMPLE TABLE PORTLET-->
+</div>
+
+@Scripts.Render("~/bundles/ProductCatelogsScript")

@@ -1,0 +1,109 @@
+﻿@model IEnumerable<TICRM.DTOs.ReadingDto>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <button type="button" class="btn TopPageButton" onclick="location.href='@Url.Action("Create", "Readings")'"><i class="fa fa-plus-circle text-primary me-2"></i>New<i class="fa fa-angle-down ms-2"></i></button>
+                        <button type="button" class="btn TopPageButton" id="RefreshPage"><i class="fa fa-clock text-primary me-2"></i>Refresh<i class="fa fa-angle-down ms-2"></i></button>
+                        <button type="submit" class="btn TopPageButton" id="btnExport"><i class="fa fa-download text-primary me-2"></i>Export<i class="fa fa-angle-down ms-2"></i></button>
+
+                    </div>
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="#">Metrica</a>
+                                </li><!--end nav-item-->
+                                <li class="breadcrumb-item">
+                                    <a href="#">CRM</a>
+                                </li><!--end nav-item-->
+                                <li class="breadcrumb-item active">Readings</li>
+                            </ol>
+                        </div>
+                        <span class="page-title">Readings</span>
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div>
+            <!-- end page title end breadcrumb -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h4 class="card-title">Reading Details</h4>
+                                </div><!--end col-->
+                            </div>  <!--end row-->
+                        </div><!--end card-header-->
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="myTable" class="table font-15 page-content-wrapper">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Value</th>
+                                            <th>Margin of errors</th>
+                                            <th>Description</th>
+                                            <th>Reading Type</th>
+                                            <th>Reading Unit</th>
+                                            <th>Status</th>
+                                            <th>Assign Team</th>
+                                            <th>Assign User</th>
+                                            <th>Actions</th>
+                                        </tr><!--end tr-->
+                                    </thead>
+
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.Value</td>
+                                                <td>@item.MarginOfErrorInPercent</td>
+                                                <td>@item.Description</td>
+                                                <td>@item.ReadingType.Name</td>
+                                                <td>@item.ReadingUnit.Name</td>
+                                                <td>@item.Status.Name</td>
+                                                <td>@item.Team.Name</td>
+                                                <td>@item.User.Name</td>
+                                                <td>
+                                                    <a href="/Readings/Edit/@item.ReadingId.ToString()" title="Edit Reading"><i class="las la-pen text-secondary font-19"></i></a>
+                                                    <a href="/Readings/ReadingDetail/@item.ReadingId.ToString()" title="View Reading"><i class="las la-eye font-19"></i></a>
+                                                    <a href="/Readings/DeleteConfirmed/@item.ReadingId.ToString()"><i class="las la-trash-alt text-secondary  font-19" title="Delete Reading"></i></a>
+                                                </td>
+                                            </tr><!--end tr-->
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </div> <!--end col-->
+            </div><!--end row-->
+
+        </div><!-- container -->
+       
+        <!--Start Footer-->
+        <!-- Footer Start -->
+        <footer class="footer text-center text-sm-start">
+            ©
+            <script>
+                document.write(new Date().getFullYear())
+            </script> Tech Implement
+        </footer>
+        <!-- end Footer -->
+        <!--end footer-->
+    </div>
+    <!-- end page content -->
+</div>
+<!-- end page-wrapper -->

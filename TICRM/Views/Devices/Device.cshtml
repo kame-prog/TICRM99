@@ -1,0 +1,302 @@
+﻿@{
+    ViewBag.Title = "Devices";
+    //Layout = "~/Views/Shared/_IOTLayout.cshtml";
+}
+
+@*<link rel="stylesheet" href="~/Content/Metronic/vendors/graphhopper/css/leaflet.css" />*@
+
+
+<div onload="JavaScript:timedRefresh(5000);">
+    <!-- BEGIN: Subheader -->
+    <div class="m-subheader ">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                <h3 class="m-subheader__title m-subheader__title--separator">Devices</h3>
+                <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                    <li class="m-nav__item m-nav__item--home">
+                        <a href="@Url.Action(" Index","Home")" class="m-nav__link m-nav__link--icon">
+                            <i class="m-nav__link-icon la la-home"></i>
+                        </a>
+                    </li>
+                    <li class="m-nav__separator">-</li>
+                    <li class="m-nav__item">
+                        <a href="@Url.Action(" Index","Devices")" class="m-nav__link">
+                            <span class="m-nav__link-text">Devices</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!--Create Button-->
+            <div>
+                <a href="@Url.Action(" Create", "Devices" )" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air">
+                    <span>
+                        <i class="la la-plus"></i>
+                        <span>New Devices</span>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- END: Subheader -->
+    <div class="m-content">
+
+        <!--Begin::Section-->
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="m-portlet m-portlet--mobile  m-portlet--rounded">
+                    <div class="m-portlet__body">
+                        <div class="m-portlet__head-title">
+                            <h3 class="m-portlet__head-text">
+                                <label id="deviceTitle">Value</label>
+                            </h3>
+                        </div>
+                        <img src="~/Content/Images/image.png" style="height:200px;" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <div class="m-portlet m-portlet--mobile  m-portlet--rounded">
+                    <div class="m-portlet__body">
+
+                        <div class="m-portlet__head-title">
+                            <h3 class="m-portlet__head-text">
+                                Communicate with Device
+                            </h3>
+                        </div>
+                        <form role="form">
+                            <div class="box-body">
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Select Command Type</label>
+                                    <select name="Device Command" id="commandDropDown" class="form-control">
+                                        <option value="Data Frequency">Data Frequency</option>
+                                        <option value="Set Service Due Date">Set Service Due Date</option>
+
+                                    </select>
+                                </div>
+                                <div class="form-group" id="mydatepicker">
+                                    <div class='input-group date' id='datetimepicker1'>
+                                        <input type='text' class="form-control" id="txtDate" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group" id="dtFrequncy">
+                                    <label for="exampleInputEmail1">Select Data Frequency</label>
+                                    <select name="Device Command" id="txtValue" class="form-control">
+                                        <option value="500">500</option>
+                                        <option value="1000">1000</option>
+                                        <option value="1500">1500</option>
+                                        <option value="2000">2000</option>
+                                        <option value="2500">2500</option>
+                                        <option value="3000">3000</option>
+                                        <option value="3500">3500</option>
+                                        <option value="4000">4000</option>
+                                    </select>
+                                </div>
+                            </div><!-- /.box-body -->
+                            <div class="box-footer">
+                                <button type="button" id="btnSendCommand" class="btn btn-primary">Send Command</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End::Section-->
+        <!--Begin::Section-->
+
+        <div class="row" id="HideAndShowLineChart">
+            <div class="col-xl-12">
+                <div class="m-portlet m-portlet--mobile  m-portlet--rounded">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h3 class="m-portlet__head-text">
+                                    Devices Temprature
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-portlet__body">
+                        <div class="col-xs-12">
+                            <p class="text-center">
+                            </p>
+                            <div id="chartContainer" style="height: 370px; width:100%;"></div>
+                        </div>
+                        <div class="col-xs-12" style="display:none;">
+                            <p class="text-center">
+                            </p>
+                            <div class="chart-responsive">
+                                <div id="messages"></div>
+                            </div><!-- /.chart-responsive -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--End::Section-->
+        <!--Begin::Section-->
+
+        <div class="row" id="HideAndShowLightOnOff">
+            <div class="col-xl-12">
+                <div class="m-portlet m-portlet--mobile  m-portlet--rounded">
+                    <div class="m-portlet__body">
+                        <div class="m-portlet__head-title">
+                            <h3 class="m-portlet__head-text">
+                                Device Light On/Off &nbsp;&nbsp;&nbsp;
+                            </h3>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="btn-group" id="toggle_event_editing">
+                                <button type="button" class="btn btn-info locked_active btn-lg">OFF</button>
+                                <button type="button" class="btn btn-default unlocked_inactive btn-lg">ON</button>
+                            </div>
+                            <hr />
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6" id="HideAndShowLightOnOff1">
+                                <i class="la la-lightbulb-o text-center" id="BulbOnOffId" style="font-size: 200px;width:400px;color: hsla(50, 0%, 50%, 1);display:block;"></i>
+                            </div>
+                            <div class="col-xs-6">
+                                <i class="fa fa-lightbulb-o text-center" id="BulbOnOffId" style="font-size: 400px;color: hsla(50, 0%, 50%, 1);display:block;"></i>
+                            </div>
+                            <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6">
+                                <img src="~/Content/Images/IOT Home.jpeg" style="width:500px;" />
+                            </div>
+                            @*<div id="switch_status">Switched off.</div>*@
+                        </div>
+                        <div class="col-xs-12" id="sliderHideAndShowOnLight">
+                            <hr />
+                            <div class="col-xs-2"></div>
+                            <div class="col-xs-8">
+                                <div class="slidecontainer">
+                                    <input type="range" min="1" max="100" value="100" class="slider" id="myRange">
+                                    <p>Value: <span id="myRangeValue"></span></p>
+                                </div>
+
+                            </div>
+                            <div class="col-xs-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--End::Section-->
+        <!--Begin::Section-->
+
+        <div class="row" id="HideAndShowMap">
+
+            <div class="col-xl-12">
+                <div class="m-portlet m-portlet--mobile  m-portlet--rounded">
+
+                    <div class="m-portlet__body">
+                        <div class="m-portlet__head-title">
+                            <h3 class="m-portlet__head-text">
+                                MAP &nbsp;&nbsp;&nbsp;
+                            </h3>
+                        </div>
+                        <div class="col-md-12">
+                            <p class="text-center">
+                            </p>
+                            <div id="routing-response m--padding-left-20 m--pull-right">
+
+                            </div>
+                            <div id="routing-error m--padding-left-20 m--pull-right">
+                            </div>
+
+                            <div id="routing-map"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!--End::Section-->
+        <!--Device Medical-->
+        <div class="row" id="HideAndShowMedical">
+            <div class="col-6">
+                <div class="m-portlet m-portlet--mobile  m-portlet--rounded">
+                    <div class="m-portlet__body">
+                        <div class="m-portlet__head-title">
+                            <h3 class="m-portlet__head-text">
+                                Heart Beat
+                            </h3>
+                        </div>
+                        <span id="counterb" class="row"></span>
+                        <div class="row">
+                            <div style="width:45%;" class="m--margin-top-50 m--pull-left">
+                                <img src="~/Content/Images/blood-pressure.png" style="width:200px; " />
+                            </div>
+                            <div style="width:45%;" class="m--pull-right">
+                                <div class='container'>
+                                    <div class='card temp'>
+                                        <div class='inner'>
+                                            <img src="~/Content/Images/img_491812.png" class="icons" />
+                                            <div class='title'>
+                                                <div class='text'>Heart Beat</div>
+                                            </div>
+                                            <span class='number' id="heartbeatvalue"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="m-portlet m-portlet--mobile  m-portlet--rounded">
+
+                    <div class="m-portlet__body">
+
+                        <div class="m-portlet__head-title">
+                            <h3 class="m-portlet__head-text">
+                                Fever
+                            </h3>
+                        </div>
+                        <span id="counter" class="row"></span>
+                        <div class="row">
+                            <div style="width:45%;" class="m--margin-top-50 m--pull-left">
+                                <div id="wrapper">
+                                    <div id="termometer">
+                                        <div id="temperature" style="height: 90%"></div>
+                                        <div id="graduations"></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div style="width:45%;" class="m--pull-right">
+                                <div class='container'>
+                                    <div class='card temp'>
+                                        <div class='inner'>
+                                            <div class='icon'></div>
+                                            <div class='title'>
+                                                <div class='text'>TEMPERATURE</div>
+                                            </div>
+                                            <span class='number' id="feverValue"></span>
+                                            @*<div class='measure'>FAHRENHEIT</div>*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Styles.Render("~/bundles/DevicesCSS")
+
+@Scripts.Render("~/bundles/DevicesScript")

@@ -1,0 +1,35 @@
+﻿@model TICRM.DAL.ReadingUnit
+
+@{
+ViewBag.Title = "Details";
+Layout = "~/Views/Shared/_LayoutTICRM.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ReadingUnit</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Reading Unit
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            Reading Type
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReadingType.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ReadingUnitId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

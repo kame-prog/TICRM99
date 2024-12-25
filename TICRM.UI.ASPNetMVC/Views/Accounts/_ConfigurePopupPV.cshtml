@@ -1,0 +1,108 @@
+﻿
+@model TICRM.DTOs.AccountViewModel
+
+@using (Ajax.BeginForm("DSConfiguration", "Accounts", new AjaxOptions()
+{
+    OnSuccess = "ConfigfuncSuccess",
+    OnFailure = "ConfigfuncFail",
+    HttpMethod = "POST",
+    LoadingElementId = "Configprogress"
+},
+    new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row">
+        <div class="alert alert-success" role="alert" id="ConfigMsg" style="display:none;">
+        </div>
+    </div>
+    <div class="row">
+        <div class="alert alert-danger" role="alert" id="ConfigError" style="display:none;">
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-md-6">
+            <label class="form-label mt-2 mt-md-0">Sensor <span class="text-danger">  *</span></label>
+            @Html.DropDownListFor(model => model.deviceSensorGraph.SensorId, Model.deviceSensorGraph.SensorsDropDown, "-- Select --", htmlAttributes: new { @class = "form-control m-input" })
+            @Html.ValidationMessageFor(model => model.deviceSensorGraph.SensorId, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="form-label mt-2 mt-md-0">Graph <span class="text-danger">  *</span></label>
+                @Html.DropDownListFor(model => model.deviceSensorGraph.GraphId, Model.deviceSensorGraph.GraphsDropDown, "-- Select --", htmlAttributes: new { @class = "form-control m-input SearchDropDown" })
+                @Html.ValidationMessageFor(model => model.deviceSensorGraph.GraphId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-md-6">
+            <label class="form-label mt-2 mt-md-0">Channel  <span class="text-danger">  *</span></label>
+            @Html.DropDownListFor(model => model.deviceSensorGraph.Channel, Model.deviceSensorGraph.ChannelsDropDown, "-- Select --", htmlAttributes: new { @class = "form-control m-input" })
+            @Html.ValidationMessageFor(model => model.deviceSensorGraph.Channel, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="form-label mt-2 mt-md-0">Data Duration <span class="text-danger">  *</span></label>
+                @Html.DropDownListFor(model => model.deviceSensorGraph.Data, Model.deviceSensorGraph.DataDropDown, "-- Select --", htmlAttributes: new { @class = "form-control m-input SearchDropDown" })
+                @Html.ValidationMessageFor(model => model.deviceSensorGraph.Data, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-md-6">
+            <label class="form-label mt-2 mt-md-0">Network   <span class="text-danger">  *</span></label>
+            @Html.DropDownListFor(model => model.deviceSensorGraph.Network, Model.deviceSensorGraph.NetworksDropDown, "-- Select --", htmlAttributes: new { @class = "form-control m-input SearchDropDown" })
+            @Html.ValidationMessageFor(model => model.deviceSensorGraph.Network, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.HiddenFor(model => model.deviceSensorGraph.DeviceId, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-primary btn-sm mt-2" onclick=" $('#ConfigModal form')[0].reset();" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-sm btn-primary btn-sm mt-2">Save</button>
+    </div>
+}
+<!--  Modal for loader -->
+<div id="Configprogress" class="modal">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content" style="background: none;">
+            <div class="modal-body col-12 d-flex justify-content-center text-center">
+                <div class="position-absolute align-items-center  justify-content-center">
+                    <div class="spinner-border thumb-md text-primary " role="status"></div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<script>
+    function ConfigfuncSuccess(data) {
+
+        if (data) {
+            $('#ConfigMsg').show();
+            $("#ConfigMsg").text("Device configured successfully.");
+            $('#ConfigModal form')[0].reset();
+            setTimeout(function () {
+                $('#ConfigMsg').hide();
+                $('#ConfigModal').modal('hide');
+
+            }, 3000);
+        } else {
+            $('#ConfigMsg').hide();
+            swal.fire({
+                title: "Exist",
+                text: "This Device is already configured",
+                icon: "warning",
+                button: "Ok",
+            })
+        }
+    }
+    function WFfuncFail(err) {
+        $('#ConfigError').show();
+        $("#ConfigError").text("Please refresh the page.");
+    };
+</script>

@@ -1,0 +1,180 @@
+﻿@model TICRM.DTOs.EditUserDto
+@{
+    ViewBag.Title = "UserProfile";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<style>
+    body {
+        margin: 0;
+        padding-top: 40px;
+        color: #2e323c;
+        background: #f5f6fa;
+        position: relative;
+        height: 100%;
+    }
+
+    .account-settings .user-profile {
+        margin: 0 0 1rem 0;
+        padding-bottom: 1rem;
+        text-align: center;
+    }
+
+        .account-settings .user-profile .user-avatar {
+            margin: 0 0 1rem 0;
+        }
+
+            .account-settings .user-profile .user-avatar img {
+                width: 90px;
+                height: 90px;
+                -webkit-border-radius: 100px;
+                -moz-border-radius: 100px;
+                border-radius: 100px;
+            }
+
+        .account-settings .user-profile h5.user-name {
+            margin: 0 0 0.5rem 0;
+        }
+
+        .account-settings .user-profile h6.user-email {
+            margin: 0;
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #9fa8b9;
+        }
+
+    .account-settings .about {
+        margin: 2rem 0 0 0;
+        text-align: center;
+    }
+
+        .account-settings .about h5 {
+            margin: 0 0 15px 0;
+            color: #007ae1;
+        }
+
+        .account-settings .about p {
+            font-size: 0.825rem;
+        }
+
+    .form-control {
+        border: 1px solid #cfd1d8;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+        font-size: .825rem;
+        background: #ffffff;
+        color: #2e323c;
+    }
+
+    .card {
+        background: #ffffff;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        border: 0;
+        margin-bottom: 1rem;
+    }
+</style>
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+
+            <div class="container">
+                <div class="row gutters">
+             
+                        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <div class="account-settings mt-lg-5 mt-sm-3">
+                                        <div class="user-profile">
+                                            <div class="user-avatar">
+                                                <img src="~/Content/Assets/images/users/User_Swuich.png" alt="Swuich User">
+                                            </div>
+                                            <h5>@Model.FirstName @Model.LastName</h5>
+                                            <h6 class="text-secondary">@Html.DisplayFor(model => model.Email) </h6>
+                                            @*<a href="#" class="text-primary"> Edit</a>*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                            <div class="card h-100">
+                                @using (Html.BeginForm("UserProfile", "User", FormMethod.Post, new { id = "userform" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+                                    @Html.HiddenFor(model => model.id)
+
+                                    <div class="card-body">
+                                        <div class="row gutters">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                                <h6 class="mb-2 text-primary">Personal Details</h6>
+                                            </div>
+                                            <h6 class="text-secondary" style="display:none;">@Html.EditorFor(model => model.Email) </h6>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-2 mt-1">
+                                                <div class="form-group">
+                                                    <label for="firstname">First Name</label>
+                                                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control mt-1", @placeholder = "Enter first name" } })
+                                                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-2 mt-1">
+                                                <div class="form-group">
+                                                    <label for="lastname">Last Name</label>
+                                                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control mt-1", @placeholder = "Enter last name" } })
+                                                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-2 mt-1">
+                                                <div class="form-group">
+                                                    <label for="phonenumber">Phone Number</label>
+                                                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control mt-1", @placeholder = "Enter phone number" } })
+                                                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-2 mt-1">
+                                                <div class="form-group">
+                                                    <label for="email">Company</label>
+                                                    <p class="form-control mt-1 bg-light ">@ViewBag.CompanyName</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row gutters">
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-2 mt-1">
+                                                <div class="form-group">
+                                                    <label for="country">Country</label>
+                                                    @Html.DropDownListFor(model => model.Countryid, Model.CountryDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input SearchableDropDown" })
+                                                    @Html.ValidationMessageFor(model => model.Countryid, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-2 mt-1">
+                                                <div class="form-group">
+                                                    <label for="industry">Industry</label>
+                                                    @Html.DropDownListFor(model => model.Industryid, Model.IndustryDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input SearchableDropDown"})
+                                                    @Html.ValidationMessageFor(model => model.Industryid, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row gutters">
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-3">
+                                                <div class="text-end">
+                                                    <button type="submit" id="updateButton" name="update" class="btn btn-primary">Update</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

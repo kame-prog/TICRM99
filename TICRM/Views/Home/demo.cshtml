@@ -1,0 +1,132 @@
+﻿
+@{
+    ViewBag.Title = "demo";
+    Layout = "~/Views/Shared/_LayoutMetronicMaster.cshtml";
+}
+
+<style>
+    .modal-MapRightSlider-slideout {
+        min-height: 100%;
+        margin: 0 0 0 auto;
+        background: #fff;
+    }
+
+    .modal-MapRightSlider-fade .modal-MapRightSlider-dialog.modal-MapRightSlider-slideout {
+        -webkit-transform: translate(100%,0)scale(1) !important;
+        transform: translate(100%,0)scale(1) !important;
+    }
+
+    .modal-MapRightSlider-fade.show .modal-MapRightSlider-dialog.modal-MapRightSlider-slideout {
+        -webkit-transform: translate(0,0) !important;
+        transform: translate(0,0) !important;
+        display: flex !important;
+        align-items: stretch !important;
+        -webkit-box-align: stretch !important;
+        height: 100% !important;
+    }
+
+        .modal-MapRightSlider-fade.show .modal-MapRightSlider-dialog.modal-MapRightSlider-slideout .modal-body {
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+        }
+
+    .modal-MapRightSlider-slideout .modal-content-MapRightSlider {
+        border: 0;
+    }
+
+    #MapRightSliderModal {
+        padding-right: 0px !important;
+    }
+    .modalMapRightSliderClose {
+        line-height: initial !important;
+        color: #fff !important;
+    }
+    .modal-header-MapRightSlider {
+        border-radius:unset;
+        color: #fff !important;
+        background-color: #5867dd;
+        border-color: #5867dd;
+    }
+
+    .modal-MapRightSlider-slideout .modal-header-MapRightSlider, .modal-MapRightSlider-slideout .modal-MapRightSlider-footer {
+        height: 69px !important];
+        display: block !important;
+    }
+
+        .modal-MapRightSlider-slideout .modal-header-MapRightSlider h5 {
+            float: left;
+        }
+</style>
+
+<!-- BEGIN: Subheader -->
+<div class="m-subheader ">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <h3 class="m-subheader__title m-subheader__title--separator">Demo popup open from left side</h3>
+        </div>
+
+    </div>
+</div>
+
+<!-- END: Subheader -->
+<div class="m-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <!--begin::Portlet-->
+            <div class="m-portlet">
+
+                <!--begin::Form-->
+                <!------ Include the above in your HEAD tag ---------->
+                <br><br>
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MapRightSliderModal">
+                                Launch demo modal sideout normal
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Start:Map Right Slider Modal -->
+                <div class="modal fade modal-MapRightSlider-fade" id="MapRightSliderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                    <div class="modal-dialog modal-MapRightSlider-dialog modal-MapRightSlider-slideout" role="document">
+                        <div class="modal-content modal-content-MapRightSlider">
+                            <div class="modal-header modal-header-MapRightSlider">
+                                <h5 class="modal-header-title" id="exampleModalLabel">Modal sideout normal</h5>
+                                <button type="button" class="close modalMapRightSliderClose" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                ...
+                            </div>
+                            <div class="modal-footer modal-MapRightSlider-footer">
+                                @*<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>*@
+                                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End:Map Right Slider Modal -->
+                <!-- container -->
+            </div>
+
+            <!--end::Form-->
+            <!--end::Portlet-->
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+
+        $(document).ready(function () {
+
+
+        });
+
+    </script>
+
+}

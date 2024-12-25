@@ -1,0 +1,116 @@
+﻿
+<div class="row justify-content-center">
+    <div class="row col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h4 class="card-title">Cases Location</h4>
+                    </div><!--end col-->
+                </div>  <!--end row-->
+            </div><!--end card-header-->
+            <div class="card-body" style="width: 100%; height: 370px">
+                <div id="map_case"></div>
+            </div><!--end card-body-->
+        </div><!--end card-->
+    </div>
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-header">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h4 class="card-title">Activities</h4>
+                    </div><!--end col-->
+
+                </div>  <!--end row-->
+            </div><!--end card-header-->
+            <div class="card-bodyp-0">
+                <div class="p-3" data-simplebar style="height: 370px;">
+                    <div class="activity Accactivity">
+                        <div style="">
+
+                        </div>
+                    </div><!--end activity-->
+                </div><!--end analytics-dash-activity-->
+            </div>  <!--end card-body-->
+        </div><!--end card-->
+    </div> <!--end col-->
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h4 class="card-title">Contact details</h4>
+                    </div><!--end col-->
+                </div>  <!--end row-->
+            </div><!--end card-header-->
+            <div class="table-responsive">
+                <table id="ContactTable" class="table font-15 page-content-wrapper">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Name</th>
+                            <th>Phone Number</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                            <th>User</th>
+                            <th>Team</th>
+                            <th>Status</th>
+                        </tr><!--end tr-->
+                    </thead>
+
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    @*<div class="col-sm-4">
+        <div class="card">
+            <div class="row m-lg-2">
+                <div>
+                    <h5>Notes</h5>
+                </div>
+                <form id="notes">
+                    <div>
+                        <textarea class="form-control" rows="5" id="message"></textarea>
+                    </div>
+                    <div class="col-sm-12 mt-2 text-end">
+                        <button type="button" class="btn btn-primary" id="btnSave">Save</button>
+                    </div>
+                </form>
+            </div>
+            <div class="row m-lg-2">
+                <div>
+                    <h5>Recent Notes</h5>
+                </div>
+                <div class="row m-lg-2">
+                    <h6>Lable</h6>
+                </div>
+            </div>
+        </div>
+    </div>*@
+</div>
+<script>
+    $(document).ready(function () {
+        $('#ServiceTableP').DataTable();
+    });
+
+    $(document).ready(function () {
+        $("#btnSave").click(function () {
+            var data = $("#notes").serialize();
+            $.ajax(
+                {
+                    type: "POST", //HTTP POST Method
+                    url: "Accounts/CreateNotes", // Controller/View
+                    data: data,
+                    success: function(response) {
+                        console.log(data);
+                    }
+
+                });
+
+        });
+    });
+</script>

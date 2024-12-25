@@ -1,0 +1,137 @@
+﻿@model TICRM.DTOs.CaseDto
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<!-- END: Subheader -->
+<div class="m-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <!--begin::Portlet-->
+            <div class="m-portlet">
+                <!--begin::Form-->
+
+                @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "CaseCreateForm", @class = "m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" }))
+                {
+                    @Html.AntiForgeryToken()
+                <div class="m-portlet__body">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-6">
+                            @Html.LabelFor(model => model.CaseTitle, "CaseTitle *", htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.CaseTitle, new { htmlAttributes = new { @class = "form-control m-input", maxlength = "50" } })
+                            @Html.ValidationMessageFor(model => model.CaseTitle, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-6">
+                            @Html.LabelFor(model => model.CaseTypeId, "Case Type *", htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownListFor(model => model.CaseTypeId, Model.CaseTypeDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input SearchDropDown" })
+                            @Html.ValidationMessageFor(model => model.CaseTypeId, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-6">
+
+                            @Html.LabelFor(model => model.ContactId, "Contact", htmlAttributes: new { @class = "control-label" })
+
+                            @Html.DropDownListFor(model => model.ContactId, Model.ContactsDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input" })
+                            @Html.ValidationMessageFor(model => model.ContactId, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-6">
+                            @Html.LabelFor(model => model.Origin, "Origin *", htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.Origin, new { htmlAttributes = new { @class = "form-control m-input", maxlength = "50" } })
+                            @Html.ValidationMessageFor(model => model.Origin, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-6">
+                            @Html.LabelFor(model => model.Description, "Description", htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control m-input", maxlength = "50" } })
+
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-6">
+                            @Html.LabelFor(model => model.CaseStatusId, "Case Status", htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownListFor(model => model.CaseStatusId, Model.CaseStatusDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input SearchDropDown" })
+
+                            @Html.ValidationMessageFor(model => model.CaseStatusId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-6">
+                            @Html.LabelFor(model => model.RelatedTo, "Related To", htmlAttributes: new { @class = "control-label" })
+                            @Html.DropDownListFor(model => model.RelatedTo, Model.RelatedToDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input" })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-6">
+                            @Html.LabelFor(model => model.RelatedToId, htmlAttributes: new { @class = "control-label" })
+                            @*@Html.DropDownList("RelatedToId", null, htmlAttributes: new { @class = "form-control", @id="RelatedtoId" })*@
+                            @Html.DropDownListFor(model => model.RelatedToId, Model.RelatedToIdDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input SearchDropDown" })
+                            @*<select class="form-control m-input" id="RelatedToID">
+
+                            </select>*@
+                            @Html.ValidationMessageFor(model => model.RelatedToId, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-6">
+                            @Html.LabelFor(model => model.AssignedUser, "Assigned User", htmlAttributes: new { @class = "control-label" })
+                            <div class="m-input-icon m-input-icon--right">
+                                @Html.DropDownListFor(model => model.AssignedUser, Model.AssignedUserDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input" })
+                                @Html.ValidationMessageFor(model => model.AssignedUser, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            @Html.LabelFor(model => model.AssignedTeam, "Assigned Team", htmlAttributes: new { @class = "control-label" })
+                            <div class="m-input-icon m-input-icon--right">
+                                @Html.DropDownListFor(model => model.AssignedTeam, Model.AssignedTeamDropdown, "-- Select --", htmlAttributes: new { @class = "form-control m-input" })
+                                @Html.ValidationMessageFor(model => model.AssignedTeam, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                    <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                        <div class="m-form__actions m-form__actions--solid">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <button type="button" id="savebtn" class="btn btn-success"><i class="la la-save"></i> Submit</button>
+                                    <button type="reset" class="btn btn-secondary"><i class="la la-refresh"></i> Cancel</button>
+                                </div>
+                                <div class="col-lg-6 m--align-right">
+                                    <a href="/Accounts/Index" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
+                                        <span>
+                                            <i class="la la-arrow-left"></i>
+                                            <span>Back to List</span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+                <!--end::Form-->
+            </div>
+            <!--end::Portlet-->
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="~/TIScripts/ModulesScripts/Cases.js"></script>
+    
+}

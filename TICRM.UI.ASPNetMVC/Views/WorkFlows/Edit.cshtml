@@ -1,0 +1,116 @@
+﻿@model TICRM.DTOs.WorkFlowDTO
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <h4 class="page-title">Edit Work Flows</h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "WorkFlowsEditForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.WorkFlowId)
+
+                            <div class="row">
+
+                                <div class="col-lg-6">
+                                    <div class="mb-3 row">
+                                        <label for="example-text-input" class="col-sm-2 col-form-label text-end">Name<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control m-input", @placeholder = "Enter WorkFlow Name" } })
+                                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-text-input" class="col-sm-2 col-form-label text-end">Threshold<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-5">
+                                            @Html.EditorFor(model => model.MinThreshold, new { htmlAttributes = new { @class = "form-control m-input", @placeholder = "<=" } })
+                                            @Html.ValidationMessageFor(model => model.MinThreshold, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-sm-5">
+                                            @Html.EditorFor(model => model.Threshold, new { htmlAttributes = new { @class = "form-control m-input", @placeholder = "=>" } })
+                                            @Html.ValidationMessageFor(model => model.Threshold, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-url-input" class="col-sm-2 col-form-label text-end">Account<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(model => model.AccountId, Model.AccountsDropdown, "-- Select --", htmlAttributes: new { @class = "form-control SearchableDropDown" })
+                                            @Html.ValidationMessageFor(model => model.AccountId, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-text-input" class="col-sm-2 col-form-label text-end">Description<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control m-input", @placeholder = "Enter Description" } })
+                                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="mb-3 row">
+                                        <label for="example-url-input" class="col-sm-2 col-form-label text-end">Sensor<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(model => model.TargetOn, Model.SensorsDropDown, "-- Select --", htmlAttributes: new { @class = "form-control SearchableDropDown" })
+                                            @Html.ValidationMessageFor(model => model.TargetOn, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-url-input" class="col-sm-2 col-form-label text-end">Priority<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(model => model.Priority, Model.PriorityDropDown, "-- Select --", htmlAttributes: new { @class = "form-control SearchableDropDown" })
+                                            @Html.ValidationMessageFor(model => model.Priority, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-url-input" class="col-sm-2 col-form-label text-end">Device<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(model => model.DeviceName, Model.DevicesDropDown, "-- Select --", htmlAttributes: new { @class = "form-control SearchableDropDown" })
+                                            @Html.ValidationMessageFor(model => model.DeviceName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-url-input" class="col-sm-2 col-form-label text-end">Action<span class="text-danger">  *</span></label>
+                                        <div class="col-sm-10">
+                                            @Html.DropDownListFor(model => model.Action, Model.ActionDropdown, "-- Select --", htmlAttributes: new { @class = "form-control SearchableDropDown" })
+                                            @Html.ValidationMessageFor(model => model.Action, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <a href="/WorkFlows/Index" class="btn btn-primary ">
+                                        <i class="la la-arrow-left"></i>
+                                        <span>Back to List</span>
+                                    </a>
+                                    <button type="submit" id="savebtn" class="btn btn-primary float-end"><i class="la la-save"></i> Update</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                        </div>
+            </div>
+            <!--end card-body-->
+        </div>
+    </div>
+</div>
+

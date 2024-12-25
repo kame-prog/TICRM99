@@ -1,0 +1,113 @@
+﻿@*@model Stripe.Checkout.Session*@
+@{
+    ViewBag.Title = "Billing";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-lg-7">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h4 class="card-title">Billing Details</h4>
+                                </div><!--end col-->
+                            </div>  <!--end row-->
+                        </div><!--end card-header-->
+                        <div class="card-body">
+                            <div class="accordion accordion-flush checkout-accordion" id="accordionFlushExample">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header mt-0" id="flush-headingOne">
+                                        <button class="accordion-button d-flex justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+                                            <span class="align-self-center">Credit Card</span>
+
+
+                                            <img src="~/Content/Assets/Payment/card-2.png" alt="" height="30" />
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="form-label" for="Card_No">Card No :</label>
+                                                        <input type="text" class="form-control" id="Card_No" required="" placeholder="1234-5678-9123-4567">
+                                                    </div>
+                                                </div>  <!--end col-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="select_month" class="my-2 form-label">Expiry Month</label>
+                                                        <select class="form-select" id="select_month">
+                                                            <option selected="">-- Select --</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                            <option value="6">6</option>
+                                                            <option value="7">7</option>
+                                                            <option value="8">8</option>
+                                                            <option value="9">9</option>
+                                                            <option value="10">10</option>
+                                                            <option value="11">11</option>
+                                                            <option value="12">12</option>
+                                                        </select>
+                                                    </div>
+                                                </div><!--end col-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="select_year" class="my-2 form-label">Expiry Year</label>
+                                                        <select class="form-select" id="select_year">
+                                                            <option selected="">-- Select --</option>
+                                                            <option value="1">2020</option>
+                                                            <option value="2">2021</option>
+                                                            <option value="3">2022</option>
+                                                            <option value="4">2023</option>
+                                                            <option value="5">2024</option>
+                                                            <option value="6">2025</option>
+                                                        </select>
+                                                    </div>
+                                                </div> <!--end col-->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="form-label my-2" for="CVV_Code">Security Code</label>
+                                                        <input type="password" class="form-control" id="CVV_Code" required="" placeholder="Enter CVV">
+                                                    </div>
+                                                </div><!--end col-->
+                                            </div><!--end row-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header mt-0" id="flush-headingTwo">
+                                        <button class="accordion-button collapsed d-flex justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                            <span class="align-self-center">Paypal</span>
+
+
+                                            <img src="~/Content/Assets/Payment/paypal.png" alt="" height="30" />
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+                                            <p class="mb-0 text-muted">
+                                                Add Paypal form page
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-block btn-de-primary">Place Your Order</button>
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </div><!--end col-->
+            </div>
+        </div>
+    </div>
+</div>
+

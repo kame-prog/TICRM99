@@ -1,0 +1,71 @@
+﻿@model TICRM.DTOs.AccountDto
+
+
+<div class="modal-header modal-header-rightside">
+    <h5 class="modal-header-title" id="exampleModalLabel">ACCOUNT DELETE</h5>
+    <button type="button" class="close modalrightsideClose" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">X</span>
+    </button>
+
+</div>
+<div class="modal-body">
+    <table class="tb-horizontal">
+        <tr>
+            <th class="blockquote">@Html.DisplayNameFor(model => model.Name)</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.Name)</td>
+        </tr>
+        <tr>
+            <th class="blockquote">@Html.DisplayNameFor(model => model.Email)</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.Email)</td>
+        </tr>
+        <tr>
+            <th class="blockquote">Phone</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.PhoneOffice)</td>
+        </tr>
+        <tr>
+            <th class="blockquote">Team Name</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.Team.Name)</td>
+        </tr>
+        <tr>
+            <th class="blockquote">User Name</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.User.Name)</td>
+        </tr>
+        <tr>
+            <th class="blockquote">Industry</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.Industry.Name)</td>
+        </tr>
+        <tr>
+            <th class="blockquote">Account Type</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.AccountType.Name)</td>
+        </tr>
+        <tr>
+            <th class="blockquote">Status</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.Status.Name)</td>
+        </tr>
+        <tr>
+            <th class="blockquote">  @Html.DisplayNameFor(model => model.Description)</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.Description)</td>
+        </tr>
+    </table>
+</div>
+
+<div class="modal-footer modal-rightside-footer">
+    @using (Html.BeginForm("Delete/" + Model.AccountId, "Accounts", FormMethod.Post, new { id = "DeleteForm" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <button type="button" id="deletebtn" onclick="Delete_Record()" class="btn btn-success"> Confirm</button>
+        <button type="button" onclick="$('#m_modal_Delete').modal('hide');" class="btn btn-secondary"><i class="la la-refresh"></i> Cancel</button>
+
+    }
+</div>
+<script>
+
+    var Delete_Record = function () {
+        $('body').addClass('m-page--loading');
+        $('#DeleteForm').submit();
+    }
+
+</script>
+
+

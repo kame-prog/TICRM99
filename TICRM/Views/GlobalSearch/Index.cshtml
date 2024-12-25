@@ -1,0 +1,93 @@
+﻿@model IEnumerable<TICRM.DTOs.GlobalSearchDto>
+@{
+    ViewBag.Title = "GlobalSearch";
+}
+<!-- BEGIN: Subheader -->
+<div class="m-subheader ">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <h3 class="m-subheader__title m-subheader__title--separator">GlobalSearch</h3>
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                <li class="m-nav__item m-nav__item--home">
+                    <a href="@Url.Action("Index","Home")" class="m-nav__link m-nav__link--icon">
+                        <i class="m-nav__link-icon la la-home"></i>
+                    </a>
+                </li>
+                <li class="m-nav__separator">-</li>
+                <li class="m-nav__item">
+                    <a href="@Url.Action("Index","GlobalSearch")" class="m-nav__link">
+                        <span class="m-nav__link-text">Global Search</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- END: Subheader -->
+<div class="m-content">
+    <!--Begin::Section-->
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="m-portlet m-portlet--mobile  m-portlet--rounded">
+                <div class="m-portlet__body">
+                    <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text">
+                            <label id="deviceTitle">Create/Update Global Search</label>
+                        </h3>
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <div class="col-md-6 col-lg-6" style="padding-top:10px;">
+                            <div class="form-group" style="display:none;">
+                                <label for="GlobalSearchId">GlobalSearchId</label>
+                                <input type="text" class="form-control" id="GlobalSearchId">
+                            </div>
+                            <div class="form-group">
+                                <label for="Name">Cammand Name</label>
+                                <input type="text" class="form-control" id="Name" placeholder="Enter Search Name">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6" style="padding-top:10px;">
+                            <div class="form-group">
+                                <label for="URL">URL (Example:/Devices) </label>
+                                <input type="text" class="form-control" id="URL" placeholder="/URL">
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="col-md-12">
+                        <hr />
+                        <button type="button" id="SubmitGlobalSearchId" class="btn btn-primary">Submit</button>
+                        <button type="button" id="refresh_GlobalSearch" class="btn btn-primary">Cancel</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--End::Section-->
+    <!--Begin::Section-->
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="m-portlet m-portlet--mobile  m-portlet--rounded">
+
+                <div class="m-portlet__body">
+
+                    <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text">
+                            Global Search List
+                        </h3>
+                    </div>
+
+                    <div class="m_datatable1" id="m_datatable_latest_orders1"></div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!--End::Section-->
+</div>
+
+@Scripts.Render("~/bundles/GlobalSearchScript")

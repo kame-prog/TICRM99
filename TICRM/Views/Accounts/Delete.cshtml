@@ -1,0 +1,191 @@
+﻿@model TICRM.DTOs.AccountDto
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutTICRM.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneOffice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneOffice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WebSite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WebSite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountSize.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountSize.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountType.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountType.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address.Street1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address.Street1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address1.Street1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address1.Street1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Industry.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Industry.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Team.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Team.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
+
+<script src="~/Content/plugins/jQuery/jQuery-2.1.3.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#searchNavigationList').append('<li><a href="/Accounts/Index">Customer</a></li>');
+        $('#searchNavigationList').append('<li><a href="@Url.Action("Delete", "Accounts", new { id = Model.AccountId })">Delete @Model.Name</a></li>');
+    });
+</script>
+
+
+
+

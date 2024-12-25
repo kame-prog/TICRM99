@@ -1,0 +1,31 @@
+﻿@model TICRM.DTOs.ReadingTypeDto
+
+@{
+    /**/
+
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutTICRM.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ReadingType</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Reading Type
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ReadingTypeId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+@Scripts.Render("~/bundles/ReadingTypesScript")

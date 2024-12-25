@@ -1,0 +1,139 @@
+﻿
+@{
+    ViewBag.Title = "User Details";
+}
+
+<!-- BEGIN: Subheader -->
+<div class="m-subheader ">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <h3 class="">Accounts</h3>
+
+        </div>
+        <!--Create Button-->
+        <div>
+
+            <a href="@Url.Action("Create", "Accounts" )" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air">
+                <span>
+                    <i class="la la-plus"></i>
+                    <span>New Accounts</span>
+                </span>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<!-- END: Subheader -->
+<div class="m-content">
+
+    <div class="m-portlet m-portlet--mobile">
+
+        <div class="m-portlet__body">
+
+            <div class="col-8">
+                <div class="m-portlet m-portlet--tab">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <span class="m-portlet__head-icon m--hide">
+                                    <i class="la la-gear"></i>
+                                </span>
+                                <h3 class="m-portlet__head-text">
+                                    Cases
+                                </h3>
+                            </div>
+                        </div>
+                        @*<select class="form-control m-input" id="accountmap" style="margin-right:auto;"></select>*@
+                    </div>
+                    <div class="m-portlet__body">
+                        <div id="CaseMap" style="height: 350px; width: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <h1></h1>
+
+    <!-- END EXAMPLE TABLE PORTLET-->
+</div>
+
+
+
+@section scripts{
+
+    <script>
+
+        $(document).ready(function () {
+
+            var pathname = window.location.pathname.split('/');
+            var obj = { userId: pathname[3] };
+            
+            var Cdevicemarkers = [];
+            $.ajax({
+                type: "GET",
+                url: "/Users/GetCasesonUserId",
+                data: obj,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function (response) {
+                    console.log("a");
+                    console.log(response);
+                    console.log(response.length);
+                    for (var i = 0; i < response.length; i++) {
+
+                        var objs = {
+                            latLngs: [response[i].dLat, response[i].dLong], name: response[i].CaseTitle, caseid: response[i].CaseId, style: { r: 5 }
+                        }
+                        console.log("objs");
+                        console.log(objs);
+                        Cdevicemarkers.push(objs);
+                    }
+                },
+                failure: function () {
+                    alert("Failed!");
+                }
+            });
+            $(".jvectormap-marker").click(function () {
+                alert("Handler for .click() called.");
+            });
+            console.log("dev");
+            console.log(Cdevicemarkers);
+            console.log("dev");
+            var CdeviceMapObj = new jvm.Map({
+                container: $('#CaseMap'),
+                map: 'world_mill_en',
+                backgroundColor: "transparent",
+                regionStyle: {
+                    initial: {
+                        fill: '#7fceff',
+                        "fill-opacity": 1,
+                        stroke: 'none',
+                        "stroke-width": 0,
+                        "stroke-opacity": 1
+                    },
+                    hover: {
+                        "fill-opacity": 0.8,
+                        cursor: 'pointer'
+                    },
+                    selected: {
+                        fill: 'yellow'
+                    },
+                    selectedHover: {
+                    }
+                },
+                markers: Cdevicemarkers,
+                onMarkerClick: function (event, index) {
+                    LoadModalForDetails_CaseUser(Cdevicemarkers[index].caseid, pathname[3]);
+                    
+                }
+
+          
+
+        });
+        });
+
+    </script>
+}

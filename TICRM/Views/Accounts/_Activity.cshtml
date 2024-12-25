@@ -1,0 +1,16 @@
+﻿@model IEnumerable<TICRM.DTOs.ActivityDTO>
+
+@foreach (var item in Model)
+{
+    <div class="m-list-timeline__item">
+        <span class="m-list-timeline__badge m-list-timeline__badge--success"></span>
+        <span class="m-list-timeline__text">
+            <span class="m-link m-link--metal m-timeline-3__item-link">
+                @item.Type
+            </span><br />
+            @item.Description
+        </span>
+        <span class="m-list-timeline__time">@item.CreatedDate</span>
+    </div>
+
+}

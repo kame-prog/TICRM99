@@ -1,0 +1,57 @@
+﻿@model TICRM.DTOs.ActivityDTO
+
+
+<div class="modal-header modal-header-rightside">
+    <h5 class="modal-header-title" id="exampleModalLabel">ACTIVITY DELETE</h5>
+    <button type="button" class="close modalrightsideClose" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">X</span>
+    </button>
+</div>
+<div class="modal-body">
+    <table class="tb-horizontal">
+        <tr>
+            <th class="blockquote">@Html.DisplayNameFor(model => model.Name)</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.Name)</td>
+        </tr>
+        <tr>
+            <th class="blockquote">@Html.DisplayNameFor(model => model.ActivityPartyId)</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.ActivityPartyId)</td>
+        </tr>
+        <tr>
+            <th class="blockquote">Activity Pointer</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.ActivityPointerId)</td>
+        </tr>
+        <tr>
+            <th class="blockquote">Team Name</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.Team.Name)</td>
+        </tr>
+        <tr>
+            <th class="blockquote">User Name</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.User.Name)</td>
+        </tr>
+       
+        <tr>
+            <th class="blockquote">Status</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.Status.Name)</td>
+        </tr>
+        <tr>
+            <th class="blockquote">  @Html.DisplayNameFor(model => model.Description)</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.Description)</td>
+        </tr>
+    </table>
+</div>
+
+<div class="modal-footer modal-rightside-footer">
+    @using (Html.BeginForm("Delete/" + Model.ActivityId, "Activities", FormMethod.Post, new { id = "DeleteForm" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <button type="button" id="deletebtn" onclick="Delete_Record()" class="btn btn-success"> Confirm</button>
+            <button type="button" onclick="$('#m_modal_Delete').modal('hide');" class="btn btn-secondary"><i class="la la-refresh"></i> Cancel</button>
+        </div>
+    }
+</div>
+
+
+           

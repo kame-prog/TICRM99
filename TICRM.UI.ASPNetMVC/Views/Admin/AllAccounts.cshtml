@@ -1,0 +1,113 @@
+﻿@model IEnumerable<TICRM.DTOs.AccountDto>
+
+
+@{
+    ViewBag.Title = "AllAccounts";
+    Layout = "~/Views/Shared/_LayoutAdminDashboard.cshtml";
+}
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="form-group">
+                        <button type="button" class="btn TopPageButton" id="RefreshPage"><i class="fa fa-clock text-primary me-2"></i>Refresh<i class="fa fa-angle-down ms-2"></i></button>
+                        <button type="submit" class="btn TopPageButton" id="btnExport"><i class="fa fa-download text-primary me-2"></i>Export<i class="fa fa-angle-down ms-2"></i></button>
+                    </div>
+
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="#">Swuich</a>
+                                </li><!--end nav-item-->
+                                <li class="breadcrumb-item">
+                                    <a href="#">Customer</a>
+                                </li><!--end nav-item-->
+                                <li class="breadcrumb-item active">Accounts</li>
+                            </ol>
+                        </div>
+                        <span class="page-title">Accounts</span>
+                    </div><!--end page-title-box-->
+                </div><!--end col-->
+            </div>
+            <!-- end page title end breadcrumb -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <span class="card-title">Accounts Details</span>
+                                </div><!--end col-->
+                            </div>  <!--end row-->
+                        </div><!--end card-header-->
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="myTable" class="table page-content-wrapper">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Description</th>
+                                            <th>Type</th>
+                                            <th>Currency</th>
+                                            <th>Status</th>
+                                        </tr><!--end tr-->
+                                    </thead>
+
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@(item.Name)</td>
+                                                <td>@item.Email.ToString()</td>
+                                                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.AccountType.Name)</td>
+
+
+                                                <td>@item.currency</td>
+                                                @*<td>@item.Company</td>*@
+                                                <td>
+
+                                                    @if (item.Status.Name == "Active")
+                                                    {
+                                                        <span class="badge badge-outline-success">   @Html.DisplayFor(modelItem => item.Status.Name)</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="badge badge-outline-danger">   @Html.DisplayFor(modelItem => item.Status.Name)</span>
+                                                    }
+                                                </td>
+                                            </tr><!--end tr-->
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div><!--end card-body-->
+
+                    </div><!--end card-->
+                </div> <!--end col-->
+            </div><!--end row-->
+        </div><!-- container -->
+        <!--Start Footer-->
+        <!-- Footer Start -->
+        <footer class="footer text-center text-sm-start">
+            ©
+            <script>
+                document.write(new Date().getFullYear())
+            </script> Tech Implement
+        </footer>
+        <!-- end Footer -->
+        <!--end footer-->
+    </div>
+    <!-- end page content -->
+</div>
+<!-- end page-wrapper -->

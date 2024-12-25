@@ -1,0 +1,74 @@
+﻿@model TICRM.DTOs.ProductCatelogDTO
+
+
+<div class="modal-header modal-header-rightside">
+    <h5 class="modal-header-title" id="exampleModalLabel">PRODUCT CATELOG DELETE</h5>
+    <button type="button" class="close modalrightsideClose" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">X</span>
+    </button>
+
+</div>
+<div class="modal-body">
+    <table class="tb-horizontal">
+        <tr>
+            <th class="blockquote">@Html.DisplayNameFor(model => model.SerialNumber)</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.SerialNumber)</td>
+        </tr>
+        <tr>
+            <th class="blockquote">@Html.DisplayNameFor(model => model.ProductName)</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.ProductName)</td>
+        </tr>
+        <tr>
+            <th class="blockquote">Category Id</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.CategoryId)</td>
+        </tr>
+        <tr>
+            <th class="blockquote">Assigned Team</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.Team.Name)</td>
+        </tr>
+        <tr>
+            <th class="blockquote">Assigned User</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.User.Name)</td>
+        </tr>
+        <tr>
+            <th class="blockquote">Valid From</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.ValidFrom)</td>
+        </tr>
+        <tr>
+            <th class="blockquote">Valid To</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.ValidTo)</td>
+        </tr>
+        <tr>
+            <th class="blockquote">Status</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.Status.Name)</td>
+        </tr>
+        <tr>
+            <th class="blockquote">  @Html.DisplayNameFor(model => model.Description)</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.Description)</td>
+        </tr>
+        <tr>
+            <th class="blockquote">  @Html.DisplayNameFor(model => model.ProductNote)</th>
+            <td class="blockquote">@Html.DisplayFor(model => model.ProductNote)</td>
+        </tr>
+    </table>
+</div>
+<div class="modal-footer modal-rightside-footer">
+    @using (Html.BeginForm("Delete/" + Model.ProductId, "ProductCatelogs", FormMethod.Post, new { id = "DeleteForm" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <button type="button" id="deletebtn" onclick="Delete_Record()" class="btn btn-success"> Confirm</button>
+            <button type="button" onclick="$('#m_modal_Delete').modal('hide');" class="btn btn-secondary"><i class="la la-refresh"></i> Cancel</button>
+        </div>
+    }
+</div>
+
+<script>
+
+    var Delete_Record = function () {
+        $('body').addClass('m-page--loading');
+        $('#DeleteForm').submit();
+    }
+
+</script>

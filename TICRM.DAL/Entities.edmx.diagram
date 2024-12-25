@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="46820ecf24064e04a94e800daaa6b796" Name="Diagram1" ZoomLevel="72">
+        <EntityTypeShape EntityType="TechImplementCRMModel.C__MigrationHistory" Width="1.5" PointX="9.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Account" Width="1.5" PointX="3" PointY="66.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.AccountSize" Width="1.5" PointX="0.75" PointY="84.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.AccountType" Width="1.5" PointX="0.75" PointY="87.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Action" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Activity" Width="1.5" PointX="6" PointY="68.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.ActivityTemplate" Width="1.5" PointX="9.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Address" Width="1.5" PointX="0.75" PointY="53.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Alert" Width="1.5" PointX="9" PointY="68.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Application" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.AspNetRole" Width="1.5" PointX="5.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.AspNetUserClaim" Width="1.875" PointX="10.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.AspNetUserLogin" Width="2.125" PointX="10.25" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.AspNetUser" Width="1.5" PointX="8" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.CaseResolution" Width="1.5" PointX="17.25" PointY="56.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Case" Width="1.5" PointX="19.5" PointY="65.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.CaseStatu" Width="1.5" PointX="17.25" PointY="54.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.CaseType" Width="1.5" PointX="17.25" PointY="85.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Category" Width="1.5" PointX="6" PointY="63" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Channel" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Consumption" Width="1.5" PointX="14.25" PointY="69.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Contact" Width="1.5" PointX="14.25" PointY="63.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.ContactLead" Width="1.5" PointX="5.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.ContactOrder" Width="1.5" PointX="11.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.ContactQuote" Width="1.5" PointX="11.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Cost" Width="1.5" PointX="14.25" PointY="73.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Country" Width="1.5" PointX="11.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Currency" Width="1.5" PointX="6" PointY="90.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.CustomerAsset" Width="1.5" PointX="5.25" PointY="55.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.CustomerAssetType" Width="1.5" PointX="3" PointY="56.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Data_Duration" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.DeciveConfiguration" Width="1.5" PointX="9.75" PointY="54.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Device" Width="1.5" PointX="7.5" PointY="52.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.DeviceSensor" Width="1.5" PointX="12.75" PointY="52.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.DeviceSensorGraph" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Disconnection" Width="1.5" PointX="16.75" PointY="59.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Discount" Width="1.5" PointX="2.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Email" Width="1.5" PointX="17.25" PointY="71.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.EmailConfiguration" Width="1.5" PointX="18" PointY="90.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.EmailTemplate" Width="1.5" PointX="20.25" PointY="79.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.EventLog" Width="1.5" PointX="13.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.EventMonitor" Width="1.5" PointX="4.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.EventNotification" Width="1.5" PointX="6.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Firmware" Width="1.5" PointX="13.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.GlobalSearch" Width="1.5" PointX="8.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Graph" Width="1.5" PointX="10.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Industry" Width="1.5" PointX="6.75" PointY="49.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Lead" Width="1.5" PointX="9" PointY="62" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.LeadAccount" Width="1.5" PointX="17.25" PointY="67.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.LeadSource" Width="1.5" PointX="6.75" PointY="47.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.LeadType" Width="1.5" PointX="6.75" PointY="87.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Location" Width="1.5" PointX="5.25" PointY="80.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.LocationType" Width="1.5" PointX="3" PointY="82.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Meeting" Width="1.5" PointX="17.25" PointY="63.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Membership" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Network" Width="1.5" PointX="13.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Note" Width="1.5" PointX="15.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Opportunity" Width="1.5" PointX="8.25" PointY="80" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.OpportunityStage" Width="1.5" PointX="6" PointY="93.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.PhoneCall" Width="1.5" PointX="17.25" PointY="76.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Pobability" Width="1.5" PointX="6" PointY="95.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Priority" Width="1.5" PointX="15.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.ProductCatelog" Width="1.5" PointX="6" PointY="74.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.ProductPriceList" Width="1.5" PointX="17.25" PointY="81.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Profile" Width="1.5" PointX="7.5" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Reading" Width="1.5" PointX="9" PointY="74.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.ReadingType" Width="1.5" PointX="6.75" PointY="98.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.ReadingUnit" Width="1.5" PointX="6.75" PointY="101.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Resource" Width="1.5" PointX="3" PointY="60.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.ResourceAvailability" Width="1.5" PointX="3" PointY="76.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.ResourceSkill" Width="1.5" PointX="12" PointY="68.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Role" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Sensor" Width="1.5" PointX="17.25" PointY="87.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.SensorData" Width="1.5" PointX="15" PointY="53.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.ServiceCall" Width="1.5" PointX="12" PointY="62.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Skill" Width="1.5" PointX="9.75" PointY="86.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.SkillLevel" Width="1.5" PointX="9.75" PointY="89.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Status" Width="1.5" PointX="0.75" PointY="58" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Task" Width="1.5" PointX="11.25" PointY="58.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Team" Width="1.5" PointX="0.75" PointY="75.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.TeamUser" Width="1.5" PointX="12" PointY="73.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Temp" Width="1.5" PointX="15.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Tracking" Width="1.5" PointX="15.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.UnitCost" Width="1.5" PointX="12" PointY="86" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Urgency" Width="1.5" PointX="9.75" PointY="49.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.User" Width="1.5" PointX="0.75" PointY="66.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.User1" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.WorkFlow" Width="1.5" PointX="12" PointY="77.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.WorkFlowMapping" Width="1.5" PointX="14.25" PointY="80.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.WorkFlowNode" Width="1.5" PointX="12.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.WorkFlowReport" Width="1.5" PointX="14.25" PointY="84.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.WorkOrder" Width="1.5" PointX="14.25" PointY="57.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.WorkStage" Width="1.5" PointX="9.75" PointY="46.25" IsExpanded="true" />
+        <AssociationConnector Association="TechImplementCRMModel.FK__Consumpti__Accou__725BF7F6" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK__Costs__AccountId__7908F585" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK__CustomerA__Accou__79FD19BE" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK__Device__AccountI__00AA174D" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK__Disconnec__Accou__075714DC" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK__Location__Accoun__178D7CA5" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK__Opportuni__Accou__22FF2F51" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Account_AccountSize" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Account_AccountType" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Account_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Account_Address1" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Account_Industry" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Account_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Account_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Account_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Contact_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_LeadAccounts_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_WorkOrder_AccountId" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Activity_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Activity_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Activity_User" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Email_Activity" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Meeting_Activity" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_PhoneCall_Activity" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Task_Activity" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Lead_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Location_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Resource_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Resource_Address1" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Alert_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Alert_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Alert_Urgency" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Alert_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.MembershipEntity_Application" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.RoleEntity_Application" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.User_Application" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK__Cases__Resolutio__6CA31EA0" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK__Cases__AssignedT__6D9742D9" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK__Cases__AssignedU__6E8B6712" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK__Cases__CaseStatu__6BAEFA67" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK__Cases__CaseTypeI__6ABAD62E" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK__Cases__ContactId__69C6B1F5" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK__Cases__SensorId__68D28DBC" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Category_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Category_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Category_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK__Consumpti__Devic__24B26D99" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Contact_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Contact_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Contact_User" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK__Costs__UnitCostI__7814D14C" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Oppertunity_Currency" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_ProductPriceList_Currency" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK__CustomerA__Locat__7AF13DF7" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK__Device__Customer__019E3B86" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_CustomerAsset_CustomerAssetType" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_CustomerAsset_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_CustomerAsset_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_CustomerAsset_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_DeciveConfiguration_Device" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK__Disconnec__Devic__25A691D2" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Devices_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Devices_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Devices_User" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_DeviceSensor_Device" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_DeviceSensor_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_SensorData_DeviceSensor" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Email_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Email_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Email_User" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_EmailTemplate_EmailConfiguration" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_EmailTemplate_WorkFlow" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Lead_Industry" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Lead_LeadSource" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Lead_LeadType" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Lead_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Lead_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Lead_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_LeadAccounts_Lead" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Location_LocationType" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Location_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Location_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Location_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Meeting_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Meeting_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Meeting_User" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.MembershipEntity_User" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Oppertunity_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Oppertunity_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Opportunity_OpportunityStages" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Opportunity_Pobability" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Opportunity_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_PhoneCall_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_PhoneCall_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_PhoneCall_User" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_ProductCatelog_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_ProductCatelog_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_ProductCatelog_User" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_ProductPriceList_ProductCatelog" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_ProductPriceList_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.ProfileEntity_User" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Reading_ReadingType" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Reading_ReadingUnit" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Reading_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Reading_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Reading_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_ReadingUnit_ReadingType" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Resource_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Resource_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Resource_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_ResourceAvailability_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_ResourceAvailability_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_ResourceAvailability_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_ResourceSkills_SkillLevel" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_ResourceSkills_Skills" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_ResourceSkills_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_ResourceSkills_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_ResourceSkills_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_ServiceCall_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_ServiceCall_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_ServiceCall_Urgency" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_ServiceCall_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_ServiceCall_WorkStages" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Task_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_WorkOrder_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Task_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_Task_User" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_TeamUsers_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_WorkFlow_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_WorkOrder_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_TeamUsers_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_WorkFlow_User" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_WorkOrder_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_WorkFlowMapping_WorkFlow" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_WorkFlowReport_WorkFlow" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.FK_WorkOrder_WorkStages" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.AspNetUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="TechImplementCRMModel.UsersInRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Company" Width="1.5" PointX="5.625" PointY="1" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.OrderDevice" Width="1.5" PointX="9.375" PointY="16.75" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.Payment" Width="1.5" PointX="15.375" PointY="15.75" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.EmailIntegration" Width="1.5" PointX="17.375" PointY="13.75" />
+        <EntityTypeShape EntityType="TechImplementCRMModel.SuperAdminCred" Width="1.5" PointX="17.375" PointY="17.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,88 @@
+﻿@model TICRM.DTOs.WorkOrderDto
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutDataTable.cshtml";
+}
+
+
+<section class="content">
+
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Details WorkOrder</h3>
+            <hr />
+        </div><!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-6">
+
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Title)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.NTE)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.NTE)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Description)
+                        </dd>
+                        <dt>
+                            Status
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Status.Name)
+                        </dd>
+
+                        <dt>
+                            Assigned Team
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Team.Name)
+                        </dd>
+
+                        <dt>
+                            Assigned User
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.User.Name)
+                        </dd>
+
+                        <dt>
+                            Work Stage
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.WorkStage.Name)
+                        </dd>
+
+                    </dl>
+                    <p>
+                        @Html.ActionLink("Edit", "Edit", new { id = Model.WorkOrderId }) |
+                        @Html.ActionLink("Back to List", "Index")
+                    </p>
+
+                </div>
+                <div class="col-md-6"></div>
+            </div>
+        </div>
+    </div>
+
+</section>

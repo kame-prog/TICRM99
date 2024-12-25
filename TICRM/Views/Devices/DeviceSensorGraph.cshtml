@@ -1,0 +1,182 @@
+﻿
+@{
+    ViewBag.Title = "DeviceSensorGraph";
+}
+
+<!-- BEGIN: Subheader -->
+<div class="m-subheader ">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <h3 class="m-subheader__title m-subheader__title--separator">Device Sensor Graph</h3>
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                <li class="m-nav__item m-nav__item--home">
+                    <a href="@Url.Action("Index","Dashboard")" class="m-nav__link m-nav__link--icon">
+                        <i class="m-nav__link-icon la la-home"></i>
+                    </a>
+                </li>
+                <li class="m-nav__separator">-</li>
+                <li class="m-nav__item">
+                    <a href="@Url.Action("Index","DeviceSensorGraph")" class="m-nav__link">
+                        <span class="m-nav__link-text">Device Sensor Graph</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+<!-- END: Subheader -->
+
+<div class="m-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <!--begin::Portlet-->
+            <div class="m-portlet">
+
+                <!--begin::Form-->
+
+                <form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed">
+                    <div class="m-portlet__body">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="form-group m-form__group row">
+
+                            <div class="col-lg-6 col-sm-12 col-md-12 col-xs-12">
+                                <div class="form-group" style="display:none;">
+                                    <label for="DeviceSensorGraphId">DeviceSensorGraphId</label>
+                                    <input name="DeviceSensorGraphId" id="DeviceSensorGraphId" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="DeviceId">Device</label>
+                                    <select name="DeviceId" id="DeviceIdDropDownList" class="form-control"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="SensorId">Sensor</label>
+                                    <select name="SensorId" id="SensorIdDropDownList" class="form-control"></select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-sm-12 col-md-12 col-xs-12">
+                                <div class="form-group">
+                                    <label for="GraphId">Graph</label>
+                                    <select name="GraphId" id="GraphIdDropDownlist" class="form-control"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Data Duration</label>
+                                    <div class="input-group">
+                                        <select name="data" id="data" class="form-control">
+                                            <option value="" disabled selected>Select</option>
+                                            <option value="1 Hour">1 hour</option>
+                                            <option value="12 Hours">12 hours</option>
+                                            <option value="1 Day">1 day</option>
+                                            <option value="7 Days">7 days</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-sm-12 col-md-12 col-xs-12">
+                                <div class="form-group">
+                                    <label>Channel</label>
+                                    <select name="channel" id="channel" class="form-control">
+                                        <option value="" disabled selected>Select</option>
+                                        <option value="MQTT">MQTT</option>
+                                        <option value="HTTP">HTTP</option>
+                                        <option value="LORAWAN">LORAWAN</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-6 col-sm-12 col-md-12 col-xs-12">
+
+                                <div class="form-group">
+                                    <label>Network</label>
+                                    <div class="input-group">
+                                        <select name="network" id="network" class="form-control">
+                                            <option value="" disabled selected>Select</option>
+                                            <option value="WIFI">WIFI</option>
+                                            <option value="Cellular">Cellular</option>
+                                            <option value="Ethernet">Ethernet</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-12 col-md-12 col-xs-12">
+
+                                <div id="tankHeight" class="form-group" style="display:none;">
+                                    <label for="TankHeight">Tank Height</label>
+                                    <input name="TankLevel" id="TankLevel" class="form-control" />
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                        <div class="m-form__actions m-form__actions--solid">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <button type="button" id="submit_DeviceSensorTemplate" class="btn btn-success"><i class="la la-save"></i> Submit</button>
+                                    <button type="button" id="refresh_DeviceSensorTemplate" class="btn btn-secondary"><i class="la la-refresh"></i> Cancel</button>
+                                </div>
+                                <div class="col-lg-6 m--align-right">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <hr />
+
+                </form>
+
+                <!--end::Form-->
+            </div>
+            <!--end::Portlet-->
+        </div>
+    </div>
+</div>
+
+<div class="m-content">
+
+    <div class="m-portlet m-portlet--mobile">
+        <div class="m-portlet__head">
+            <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                    <h3 class="m-portlet__head-text">
+                        List Of Device Sensor Graph
+                    </h3>
+                </div>
+            </div>
+            <div class="m-portlet__head-tools">
+
+            </div>
+        </div>
+        <div class="m-portlet__body">
+
+            <!--begin: Datatable -->
+            <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
+                <thead>
+                    <tr>
+                        <th>Device Name</th>
+                        <th>Sensor Name</th>
+                        <th>Graph Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="deviceSensorGridtbody"></tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <!-- END EXAMPLE TABLE PORTLET-->
+</div>
+@Styles.Render("~/bundles/DevicesCSS")
+
+@Scripts.Render("~/bundles/DevicesScript")

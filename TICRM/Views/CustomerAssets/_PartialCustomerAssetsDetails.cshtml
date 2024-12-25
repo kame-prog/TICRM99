@@ -1,0 +1,83 @@
+﻿@model TICRM.DTOs.CustomerAssetDto
+
+<div class="modal-header modal-header-rightside">
+        <h5 class="modal-header-title" id="exampleModalLabel">CUSTOMER ASSETS DETAILS</h5>
+        <button type="button" class="close modalrightsideClose" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">X</span>
+        </button>
+</div>
+<div class="modal-body">
+    <div class="tab-content">
+        <div class="tab-pane active show" id="m_portlet_tab_CustomerAssets" role="tabpanel">
+
+            <div class="row container">
+                <table class="tb-horizontal">
+                    <tr>
+                        <th class="blockquote">  @Html.DisplayNameFor(model => model.Title)</th>
+                        <td class="blockquote"> @Html.DisplayFor(model => model.Title)</td>
+                    </tr>
+                    <tr>
+                        <th class="blockquote">  @Html.DisplayNameFor(model => model.Manufacture)</th>
+                        <td class="blockquote"> @Html.DisplayFor(model => model.Manufacture)</td>
+                    </tr>
+                    <tr>
+                        <th class="blockquote">  @Html.DisplayNameFor(model => model.Model)</th>
+                        <td class="blockquote"> @Html.DisplayFor(model => model.Model)</td>
+                    </tr>
+                    <tr>
+                        <th class="blockquote">Year Of Manufacture</th>
+                        <td class="blockquote"> @Html.DisplayFor(model => model.YearOfManufacture)</td>
+                    </tr>
+                    <tr>
+                        <th class="blockquote">  @Html.DisplayNameFor(model => model.Value)</th>
+                        <td class="blockquote"> @Html.DisplayFor(model => model.Value)</td>
+                    </tr>
+                    <tr>
+                        <th class="blockquote">Depriciated Value</th>
+                        <td class="blockquote"> @Html.DisplayFor(model => model.DepriciatedValue)</td>
+                    </tr>
+                    <tr>
+                        <th class="blockquote">  @Html.DisplayNameFor(model => model.SKU)</th>
+                        <td class="blockquote"> @Html.DisplayFor(model => model.SKU)</td>
+                    </tr>
+                    <tr>
+                        <th class="blockquote">  @Html.DisplayNameFor(model => model.Description)</th>
+                        <td class="blockquote"> @Html.DisplayFor(model => model.Description)</td>
+                    </tr>
+                    <tr>
+                        <th class="blockquote">Account</th>
+                        <td class="blockquote"> @Html.DisplayFor(model => model.AccountId)</td>
+                    </tr>
+                    <tr>
+                        <th class="blockquote">Account</th>
+                        <td class="blockquote">@ViewBag.AccountId</td>
+                    </tr>
+                    <tr>
+                        <th class="blockquote">Location</th>
+                        <td class="blockquote">@ViewBag.LocationId</td>
+                    </tr>
+                    <tr>
+                        <th class="blockquote">   Customer Asset Type</th>
+                        <td class="blockquote"> @Html.DisplayFor(model => model.CustomerAssetType.Name)</td>
+                    </tr>
+                    <tr>
+                        <th class="blockquote"> Status</th>
+                        <td class="blockquote"> @Html.DisplayFor(model => model.Status.Name)</td>
+                    </tr>
+                    <tr>
+                        <th class="blockquote">  Assigned Team</th>
+                        <td class="blockquote"> @Html.DisplayFor(model => model.Team.Name)</td>
+                    </tr>
+                    <tr>
+                        <th class="blockquote">  Assigned User</th>
+                        <td class="blockquote"> @Html.DisplayFor(model => model.User.Name)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer modal-rightside-footer">
+    <a href="@Url.Action("Edit", "CustomerAssets" , new { id=Model.CustomerAssetId })" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air"><i class="fa fa-pencil-alt"></i> &nbsp; Edit</a>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>
