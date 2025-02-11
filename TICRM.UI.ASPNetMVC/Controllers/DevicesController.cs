@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -656,7 +656,7 @@ namespace TICRM.UI.ASPNetMVC.Controllers
 
                 //Redirect to the Index Action method.
                 return RedirectToAction("Index");
-            }
+            } 
             catch (Exception ex)
             {
                 // Log the exception using log4net
